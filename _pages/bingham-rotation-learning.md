@@ -17,7 +17,7 @@ There are many ways to represent rotations: Euler angles, rotation matrices, axi
 
 ### A Smooth Representation of <span>SO(3)</span> for Deep Rotation Learning with Uncertainty 
 #### Valentin Peretroukhin, Matthew Giamou, David M. Rosen, W. Nicholas Greene, Nicholas Roy, and Jonathan Kelly 
-#### To appear in Robotics: Science and Systems (RSS) 2020
+##### To appear in Robotics: Science and Systems (RSS) 2020
 
 ## Preprint
 
