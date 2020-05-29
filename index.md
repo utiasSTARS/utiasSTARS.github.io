@@ -1,5 +1,3 @@
-{% for page in site.pages %}
-    <ul>
-      <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-    </ul>
-{% endfor %}
+# Welcome to STARS Lab Papers!
+
+This is a central place to host web pages for STARS papers.

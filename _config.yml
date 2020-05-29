@@ -9,3 +9,6 @@ footer_content: "Space and Terrestrial Autonomous Systems Lab - University of To
 
 include:
   - _pages                  # all your pages can be put inside pages (except articles)
+  
+plugins:
+  - jekyll-remote-theme
