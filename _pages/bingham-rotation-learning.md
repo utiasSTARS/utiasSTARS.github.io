@@ -12,7 +12,7 @@ There are many ways to represent rotations: Euler angles, rotation matrices, axi
 </div>
 
 <div style='text-align:center'>
-<img src='/assets/img/projects/rss_so3/so3_learning.png' width='75%'>
+<img src='/assets/bingham-rotation-learning/so3_learning.png' width='75%'>
 </div>
 ---
 
@@ -26,7 +26,7 @@ There are many ways to represent rotations: Euler angles, rotation matrices, axi
 <div class="grid no-gutters paper_links">
 <div class="unit half">
     <h2>arXiv Preprint</h2>
-    <a target="_blank" rel="external" href=""><img src='/assets/img/projects/rss_so3/so3_paper.png' width='75%'></a>
+    <a target="_blank" rel="external" href=""><img src='/assets/bingham-rotation-learning/so3_paper.png' width='75%'></a>
 </div> 
 <div class="unit half">
     <h2>Code</h2>
