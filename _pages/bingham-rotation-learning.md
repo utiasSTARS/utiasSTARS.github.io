@@ -6,6 +6,8 @@ desc: Website for RSS (2020) paper on learning rotation
 permalink: /bingham-rotation-learning/
 ---
 
+# Bingham Rotation Learning
+
 {::nomarkdown} 
 <div class="lead lead-about">
 There are many ways to represent rotations: Euler angles, rotation matrices, axis-angle vectors, or unit quaternions, for example. In deep learning, it is common to use unit quaternions for their simple geometric and alebraic structure. However, unit quaternions lack an important <strong>smoothness property</strong> that makes learning 'large' rotations difficult, and other representations are not easily amenable to learning uncertainty. In this work, we address this gap and present a smooth representation that defines a <em>belief</em> (or distribution) over rotations.
@@ -23,16 +25,10 @@ There are many ways to represent rotations: Euler angles, rotation matrices, axi
 
 ---
 
-<div class="grid no-gutters paper_links">
-<div class="unit half">
-    <h2>arXiv Preprint</h2>
-    <a target="_blank" rel="external" href=""><img src='/assets/bingham-rotation-learning/so3_paper.png' width='75%'></a>
-</div> 
-<div class="unit half">
+ <h2>arXiv Preprint</h2>
+    <a target="_blank" rel="external" href=""><img src='/assets/bingham-rotation-learning/so3_paper.png' width='25%'></a>
     <h2>Code</h2>
     <a target="_blank" rel="external" href="https://github.com/utiasSTARS/bingham-rotation-learning"><i class="fa fa-github-square" aria-hidden="true"></i> Available on Github</a>
-</div>
-</div>
 {:/}
 
 
