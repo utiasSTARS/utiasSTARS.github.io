@@ -12,3 +12,4 @@ include:
   
 plugins:
   - jekyll-remote-theme
+  - jekyll-font-awesome-sass
