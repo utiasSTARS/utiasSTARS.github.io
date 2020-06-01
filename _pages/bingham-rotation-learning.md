@@ -8,8 +8,8 @@ permalink: /bingham-rotation-learning/
 
 # A Smooth Representation of <span>SO(3)</span> for Deep Rotation Learning with Uncertainty 
 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv Publication](http://arxiv.com/){: .btn .btn-purple }
-[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/bingham-rotation-learning){: .btn }
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv Publication](http://arxiv.com/){: .btn .btn-blue }
+[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/bingham-rotation-learning){: .btn-green }
 
 
 There are many ways to represent rotations: Euler angles, rotation matrices, axis-angle vectors, or unit quaternions, for example. In deep learning, it is common to use unit quaternions for their simple geometric and alebraic structure. However, unit quaternions lack an important <strong>smoothness property</strong> that makes learning 'large' rotations difficult, and other representations are not easily amenable to learning uncertainty. In this work, we address this gap and present a smooth representation that defines a <em>belief</em> (or distribution) over rotations.
