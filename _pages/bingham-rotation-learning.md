@@ -54,7 +54,7 @@ Coming soon
 
 <pre wrap='true'>
 @inproceedings{peretroukhin_so3_2020,
-   author={Peretroukhin, Valentin and Giamou, Matthew and Rosen, David and Greene, W. Nicholas and Roy, Nicholas and Kelly, Jonathan},
+   author={Valentin Peretroukhin and Matthew Giamou and David M. Rosen and W. Nicholas Greene and Nicholas Roy and Jonathan Kelly},
    title={A {S}mooth {R}epresentation of {SO(3)} for {D}eep {R}otation {L}earning with {U}ncertainty},
    booktitle={Proceedings of Robotics: Science and Systems {(RSS'20)}},
    year={2020},
