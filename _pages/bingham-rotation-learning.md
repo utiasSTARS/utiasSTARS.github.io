@@ -47,7 +47,8 @@ We empirically validate the benefits of our formulation by training deep neural 
 
 
 ## Video
-Coming soon...
+Coming soon
+{: .label .label-yellow }
 
 ## Citation
 
@@ -55,10 +56,10 @@ Coming soon...
 @inproceedings{peretroukhin_so3_2020,
    author={Peretroukhin, Valentin and Giamou, Matthew and Rosen, David and Greene, W. Nicholas and Roy, Nicholas and Kelly, Jonathan},
    title={A {S}mooth {R}epresentation of {SO(3)} for {D}eep {R}otation {L}earning with {U}ncertainty},
-   booktitle={Proceedings of Robotics: Science and Systems},
+   booktitle={Proceedings of Robotics: Science and Systems {(RSS'20)}},
    year={2020},
-   doi={TBD},
-   url={TBD}
+   date = {2020-07-12/2020-07-16},
+   month = {Jul. 12--16},
 }
 </pre>
 
