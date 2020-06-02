@@ -27,7 +27,7 @@ There are many ways to represent rotations: Euler angles, rotation matrices, axi
 ## Preprint
 
 {::nomarkdown} 
- <a target="_blank" rel="external" href=""><img src='/assets/bingham-rotation-learning/so3_paper.png' width='25%'></a>
+ <a target="_blank" rel="external" href="https://arxiv.org/abs/2006.01031"><img src='/assets/bingham-rotation-learning/so3_paper.png' width='25%'></a>
  {:/}
  
 ## Code
