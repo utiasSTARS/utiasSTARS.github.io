@@ -8,7 +8,7 @@ permalink: /bingham-rotation-learning/
 
 # A Smooth Representation of <span>SO(3)</span> for Deep Rotation Learning with Uncertainty 
 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv (coming soon) ](./){: .btn .btn-blue }
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2006.01031){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/bingham-rotation-learning){: .btn .btn-green }
 
 
