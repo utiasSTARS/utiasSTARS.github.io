@@ -10,7 +10,7 @@ youtubeId: AdPze8cTUuE
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/1909.09318){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/sos-ik){: .btn .btn-green }
 
-# Video
+## Video
 {% include youtubePlayer.html id=page.youtubeId %}
 
 <pre wrap='true'>
