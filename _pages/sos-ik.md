@@ -6,6 +6,18 @@ description: ICRA (2020) paper on solving inverse kinematics using a global poly
 permalink: /sos-ik/
 ---
 ### Inverse Kinematics for Serial Kinematic Chains via Sum of Squares Optimization
+## Preprint
+
+{::nomarkdown} 
+ <a target="_blank" rel="external" href="https://arxiv.org/abs/1909.09318"><img src='/assets/bingham-rotation-learning/so3_paper.png' width='25%'></a>
+ {:/}
+ 
+## Code
+
+{::nomarkdown} 
+<a target="_blank" rel="external" href="https://github.com/utiasSTARS/sos-ik"><i class="fa fa-github-square" aria-hidden="true"></i> Available on Github</a>
+{:/}
+
 <pre wrap='true'>
 @inproceedings{2020_Maric_Inverse,
   address = {Paris, France},
