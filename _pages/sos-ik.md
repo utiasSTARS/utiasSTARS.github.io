@@ -14,7 +14,7 @@ Inverse kinematics is a fundamental problem for articulated robots: fast and acc
 
  {::nomarkdown} 
 <div style='text-align:center'>
-<img src='/assets/sos-ik/sysimg.png' width='50%'>
+<img src='/assets/sos-ik/sysimg.png' width='75%'>
 </div>
 {:/}
 ## Video
