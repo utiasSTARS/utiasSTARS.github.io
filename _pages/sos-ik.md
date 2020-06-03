@@ -8,15 +8,8 @@ permalink: /sos-ik/
 ### Inverse Kinematics for Serial Kinematic Chains via Sum of Squares Optimization
 ## Preprint
 
-{::nomarkdown} 
- <a target="_blank" rel="external" href="https://arxiv.org/abs/1909.09318"><img src='/assets/bingham-rotation-learning/so3_paper.png' width='25%'></a>
- {:/}
- 
-## Code
-
-{::nomarkdown} 
-<a target="_blank" rel="external" href="https://github.com/utiasSTARS/sos-ik"><i class="fa fa-github-square" aria-hidden="true"></i> Available on Github</a>
-{:/}
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/1909.09318){: .btn .btn-blue }
+[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/sos-ik){: .btn .btn-green }
 
 <pre wrap='true'>
 @inproceedings{2020_Maric_Inverse,
