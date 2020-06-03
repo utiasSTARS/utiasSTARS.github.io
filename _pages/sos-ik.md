@@ -4,12 +4,14 @@ title: Inverse Kinematics for Serial Kinematic Chains via Sum of Squares Optimiz
 subtitle:  Solving Inverse Kinematics
 description: ICRA (2020) paper on solving inverse kinematics using a global polynomial optimization method
 permalink: /sos-ik/
+youtubeId: AdPze8cTUuE
 ---
-### Inverse Kinematics for Serial Kinematic Chains via Sum of Squares Optimization
-## Preprint
-
+# Inverse Kinematics for Serial Kinematic Chains via Sum of Squares Optimization
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/1909.09318){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/sos-ik){: .btn .btn-green }
+
+# Video
+{% include youtubePlayer.html id=page.youtubeId %}
 
 <pre wrap='true'>
 @inproceedings{2020_Maric_Inverse,
