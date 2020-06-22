@@ -4,6 +4,7 @@ title: Bingham Rotation Learning (RSS 2020)
 subtitle:  Representing Rotations in Deep Learning
 description: RSS (2020) paper on learning rotation with uncertainty
 permalink: /bingham-rotation-learning/
+youtubeId: 8QMcNmCPYR0
 ---
 
 # A Smooth Representation of <span>SO(3)</span> for Deep Rotation Learning with Uncertainty 
@@ -36,6 +37,9 @@ There are many ways to represent rotations: Euler angles, rotation matrices, axi
 <a target="_blank" rel="external" href="https://github.com/utiasSTARS/bingham-rotation-learning"><i class="fa fa-github-square" aria-hidden="true"></i> Available on Github</a>
 {:/}
 
+## Video
+{% include youtubePlayer.html id=page.youtubeId %}
+
 
 ### Abstract
 Accurate rotation estimation is at the heart of robot perception tasks such as visual odometry and object pose estimation. Deep learning has recently provided a new way to perform these tasks, and the choice of rotation representation is an important part of network design. 
@@ -46,9 +50,7 @@ We empirically validate the benefits of our formulation by training deep neural 
 
 
 
-## Video
-Coming soon
-{: .label .label-yellow }
+
 
 ## Citation
 
@@ -56,7 +58,7 @@ Coming soon
 @inproceedings{peretroukhin_so3_2020,
    author={Valentin Peretroukhin and Matthew Giamou and David M. Rosen and W. Nicholas Greene and Nicholas Roy and Jonathan Kelly},
    title={A {S}mooth {R}epresentation of {SO(3)} for {D}eep {R}otation {L}earning with {U}ncertainty},
-   booktitle={Proceedings of Robotics: Science and Systems {(RSS'20)}},
+   booktitle={Proceedings of {R}obotics: {S}cience and {S}ystems {(RSS'20)}},
    year={2020},
    date = {2020-07-12/2020-07-16},
    month = {Jul. 12--16},
