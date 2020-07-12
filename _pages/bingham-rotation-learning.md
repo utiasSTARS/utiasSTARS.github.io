@@ -48,11 +48,10 @@ We empirically validate the benefits of our formulation by training deep neural 
 
 
 ## Citation
-
 <pre wrap='true'>
 @inproceedings{peretroukhin_so3_2020, 
     AUTHOR    = {Valentin Peretroukhin AND Matthew Giamou AND W. Nicholas Greene AND David Rosen AND Jonathan Kelly AND Nicholas Roy}, 
-    TITLE     = {{A Smooth Representation of Belief over SO(3) for Deep Rotation Learning with Uncertainty}}, 
+    TITLE     = { {A Smooth Representation of Belief over SO(3) for Deep Rotation Learning with Uncertainty} }, 
     BOOKTITLE = {Proceedings of Robotics: Science and Systems}, 
     YEAR      = {2020}, 
     ADDRESS   = {Corvalis, Oregon, USA}, 

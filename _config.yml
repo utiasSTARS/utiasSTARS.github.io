@@ -1,5 +1,4 @@
 remote_theme: pmarsceill/just-the-docs
-
 title: STARS Papers
 description: Public pages for research published by the STARS Lab.
 baseurl: "/" # the subpath of your site, e.g. /blog
