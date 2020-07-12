@@ -11,6 +11,7 @@ youtubeId: 8QMcNmCPYR0
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2006.01031){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/bingham-rotation-learning){: .btn .btn-green }
+[<i class="fa fa-newspaper-o" aria-hidden="true"></i> RSS Paper](http://www.roboticsproceedings.org/rss16/p007.html){: .btn .btn-red }
 
 
 There are many ways to represent rotations: Euler angles, rotation matrices, axis-angle vectors, or unit quaternions, for example. In deep learning, it is common to use unit quaternions for their simple geometric and alebraic structure. However, unit quaternions lack an important <strong>smoothness property</strong> that makes learning 'large' rotations difficult, and other representations are not easily amenable to learning uncertainty. In this work, we address this gap and present a smooth representation that defines a <em>belief</em> (or distribution) over rotations.
@@ -23,13 +24,7 @@ There are many ways to represent rotations: Euler angles, rotation matrices, axi
 
 ### A Smooth Representation of <span>SO(3)</span> for Deep Rotation Learning with Uncertainty 
 #### Valentin Peretroukhin, Matthew Giamou, David M. Rosen, W. Nicholas Greene, Nicholas Roy, and Jonathan Kelly 
-##### To appear in Robotics: Science and Systems (RSS) 2020
-
-## Preprint
-
-{::nomarkdown} 
- <a target="_blank" rel="external" href="https://arxiv.org/abs/2006.01031"><img src='/assets/bingham-rotation-learning/so3_paper.png' width='25%'></a>
- {:/}
+##### Robotics: Science and Systems (RSS) 2020
  
 ## Code
 
@@ -55,13 +50,14 @@ We empirically validate the benefits of our formulation by training deep neural 
 ## Citation
 
 <pre wrap='true'>
-@inproceedings{peretroukhin_so3_2020,
-   author={Valentin Peretroukhin and Matthew Giamou and David M. Rosen and W. Nicholas Greene and Nicholas Roy and Jonathan Kelly},
-   title={A {S}mooth {R}epresentation of {SO(3)} for {D}eep {R}otation {L}earning with {U}ncertainty},
-   booktitle={Proceedings of {R}obotics: {S}cience and {S}ystems {(RSS'20)}},
-   year={2020},
-   date = {2020-07-12/2020-07-16},
-   month = {Jul. 12--16},
+@inproceedings{peretroukhin_so3_2020, 
+    AUTHOR    = {Valentin Peretroukhin AND Matthew Giamou AND W. Nicholas Greene AND David Rosen AND Jonathan Kelly AND Nicholas Roy}, 
+    TITLE     = {{A Smooth Representation of Belief over SO(3) for Deep Rotation Learning with Uncertainty}}, 
+    BOOKTITLE = {Proceedings of Robotics: Science and Systems}, 
+    YEAR      = {2020}, 
+    ADDRESS   = {Corvalis, Oregon, USA}, 
+    MONTH     = {July}, 
+    DOI       = {10.15607/RSS.2020.XVI.007} 
 }
 </pre>
 
