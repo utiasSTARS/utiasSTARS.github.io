@@ -12,7 +12,7 @@ youtubeId: 8QMcNmCPYR0
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2006.01031){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/bingham-rotation-learning){: .btn .btn-green }
 [<i class="fa fa-newspaper-o" aria-hidden="true"></i> RSS Paper](http://www.roboticsproceedings.org/rss16/p007.html){: .btn .btn-red }
-
+<p class="label label-yellow"><i class="fa fa-trophy" aria-hidden="true"></i> Best Student Paper Award, RSS 2020 <i class="fa fa-trophy" aria-hidden="true"></i></p>
 
 There are many ways to represent rotations: Euler angles, rotation matrices, axis-angle vectors, or unit quaternions, for example. In deep learning, it is common to use unit quaternions for their simple geometric and alebraic structure. However, unit quaternions lack an important <strong>smoothness property</strong> that makes learning 'large' rotations difficult, and other representations are not easily amenable to learning uncertainty. In this work, we address this gap and present a smooth representation that defines a <em>belief</em> (or distribution) over rotations.
 
