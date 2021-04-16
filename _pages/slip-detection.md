@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Under Pressure: Learning to Detect Slip with Barometric Tactile Sensors"
+title: "Detect Slip with Barometric Tactile Sensors (IROS 2021)"
 subtitle: ''
 description: Submitted to IROS 2021
 permalink: /slip-detection/
