@@ -4,6 +4,7 @@ title: Bingham Rotation Learning (RSS 2020)
 subtitle:  Representing Rotations in Deep Learning
 description: RSS (2020) paper on learning rotation with uncertainty
 permalink: /bingham-rotation-learning/
+nav_order: 9997
 youtubeId: 8QMcNmCPYR0
 ---
 

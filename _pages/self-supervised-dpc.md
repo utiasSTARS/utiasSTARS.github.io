@@ -4,6 +4,7 @@ title: Self-Supervised DPC (ICRA 2020)
 subtitle:
 description:
 permalink: /ss-dpc/
+nav_order: 9998
 youtubeId: AvNBUK4lTMo
 ---
 
