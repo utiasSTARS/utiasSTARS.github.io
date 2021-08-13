@@ -17,7 +17,7 @@ youtubeId:
 Collaborative robots (cobots) aims to safely work alongside human workers to alleviate the burden of tedious tasks. Providing cobots with the capability to infer the *inertial parameters* of manipulated objects can be a stepping stone towards their wide adoption in production facilities. To ensure safety, cobots implement kinematic limits that makes existing algorithms prohibitively slow and inaccurate on noisy signals. We formulate an optimization problem that can generate a good solution faster than other methods by relying on two educated approximations and by leveraging knowledge of the pose and shape of the manipulated object. The proposed algorithm is supported by a number of simulation and real-world experiments that show how it complements existing algorithms by specifically targeting cobots operation regime.
 
 ### Fast Inertial Parameter Identification of Manipulated Objects for Collaborative Robots 
-#### Philippe Nadeau and Jonathan Kelly 
+#### Philippe Nadeau, Matthew Giamou and Jonathan Kelly 
 ##### International Conference on Robotics and Automation (ICRA) 2022 
 
 ## Video
@@ -95,7 +95,7 @@ This repository contains code used to generate URDF models of a variety of test 
 ## Citation
 <pre wrap='true'>
 @inproceedings{nadeau_fastInertialIdent_2022, 
-    AUTHOR    = {Philippe Nadeau AND Jonathan Kelly}, 
+    AUTHOR    = {Philippe Nadeau AND Matthew Giamou AND Jonathan Kelly}, 
     TITLE     = { {Fast Inertial Parameter Identification of Manipulated Objects for Collaborative Robots} }, 
     BOOKTITLE = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA'22})}, 
     YEAR      = {2022}, 
