@@ -1,24 +1,24 @@
 ---
 layout: page
-title: Fast Inertial Parameter Identification of Manipulated Objects for Collaborative Robots (ICRA 2022)
+title: Fast Object Inertial Parameter Identification for Collaborative Robots
 subtitle:  Providing a Dynamic Touch to Cobots
-description: ICRA (2022) paper on inertial parameter identification for robots working at the pace of human workers
+description: Paper on inertial parameter identification for robots working at the pace of human workers
 permalink: /fast-inertial-identification/
 nav_exclude: true
 nav_order: 9995
-youtubeId: 
+youtubeId: xCb1l5aNe6Y
 ---
 
-# Fast Inertial Parameter Identification of Manipulated Objects for Collaborative Robots 
+# Fast Object Inertial Parameter Identification for Collaborative Robots
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/){: .btn .btn-blue }
 
 ### Abstract
-Collaborative robots (cobots) aims to safely work alongside human workers to alleviate the burden of tedious tasks. Providing cobots with the capability to infer the *inertial parameters* of manipulated objects can be a stepping stone towards their wide adoption in production facilities. To ensure safety, cobots implement kinematic limits that makes existing algorithms prohibitively slow and inaccurate on noisy signals. We formulate an optimization problem that can generate a good solution faster than other methods by relying on two educated approximations and by leveraging knowledge of the pose and shape of the manipulated object. The proposed algorithm is supported by a number of simulation and real-world experiments that show how it complements existing algorithms by specifically targeting cobots operation regime.
+Collaborative robots (cobots) aim to alleviate the burden of tedious tasks by safely working alongside humans. Providing cobots with the ability to infer the inertial parameters of manipulated objects is a key stepping stone towards their wide adoption in production facilities. To ensure safety, cobots implement kinematic limits that render state-of-the-art identification algorithms prohibitively slow and inaccurate with noisy sensors. Motivated by the literature on safe cobot operation, we introduce Point Mass Discretization (PMD), a formulation of inertial parameter identification that exploits the unique characteristics of cobot motion to outperform existing methods. Our method achieves this by leveraging knowledge of the pose and shape of the manipulated object, which is provided by a cobot's perception system. Extensive simulations and real-world experiments demonstrate that our proposed algorithm complements existing inertial parameter identification methods by specifically targeting a cobots' typical operating regime.
 
-### Fast Inertial Parameter Identification of Manipulated Objects for Collaborative Robots 
+### Fast Object Inertial Parameter Identification for Collaborative Robots
 #### Philippe Nadeau, Matthew Giamou and Jonathan Kelly 
-##### International Conference on Robotics and Automation (ICRA) 2022 
+##### Submitted to IEEE Robotics and Automation Letters (2021)
 
 ## Video
 {% include youtubePlayer.html id=page.youtubeId %}
@@ -71,7 +71,7 @@ Collaborative robots (cobots) aims to safely work alongside human workers to all
 
 ## Code
 {::nomarkdown} 
-<a target="_blank" rel="external" href="https://github.com/PhilNad/inertial-parameters-estimation"><i class="fa fa-github-square" aria-hidden="true"></i> Available on Github</a>
+<a target="_blank" rel="external" href="https://github.com/PhilNad/object-inertial-param-id"><i class="fa fa-github-square" aria-hidden="true"></i> Available on Github</a>
 {:/}
 
 Set of algorithms used to estimate the mass, center of mass and inertia tensor of objects being manipulated by robot arms.
@@ -96,12 +96,13 @@ This repository contains code used to generate URDF models of a variety of test 
 <pre wrap='true'>
 @inproceedings{nadeau_fastInertialIdent_2022, 
     AUTHOR    = {Philippe Nadeau AND Matthew Giamou AND Jonathan Kelly}, 
-    TITLE     = { {Fast Inertial Parameter Identification of Manipulated Objects for Collaborative Robots} }, 
-    BOOKTITLE = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA'22})}, 
+    TITLE     = { {Fast Object Inertial Parameter Identification for Collaborative Robots} }, 
+<!--    BOOKTITLE = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA'22})}, 
     YEAR      = {2022}, 
     ADDRESS   = {Philadelphia, PA, USA}, 
     MONTH     = {May}, 
-    DOI       = {} 
+    DOI       = {}
+-->
 }
 </pre>
 
