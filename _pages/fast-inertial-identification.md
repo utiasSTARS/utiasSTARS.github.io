@@ -11,10 +11,12 @@ youtubeId: xCb1l5aNe6Y
 
 # Fast Object Inertial Parameter Identification for Collaborative Robots
 
+<!--
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/){: .btn .btn-blue }
+-->
 
 ### Abstract
-Collaborative robots (cobots) aim to alleviate the burden of tedious tasks by safely working alongside humans. Providing cobots with the ability to infer the inertial parameters of manipulated objects is a key stepping stone towards their wide adoption in production facilities. To ensure safety, cobots implement kinematic limits that render state-of-the-art identification algorithms prohibitively slow and inaccurate with noisy sensors. Motivated by the literature on safe cobot operation, we introduce Point Mass Discretization (PMD), a formulation of inertial parameter identification that exploits the unique characteristics of cobot motion to outperform existing methods. Our method achieves this by leveraging knowledge of the pose and shape of the manipulated object, which is provided by a cobot's perception system. Extensive simulations and real-world experiments demonstrate that our proposed algorithm complements existing inertial parameter identification methods by specifically targeting a cobots' typical operating regime.
+Collaborative robots (cobots) aim to alleviate the burden of tedious tasks by safely working alongside humans. Providing cobots with the ability to infer the inertial parameters of manipulated objects is a key stepping stone towards their wide adoption in production facilities. To ensure safety, cobots implement kinematic limits that render state-of-the-art identification algorithms prohibitively slow and inaccurate with noisy sensors. Motivated by the literature on safe cobot operation, we introduce Point Mass Discretization (PMD), an inertial parameter identification algorithm that exploits the unique characteristics of cobot motion to outperform existing methods. Our method achieves this by leveraging knowledge of the pose and shape of the manipulated object, which is provided by a cobot's perception system. Extensive simulations and real-world experiments demonstrate that our proposed algorithm complements existing inertial parameter identification methods by specifically targeting a cobots' typical operating regime.
 
 ### Fast Object Inertial Parameter Identification for Collaborative Robots
 #### Philippe Nadeau, Matthew Giamou and Jonathan Kelly 
@@ -59,11 +61,11 @@ Collaborative robots (cobots) aim to alleviate the burden of tedious tasks by sa
 {::nomarkdown}
 <table width="100%" style="text-align: center;font-weight: bold;">
   <tr>
-  <td>Detailed Proof of the Uniqueness of the Solution to the PMD problem</td>
+  <!--<td>Detailed Proof of the Uniqueness of the Solution to the PMD problem</td>-->
   <td>Point-Mass Inertia Tensor Derivation</td>
   </tr>
   <tr>
-  <td><a target="_blank" rel="external" href="https://drive.google.com/file/d/1UHp66af_MPMaJ_4_0Bhw-TM6PJGsL3oT/view?usp=sharing"><img src='/assets/fast-inertial-identification/ProofFirstPage.png' width='25%'></a></td>
+  <!--<td><a target="_blank" rel="external" href="https://drive.google.com/file/d/1UHp66af_MPMaJ_4_0Bhw-TM6PJGsL3oT/view?usp=sharing"><img src='/assets/fast-inertial-identification/ProofFirstPage.png' width='25%'></a></td>-->
   <td><a target="_blank" rel="external" href="https://drive.google.com/file/d/1m4KLf0IvOZMSWMnCa-RD-HpGZWu_tfTR/view?usp=sharing"><img src='/assets/fast-inertial-identification/DerivationFirstPage.png' width='25%'></a></td>
   </tr>
 </table>
