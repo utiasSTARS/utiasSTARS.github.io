@@ -54,8 +54,8 @@ Once again, we define a Gaussian Process regressor for each edge category (three
 | True cost range per unit length | [45,65] | [15,45] | [65,95] |
 | Constant mean function value | 50 | 70 | 70 |
 | RBF kernel variance | 5<sup>2</sup> | 40<sup>2</sup> | 40<sup>2</sup> |
-| RBF kernel lenghtscale <br> (Poor correlation assumption) | 0.1 | 0.1 | 0.1 |
-| RBF kernel lenghtscale <br> (Medium correlation assumption) | 0.6 | 0.6 | 0.6 |
+| RBF kernel lenghtscale <br> (Poor correlation assumption) | 0.3 | 0.05 | 0.05 |
+| RBF kernel lenghtscale <br> (Medium correlation assumption) | 0.3 | 0.5 | 0.5 |
 
 > *In reality, the type of kernel function, mean function and their parametrization would come from prior expert knowledge based on previous navigation events on Mars. Additionally, the reference ground-truth cost of every edge would probably be more monotonic (i.e. smoothly increase or decreasing along each continuous edge feature). For instance, the traversability cost should be expected to only increase with increasing rover pitch, and only decrease with increasing rock abundance (CFA). This can be captured in prior knowledge by constructing more representative kernel functions (e.g. a combined linear and RBF kernel) and conditioning this prior over costs observed in previous navigation events.
 Here, we do not enforce such a monoticity in traversability cost variations, but we do employ a smoothly-varying ground-truth cost function and kernel functions that captures correlations between edges, which is the focus of this experiment.*
