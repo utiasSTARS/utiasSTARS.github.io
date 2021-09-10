@@ -9,11 +9,11 @@ nav_order: 9995
 ---
 
 # Adaptive Planning in Large Unstructured Environments with Correlated Traversability Costs
-Paper submitted to the Robotics and Automation Letters (RA-L) journal and the International Conference on Robotics and Automation (ICRA 2022).
+Paper currently under review to appear in the Robotics and Automation Letters (RA-L) and to be presented at the International Conference on Robotics and Automation (ICRA 2022).
 
 ## Supplementary material: simulated kilometre-long traverse using orbital maps of Jezero Crater, Mars
 
-We test our adaptive traversal framework on real orbital maps of Jezero Crater, on Mars. This is where NASA's Mars 2020 Perseverance rover has landed in February 2021. The following grayscale map spans a surface area of 7.3 kilometres by 4.2 kilometres and has a resolution of 5 metres per pixel. The region used for the current experiment is shaded in red and the Perseverance rover landing location is marked for reference.
+We test our adaptive traversal framework on real orbital maps of Jezero Crater, on Mars. This is where NASA's Mars 2020 Perseverance rover has landed in February 2021. The following grayscale map spans a surface area of 7.3 kilometres by 4.2 kilometres and has a resolution of 5 metres per pixel. The region used for the current experiment is shaded in red and the Perseverance rover landing location is indicated for reference.
 
 {::nomarkdown} 
 <div style='text-align:center'>
@@ -21,9 +21,11 @@ We test our adaptive traversal framework on real orbital maps of Jezero Crater, 
 </div>
 {:/}
 
+The paper we submitted presents two distinct experiments on simulated field environments. Here, we replicate the second experiment, now on a graph derived from real orbital data. For clarity, we describe again the experiment setup and add a few notes about the realism of our assumptions and what could be done differently in follow-on work from an application perspective.
+
 ### Experiment setup
 
-The raw submaps of the shaded red region above (georeferenced grayscale imagery and elevation model) are shown in the first row of plots below. The global maps used in this experiment are derived from them. Specifically, the mapping data we employ includes: slope magnitude, slope orientation (aspect, or azimuth from North), rock abundance (CFA) and three classes of terrain categories derived from the SPOC Terrain classifier. In our case, class 0 is cohesive soil, class 1 is harder terrain (ex: bedrock) and class 2 is loose soil (ex: sand). Not shown here is a binary mask of dangerous/obstacle regions to avoid including invalid terrain categories, slopes steeper than 30 degrees and human-labelled areas that we generated ourselves.
+In this experiment, the global submaps of the red region above are derived from two raw data products: grayscale imagery and an elevation model (shown in the first row of plots below). Specifically, the mapping data we employ includes: slope magnitude, slope orientation (aspect, or azimuth from North), rock abundance (CFA) and three classes of terrain categories derived from the SPOC Terrain classifier. In our case, class 0 is simpler cohesive soil, class 1 is harder terrain (ex: bedrock) and class 2 is loose soil (ex: sand). Not shown here is a binary mask of dangerous/obstacle regions to avoid including invalid terrain categories, slopes steeper than 30 degrees and human-labelled areas that we generated ourselves.
 
 {::nomarkdown} 
 <div style='text-align:center'>
@@ -31,7 +33,11 @@ The raw submaps of the shaded red region above (georeferenced grayscale imagery 
 </div>
 {:/}
 
-Similar to the technique described in the results section of our paper, we begin by constructing a directed graph across the space outside of the dangerous/obstacle regions. We randomly sample vertex locations and connect them according to their Voronoi neighbourhood (we calculate the Voronoi diagram of all vertices and connect those with neighbouring cells using two directed edges if they do not cross an obstacle region). Every edge is assigned a categorical feature, which is one of the three terrain classes that their originating vertices are located in. Every edge is also described by a vector of (normalized) continuous features, which in our case are the rover's pitch, roll and the rock abundance along those edges. The graph has a total of 522 vertices and 2668 edges.
+We begin by constructing a directed graph across the space outside of the dangerous/obstacle regions. We randomly sample vertex locations and connect them according to their Voronoi neighbourhood (we calculate the Voronoi diagram of all vertices and connect those with neighbouring cells using two directed edges if they do not cross an obstacle region). Every edge is assigned a categorical feature, which is one of the three terrain classes that their originating vertices are located in. Every edge is also described by a vector of (normalized) continuous features, which in our case are the rover's pitch, roll and the rock abundance along those edges.
+
+> *Note that this graph construction methodology is enough for preliminary demonstrations of our algorithm's capabilities but in reality, a lot more effort goes into identifying possible routes that rovers could follow from orbital data. Regions that have more diverse terrain should in reality have a greater number of vertices to produce trajectories that are locally more detailed than for other, more homogeneous regions. Choosing the right physical graph layout is beyond the scope of this work, but we emphasize that every edge of the graph must be described by the underlying terrain features along it to later estimate traversability cost correlations.*
+
+In this example, the graph has a total of 522 vertices and 2668 edges:
 
 {::nomarkdown} 
 <div style='text-align:center'>
@@ -39,43 +45,45 @@ Similar to the technique described in the results section of our paper, we begin
 </div>
 {:/}
 
+Similar to the second experiment presented in our paper, the ground-truth cost function per unit length of every edge category (which is unknown to the rover) is defined with different instances of Perlin noise over the continuous edge feature space and scaled to specific cost ranges. One octave is used, which generates a cost function that varies smoothly over the continuous edge feature space and hence mimics medium cost correlations between edges of the same category sharing a similar feature vector.
 
-<!-- ### A Smooth Representation of <span>SO(3)</span> for Deep Rotation Learning with Uncertainty 
-#### Valentin Peretroukhin, Matthew Giamou, David M. Rosen, W. Nicholas Greene, Nicholas Roy, and Jonathan Kelly 
-##### Robotics: Science and Systems (RSS) 2020
- 
-## Code
+Once again, we define a Gaussian Process regressor for each edge category (three in this case). Each is defined by a constant mean function and a radial basis function (RBF) kernel. The range in the ground-truth cost functions per unit distance and the parametrization of each GP regressor are outlined in the table below. 
+
+| Edge category | 1 (purple) | 2 (turquoise) | 3 (red) |
+| ----------- | ----------- | ----------- |
+| True cost range per unit length | [45,65] | [15,45] | [65,95] |
+| Constant mean function value | 50 | 70 | 70 |
+| RBF kernel variance | 5<sup>2</sup> | 40<sup>2</sup> | 40<sup>2</sup> |
+| RBF kernel lenghtscale <br> (Poor correlation assumption) | 0.1 | 0.1 | 0.1 |
+| RBF kernel lenghtscale <br> (Medium correlation assumption) | 0.6 | 0.6 | 0.6 |
+
+> *In reality, the type of kernel function, mean function and their parametrization would come from prior expert knowledge based on previous navigation events on Mars. Additionally, the reference ground-truth cost of every edge would probably be more monotonic (i.e. smoothly increase or decreasing along each continuous edge feature). For instance, the traversability cost should be expected to only increase with increasing rover pitch, and only decrease with increasing rock abundance (CFA). This can be captured in prior knowledge by constructing more representative kernel functions (e.g. a combined linear and RBF kernel) and conditioning this prior over costs observed in previous navigation events.
+Here, we do not enforce such a monoticity in traversability cost variations, but we do employ a smoothly-varying ground-truth cost function and kernel functions that captures correlations between edges, which is the focus of this experiment.*
+
+In this experiment, the prior belief over the edge costs in terrain category 1 is conditioned on the observation of 10 random edges from this category to simulate data collected during a previous traverse. Categories 2 (turqoise) and 3 (red), on the other hand, are highly unknown to the robot at first and share the same prior probability distribution. In reality, the ground-truth costs of the turquoise edges are lower than the purple ones and the red edges have a significantly higher cost. A zero-mean Gaussian noise with a variance of 1 per unit length is added to every edge observation.
+
+Two batches of adaptive stochastic graph traverses are carried out, each being executed on the exact same graph with the same prior information and between the same start and goal vertices. The only difference is that in one instance, the rover assumes poor correlations among the turquoise and red edges, characterized by a low kernel lengthscale parameter. In the other instance, the rover considers medium correlations in the environment by employing a larger lengthscale parameter. These lengthscale calues are shown in the table above. For each instance, traverses with the same reliability coefficient (lambda = 3), same number of graph sampling iterations (Omega_1=400, Omega_2=1000) and different gamma parameters (between 0 and 2000) are executed.
+
+### Results and brief discussion
+
+Each planning configuration on each of the two problem instances is repeated 3 times, and the results for each gamma value are averaged.
 
 {::nomarkdown} 
-<a target="_blank" rel="external" href="https://github.com/utiasSTARS/bingham-rotation-learning"><i class="fa fa-github-square" aria-hidden="true"></i> Available on Github</a>
+<div style='text-align:center'>
+<img src='/assets/adaptive-graph-traversal/traverse_results.png' width='100%'>
+</div>
 {:/}
 
-## Video
-{% include youtubePlayer.html id=page.youtubeId %}
+Interestingly, we observe a similar pattern to the second experiment results presented in the paper. Fow low gamma values, the weight on plan reliability is relatively higher than plan informativeness. In those instances, the (more confident) purple terrain is prioritized for most of the traverse, but leads to longer traverses that have an approximately similar cost for both the poor and medium correlation traverse instances. However, for larger gamma values, mutual information has more weight. As such, the traverses venture more in unknown regions. In the poor correlation assumption case (blue curve), the rover poorly uses the knowledge of previous edge cost observations to prepare subsequent plans, leading to poor traverse performance. This is exacerbated by the fact that an assumption of low correlation between edge traverse costs reduces the amount of information acquired by traversing an edge and slows down information gathering, causing long traverses. On the other hand, the medium correlation assumption case (orange curve) shows better performance over a certain range of gamma values thanks to a more appropriate weighing of plan reliability and informativeness specific to this problem. However, as one might expect, too much weight on information gathering (very large gamma) will eventually lead to suboptimal traverses in this case too, as shown by the rise in the orange curve for gamma = 2000.
 
+As an example, we plot two traverses for the gamma = 1500 case. The blue one is the lowest-cost (i.e. best) traverse from the poor correlation assumption instance with this gamma value, and the orange trajectory is the best traverse from the medium correlation assumption instance with this gamma value:
 
-### Abstract
-Accurate rotation estimation is at the heart of robot perception tasks such as visual odometry and object pose estimation. Deep learning has recently provided a new way to perform these tasks, and the choice of rotation representation is an important part of network design. 
+{::nomarkdown} 
+<div style='text-align:center'>
+<img src='/assets/adaptive-graph-traversal/traverse_graph.png' width='100%'>
+</div>
+{:/}
 
-In this work, we present a novel symmetric matrix representation of rotations that is singularity-free and requires marginal computational overhead. We show that our representation has two important properties that make it particularly suitable for learned models: (1) it satisfies a smoothness property that improves convergence and generalization when regressing large rotation targets, and (2) it encodes a symmetric Bingham belief over the space of unit quaternions, permitting the training of uncertainty-aware models. 
+We can see how, in the medium correlation assumption case (orange trajectory), the rover takes advantage of the information gained by traversing the turquoise terrain towards the center of the map, and finds better trajectories that prioritize this terrain configuration until the goal is reached. In the poor correlation assumption case (blue trajectory), on the other hand, the rover fails to properly use the information gathered by traversing the same region in the center of the map and traverses the environment in a suboptimal manner.
 
-We empirically validate the benefits of our formulation by training deep neural rotation regressors  on two data modalities. First, we use synthetic point-cloud data to show that our representation leads to superior predictive accuracy over existing representations for arbitrary rotation targets. Second, we use vision data collected onboard ground and aerial vehicles to demonstrate that our representation is amenable to an effective out-of-distribution (OOD) rejection technique that significantly improves the robustness of rotation estimates to unseen environmental effects and corrupted input images, without requiring the use of an explicit likelihood loss, stochastic sampling, or an auxiliary classifier. This capability is key for safety-critical applications where detecting novel inputs can prevent catastrophic failure of learned models.
-
-
-
-
-
-## Citation
-<pre wrap='true'>
-@inproceedings{peretroukhin_so3_2020, 
-    AUTHOR    = {Valentin Peretroukhin AND Matthew Giamou AND W. Nicholas Greene AND David Rosen AND Jonathan Kelly AND Nicholas Roy}, 
-    TITLE     = { {A Smooth Representation of Belief over SO(3) for Deep Rotation Learning with Uncertainty} }, 
-    BOOKTITLE = {Proceedings of Robotics: Science and Systems}, 
-    YEAR      = {2020}, 
-    ADDRESS   = {Corvalis, Oregon, USA}, 
-    MONTH     = {July}, 
-    DOI       = {10.15607/RSS.2020.XVI.007} 
-}
-</pre> -->
-
-
+This experiment on real orbital data of Mars demonstrates a illustrates similar adaptive traverse behaviors to those shown in the paper: when reliably traversing an uncertain environment with correlated traversability costs, ignoring such correlations can lead to suboptimal traverse performance. Additionally, considering these correlations alone is not enough; some amount of information gathering can be necessary to improve traverse performance.
