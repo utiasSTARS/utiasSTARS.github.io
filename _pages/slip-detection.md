@@ -1,8 +1,8 @@
 ---
 layout: page
-title: "Detect Slip with Barometric Tactile Sensors (IROS 2021)"
+title: "Detect Slip with Barometric Tactile Sensors (RoboTac 2021)"
 subtitle: ''
-description: Submitted to IROS 2021
+description: Accepted at RoboTac Workshop 2021
 permalink: /slip-detection/
 nav_order: 9996
 youtubeId: BcoxUvA4AuE
