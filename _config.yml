@@ -15,3 +15,5 @@ exclude:
 plugins:
   - jekyll-remote-theme
   - jekyll-font-awesome-sass
+
+markdown: kramdown  # for mathjax, on posts where you want to use it add "usemathjax: true" to the top
