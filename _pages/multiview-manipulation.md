@@ -4,7 +4,7 @@ title: Multiview Manipulation (IROS 2021)
 subtitle:  Representing Rotations in Deep Learning
 description: IROS (2021) paper on learning multiview manipulation policies
 permalink: /multiview-manipulation/
-nav_order: 9994
+nav_order: 9995
 youtubeId: oh0JMeyoswg
 usemathjax: true
 ---
