@@ -43,7 +43,7 @@ usemathjax: true
 
 End-to-end learning has emerged as a popular alternative to the traditional sense-plan-act approach to robotic manipulation. This work was motivated by a relatively simple question: what happens when you try to apply an end-to-end visuomotor policy to a <strong>mobile</strong> manipulator, in which there is no guarantee that the base will always approach a task from the same relative pose?
 
-We attempted to thoroughly answer this question by conducting experiments with a simulated and a real mobile manipulator. We generated <em>fixed</em>-view and <em>multi</em>view versions of a set of seven challenging and contact-rich tasks and collect human-expert data in each scenario. We then trained a neural network on each dataset, and tested the performance of fixed-view and multiview policies on fixed-view and multiview tasks.
+We attempted to thoroughly answer this question by conducting experiments with a simulated and a real mobile manipulator. We generated <em>fixed</em>-view and <em>multi</em>view versions of a set of seven challenging and contact-rich tasks and collected human-expert data in each scenario. We then trained a neural network on each dataset, and tested the performance of fixed-view and multiview policies on fixed-view and multiview tasks.
 
 We found that multiview policies, with an equivalent amount of data, not only significantly outperformed fixed-view policies in mulitview tasks, but performed nearly equivalently in fixed-view tasks. This seems to indicate that, given the ability to do so, it may always be worth training multiview policies. We also found that the features learned by our multiview policies tended to encode a higher degree of spatial consistency than those learned by fixed-view policies.
 
@@ -133,7 +133,7 @@ In this section, we refer to a multiview policy \\( \pi_m \\) and a fixed-view p
 </div>
 {:/}
 
-The results of \\( \pi_m \\) and \\( \pi_f \\) in \\( \mathcal{T}_m \\) and \\( \mathcal{T}_f \\) are shown above. For PickAndInsertReal and DrawerReal, due to the high potential for environmental damage when running \\( \pi_f \\) in \\( \mathcal{T}_m \\), we only ran \\( \pi_m \\), but we would expect the pattern to be similar to PickAndInsertSim, DoorSim, and DoorReal.
+The results of \\( \pi_m \\) and \\( \pi_f \\) in \\( \mathcal{T}_m \\) and \\( \mathcal{T}_f \\) are shown above, where it is clear that \\( \pi_m \\) outperforms \\( \pi_f \\) in \\( \mathcal{T}_m \\), and, perhaps more surprisingly, \\( \pi_m \\) performs comparably to \\( \pi_f \\) in \\( \mathcal{T}_f \\), despite not having any data at the exact pose used for \\( \mathcal{T}_f \\). For PickAndInsertReal and DrawerReal, due to the high potential for environmental damage when running \\( \pi_f \\) in \\( \mathcal{T}_m \\), we only ran \\( \pi_m \\), but we would expect the pattern to be similar to PickAndInsertSim, DoorSim, and DoorReal.
 
 We also showed that \\( \pi_m \\) generalizes to out-of-distribution (OOD) data, while, for tasks where mutual information between poses is not generally high (see paper for more details), \\( \pi_f \\) performance drops dramatically as soon as the base is moved from \\( b_\phi = 0\\), the position at which it was trained.
 
@@ -195,12 +195,12 @@ Clearly, the features display more consistency, indicating that the policy, with
     <video width='75%' autoplay loop muted>
         <source src='/assets/multiview-manipulation/feature-analysis/pi_m_featall.mp4' type='video/mp4'>
         Your browser does not support the video tag.
-        <div><small>Six multiview policy features.</small></div>
     </video>
+    <div><small>Six multiview policy features.</small></div>
 </div>
 {:/}
 
-For more details, be sure to check out our paper published at IROS 2021!
+For more details, be sure to check out our [paper published at IROS 2021](https://arxiv.org/abs/2104.13907)!
 
 ## Code
 
