@@ -12,6 +12,7 @@ usemathjax: true
 # Seeing All the Angles: Learning Multiview Manipulation Policies for Contact-Rich Tasks from Demonstrations
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2104.13907){: .btn .btn-blue }
+[<i class="fa fa-newspaper-o" aria-hidden="true"></i> IROS Paper](https://ieeexplore.ieee.org/document/9636440){: .btn .btn-red }
 
 ### Trevor Ablett, Daniel (Yifan) Zhai, Jonathan Kelly
 #### IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2021)

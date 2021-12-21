@@ -11,6 +11,7 @@ usemathjax: true
 # Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2112.08932){: .btn .btn-blue }
+[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/lfgp){: .btn .btn-green }
 
 ### Trevor Ablett\*, Bryan Chan\*, Jonathan Kelly _(\*equal contribution)_
 #### Neurips 2021 Deep Reinforcement Learning Workshop
