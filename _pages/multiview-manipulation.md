@@ -12,6 +12,7 @@ usemathjax: true
 # Seeing All the Angles: Learning Multiview Manipulation Policies for Contact-Rich Tasks from Demonstrations
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2104.13907){: .btn .btn-blue }
+[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/multiview-manipulation){: .btn .btn-green }
 [<i class="fa fa-newspaper-o" aria-hidden="true"></i> IROS Paper](https://ieeexplore.ieee.org/document/9636440){: .btn .btn-red }
 
 ### Trevor Ablett, Daniel (Yifan) Zhai, Jonathan Kelly
@@ -205,7 +206,9 @@ For more details, be sure to check out our [paper published at IROS 2021](https:
 
 ## Code
 
-Coming soon!
+{::nomarkdown} 
+<a target="_blank" rel="external" href="https://github.com/utiasSTARS/multiview-manipulation"><i class="fa fa-github-square" aria-hidden="true"></i> Available on Github</a>
+{:/}
 
 ## IROS 2021 Presentation
 {% include youtubePlayer.html id=page.youtubeId %}
