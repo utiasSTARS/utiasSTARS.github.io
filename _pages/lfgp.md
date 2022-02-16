@@ -13,6 +13,7 @@ usemathjax: true
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2112.08932){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/lfgp){: .btn .btn-green }
 [<i class="fa fa-film" aria-hidden="true"></i> SlidesLive](https://slideslive.com/38971121/learning-from-guided-play-a-scheduled-hierarchicl-approach-for-improving-exploration-in-adversarial-imitation-learning){: .btn .btn-purple }
+[<i class="fa fa-image" aria-hidden="true"></i> Poster](https://github.com/utiasSTARS/utiasSTARS.github.io/raw/master/assets/lfgp/2021-neurips-lfgp-poster.pdf){: .btn }
 
 ### Trevor Ablett\*, Bryan Chan\*, Jonathan Kelly _(\*equal contribution)_
 #### Neurips 2021 Deep Reinforcement Learning Workshop
