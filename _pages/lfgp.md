@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Learning from Guided Play (Neurips 2021 Deep RL Workshop)
+title: Learning from Guided Play (NeurIPS 2021 Deep RL Workshop)
 subtitle:  Learning from Guided Play to improve Adversarial Imitation Learning
 description: Neurips (2021) Deep Reinforcement Learning Workshop paper on learning from guided play
 permalink: /lfgp/
@@ -12,6 +12,7 @@ usemathjax: true
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2112.08932){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/lfgp){: .btn .btn-green }
+[<i class="fa fa-film" aria-hidden="true"></i> SlidesLive](https://slideslive.com/38971121/learning-from-guided-play-a-scheduled-hierarchicl-approach-for-improving-exploration-in-adversarial-imitation-learning){: .btn .btn-purple }
 
 ### Trevor Ablett\*, Bryan Chan\*, Jonathan Kelly _(\*equal contribution)_
 #### Neurips 2021 Deep Reinforcement Learning Workshop
@@ -154,7 +155,7 @@ For more details, see our [arXiv paper](https://arxiv.org/abs/2112.08932)!
 
 ## Neurips 2021 Deep Reinforcement Learning Workshop Presentation
 
-Coming soon!
+[<i class="fa fa-film" aria-hidden="true"></i> SlidesLive](https://slideslive.com/38971121/learning-from-guided-play-a-scheduled-hierarchicl-approach-for-improving-exploration-in-adversarial-imitation-learning){: .btn .btn-purple }
 
 ## Citation
 <pre wrap='true'>
