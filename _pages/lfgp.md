@@ -17,10 +17,15 @@ usemathjax: true
 ### Trevor Ablett\*, Bryan Chan\*, Jonathan Kelly _(\*equal contribution)_
 #### Submitted to Robotics and Automation Letters (RA-L) with IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS'22) Option
 
-##### Also presented as "Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning" at Neurips 2021 Deep Reinforcement Learning Workshop:
+---
+<!-- ##### Also presented as "Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning" at Neurips 2021 Deep Reinforcement Learning Workshop: -->
+*Also presented as Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning*
+
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2112.08932){: .btn .btn-blue }
 [<i class="fa fa-film" aria-hidden="true"></i> SlidesLive](https://slideslive.com/38971121/learning-from-guided-play-a-scheduled-hierarchicl-approach-for-improving-exploration-in-adversarial-imitation-learning){: .btn .btn-purple }
 [<i class="fa fa-image" aria-hidden="true"></i> Poster](/assets/lfgp/2021-neurips-lfgp-poster.pdf){: .btn }
+#### Poster at Neurips 2021 Deep Reinforcement Learning Workshop
+
 
 <br />
 
@@ -127,6 +132,7 @@ _Single-task_
 - Discriminator Actor-Critic (DAC)
 - Behaviour Cloning (BC)
 - Behaviour Cloning with the same amount of main task data as the multitask methods (BC (less data))
+- GAIL
 
 
 To try to make a fair comparison, we used an equivalent amount of _total_ expert data for the single-task methods, as compared to the multitask methods. However, it is also important to note that the single-task methods cannot reuse data between tasks. The following table describes this idea in further detail:
@@ -142,7 +148,7 @@ Our main performance results are shown below.
 
 {::nomarkdown} 
 <div style='text-align:center'>
-    <img src='/assets/lfgp/results/s_fig_fixed_unstack_dac.png' width='90%'>
+    <img src='/assets/lfgp/results/s_fig_plus_gail.png' width='90%'>
     <div><small>Final performance results on each main task.</small></div>
 </div>
 {:/}
