@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Fast Object Inertial Parameter Identification for Collaborative Robots
-subtitle:  Providing a Dynamic Touch to Cobots
+title: Fast Object Inertial Parameter Identification for Collaborative Robots (ICRA 2022)
+subtitle:  A Dynamic Touch for Cobots
 description: Paper on inertial parameter identification for robots working at the pace of human workers
 permalink: /fast-inertial-identification/
-nav_exclude: true
-nav_order: 9995
-youtubeId: xCb1l5aNe6Y
+nav_exclude: false
+nav_order: 9992
+youtubeId: BNgGSMkgfY4
 ---
 
 # Fast Object Inertial Parameter Identification for Collaborative Robots
@@ -16,11 +16,11 @@ youtubeId: xCb1l5aNe6Y
 -->
 
 ### Abstract
-Collaborative robots (cobots) aim to alleviate the burden of tedious tasks by safely working alongside humans. Providing cobots with the ability to infer the inertial parameters of manipulated objects is a key stepping stone towards their wide adoption in production facilities. To ensure safety, cobots implement kinematic limits that render state-of-the-art identification algorithms prohibitively slow and inaccurate with noisy sensors. Motivated by the literature on safe cobot operation, we introduce Point Mass Discretization (PMD), an inertial parameter identification algorithm that exploits the unique characteristics of cobot motion to outperform existing methods. Our method achieves this by leveraging knowledge of the pose and shape of the manipulated object, which is provided by a cobot's perception system. Extensive simulations and real-world experiments demonstrate that our proposed algorithm complements existing inertial parameter identification methods by specifically targeting a cobots' typical operating regime.
+Collaborative robots (cobots) are machines designed to work safely alongside people in human-centric environments. Providing cobots with the ability to quickly infer the inertial parameters of manipulated objects will improve their flexibility and enable greater usage in manufacturing and other areas. To ensure safety, cobots are subject to kinematic limits that result in low signal-to-noise ratios (SNR) for velocity, acceleration, and force-torque data. This renders existing inertial parameter identification algorithms prohibitively slow and inaccurate. Motivated by the desire for faster model acquisition, we investigate the use of an approximation of rigid body dynamics to improve the SNR. Additionally, we introduce a mass discretization method that can make use of shape information to quickly identify plausible inertial parameters for a manipulated object. We present extensive simulation studies and real-world experiments demonstrating that our approach complements existing inertial parameter identification methods by specifically targeting the typical cobot operating regime.
 
 ### Fast Object Inertial Parameter Identification for Collaborative Robots
 #### Philippe Nadeau, Matthew Giamou and Jonathan Kelly 
-##### Submitted to IEEE Robotics and Automation Letters (2021)
+##### IEEE International Conference on Robotics and Automation 2022 (ICRA 2022)
 
 ## Video
 {% include youtubePlayer.html id=page.youtubeId %}
@@ -39,6 +39,10 @@ Collaborative robots (cobots) aim to alleviate the burden of tedious tasks by sa
   <tr>
   <td><img src="/assets/fast-inertial-identification/Fig5.png" width="100%" /></td>
   <td><img src="/assets/fast-inertial-identification/Fig6.png" width="100%"/></td>
+  </tr>
+  <tr>
+  <td><img src="/assets/fast-inertial-identification/Fig7.png" width="100%" /></td>
+  <td><img src="/assets/fast-inertial-identification/Fig8.png" width="100%" /></td>
   </tr>
 </table>
 {:/}
@@ -61,22 +65,15 @@ Collaborative robots (cobots) aim to alleviate the burden of tedious tasks by sa
 {::nomarkdown}
 <table width="100%" style="text-align: center;font-weight: bold;">
   <tr>
-  <!--<td>Detailed Proof of the Uniqueness of the Solution to the PMD problem</td>-->
+  <td>Observability Analysis of the Reduced Model</td>
   <td>Point-Mass Inertia Tensor Derivation</td>
   </tr>
   <tr>
-  <!--<td><a target="_blank" rel="external" href="https://drive.google.com/file/d/1UHp66af_MPMaJ_4_0Bhw-TM6PJGsL3oT/view?usp=sharing"><img src='/assets/fast-inertial-identification/ProofFirstPage.png' width='25%'></a></td>-->
-  <td><a target="_blank" rel="external" href="https://drive.google.com/file/d/1m4KLf0IvOZMSWMnCa-RD-HpGZWu_tfTR/view?usp=sharing"><img src='/assets/fast-inertial-identification/DerivationFirstPage.png' width='25%'></a></td>
+  <td><a target="_blank" rel="external" href="https://drive.google.com/file/d/1yRuEx5dY5E3MjH0loM8iOX8XbOJNkQ1x/view?usp=sharing"><img src='/assets/fast-inertial-identification/ProofFirstPage.png' width='25%'></a></td>
+  <td><a target="_blank" rel="external" href="https://drive.google.com/file/d/1m4KLf0IvOZMSWMnCa-RD-HpGZWu_tfTR/view?usp=sharing"><img src='/assets/fast-inertial-identification/DerivationFirstPage.png' width='40%'></a></td>
   </tr>
 </table>
 {:/}
-
-## Code
-{::nomarkdown} 
-<a target="_blank" rel="external" href="https://github.com/PhilNad/object-inertial-param-id"><i class="fa fa-github-square" aria-hidden="true"></i> Available on Github</a>
-{:/}
-
-Set of algorithms used to estimate the mass, center of mass and inertia tensor of objects being manipulated by robot arms.
 
 ## Composite Test Object Model
 {::nomarkdown} 
@@ -99,12 +96,11 @@ This repository contains code used to generate URDF models of a variety of test 
 @inproceedings{nadeau_fastInertialIdent_2022, 
     AUTHOR    = {Philippe Nadeau AND Matthew Giamou AND Jonathan Kelly}, 
     TITLE     = { {Fast Object Inertial Parameter Identification for Collaborative Robots} }, 
-<!--    BOOKTITLE = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA'22})}, 
+    BOOKTITLE = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA'22})}, 
     YEAR      = {2022}, 
     ADDRESS   = {Philadelphia, PA, USA}, 
     MONTH     = {May}, 
     DOI       = {}
--->
 }
 </pre>
 
