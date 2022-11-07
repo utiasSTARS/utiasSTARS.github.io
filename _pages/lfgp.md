@@ -1,35 +1,34 @@
 ---
 layout: page
-title: Learning from Guided Play (RA-L and IROS 2022)
+title: Learning from Guided Play (RA-L and IROS 2023)
 subtitle:  Learning from Guided Play to improve Adversarial Imitation Learning
 description: Neurips (2021) Deep Reinforcement Learning Workshop paper on learning from guided play
 permalink: /lfgp/
-nav_order: 9993
+nav_order: 9991
 usemathjax: true
 ---
 
-# Learning from Guided Play: Improving Exploration in Adversarial Imitation Learning with Simple Auxiliary Tasks
+# Learning from Guided Play: Improving Exploration for Adversarial Imitation Learning with Simple Auxiliary Tasks
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> RA-L Appendix ](/assets/lfgp/RA-L-Learning_from_Guided_Play_Appendix.pdf){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/lfgp){: .btn .btn-green }
 
 
-### Trevor Ablett\*, Bryan Chan\*, Jonathan Kelly _(\*equal contribution)_
-#### Submitted to Robotics and Automation Letters (RA-L) with IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS'22) Option
+### Trevor Ablett, Bryan Chan, Jonathan Kelly
+#### Submitted to Robotics and Automation Letters (RA-L) with IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS'23) Option
 
 ---
-<!-- ##### Also presented as "Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning" at Neurips 2021 Deep Reinforcement Learning Workshop: -->
 *Also presented as Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning*
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2112.08932){: .btn .btn-blue }
-[<i class="fa fa-film" aria-hidden="true"></i> SlidesLive](https://slideslive.com/38971121/learning-from-guided-play-a-scheduled-hierarchicl-approach-for-improving-exploration-in-adversarial-imitation-learning){: .btn .btn-purple }
+[<i class="fa fa-film" aria-hidden="true"></i> SlidesLive](https://slideslive.com/38971121){: .btn .btn-purple }
 [<i class="fa fa-image" aria-hidden="true"></i> Poster](/assets/lfgp/2021-neurips-lfgp-poster.pdf){: .btn }
 #### Poster at Neurips 2021 Deep Reinforcement Learning Workshop
 
 
 <br />
 
-{::nomarkdown} 
+<!-- {::nomarkdown} 
 <div style='text-align:left'>
     <video width='100%' autoplay loop muted>
         <source src='/assets/lfgp/lfgp-vs-dac/lfgp-dac-4x-combined-720p.webm' type='video/webm'>
@@ -37,13 +36,25 @@ usemathjax: true
     </video>
     <div><small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Off-policy Adversarial Imitation Learning (DAC)<sup>1</sup> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Learning from Guided Play (LfGP)</small></div>
 </div>
+{:/} -->
+
+{::nomarkdown} 
+<div style='text-align:center'>
+    <video width='100%' autoplay loop muted>
+        <source src='/assets/lfgp/lfgp-vs-dac/lfgp_vs_dac_progression_4x.mp4' type='video/mp4'>
+        Your browser does not support the video tag.
+    </video>
+    <div><small>Discriminator-Actor-Critic (DAC)<sup>1</sup> and Learning from Guided Play (LfGP) on a stacking task.</small></div>
+</div>
 {:/}
+
+
 
 In this work, we were interested in investigating the efficacy of Adversarial Imitation Learning (AIL) on manipulation tasks.  AIL is a popular form of Inverse Reinforcement Learning (IRL) in which a Discriminator, acting as a reward, and a policy are simultaneously learned using expert data. Empirically, we found that a state-of-the-art off-policy method for AIL[^1] is unable to effectively solve a variety of manipulation tasks. We demonstrated that this is because AIL is susceptible to deceptive rewards[^2], where a locally optimal policy sufficiently matches the expert distribution without necessarily solving the task. A simplified example where this occurs is shown below:
 
 {::nomarkdown} 
 <div style='text-align:center'>
-    <img src='/assets/lfgp/toy_example/loopback-toy-example.png' width='100%'>
+    <img src='/assets/lfgp/toy_example/lfgp-toy-example-with-states-vertical-shortest.png' width='60%'>
     <div><small>A simple MDP where AIL learns a deceptive reward and a suboptimal policy.</small></div>
 </div>
 {:/}
@@ -53,7 +64,9 @@ the reset state, and \\(a^{15}\\) represents the second block being reached with
 
 AIL learns to exploit the \\(a^5\\) action without actually completing the full trajectory.
 
-To mitigate this problem, we introduced a scheduled hierarchical modification[^3] to off-policy AIL in which multiple discriminators, policies, and critics are all learned simultaneously, solving a variety of auxiliary tasks in addition to a main task, while still ultimately attempting to maximize main task performance. We called this method <b>Learning from Guided Play (LfGP)</b>, inspired by the play-based learning found in children, as opposed to goal-directed learning. Using expert data, the agent is *guided* to *playfully* explore parts of the state and action space that would have been avoided otherwise. The title also refers to the actual collection of this expert data, since the expert is guided by a uniform sampler, in our case, to fully explore an environment through play. This not only significantly improved the performance of AIL with an equivalent amount of expert data, but also allowed for the reuse of auxiliary task models and expert data between main tasks through transfer learning.
+To mitigate this problem, we introduced a scheduled hierarchical modification[^3] to off-policy AIL in which multiple discriminators, policies, and critics are all learned simultaneously, solving a variety of auxiliary tasks in addition to a main task, while still ultimately attempting to maximize main task performance. We called this method <b>Learning from Guided Play (LfGP)</b>, inspired by the play-based learning found in children, as opposed to goal-directed learning. Using expert data, the agent is *guided* to *playfully* explore parts of the state and action space that would have been avoided otherwise. The title also refers to the actual collection of this expert data, since the expert is guided by a uniform sampler, in our case, to fully explore an environment through play. 
+This hierarchical framework not only resolved the "local maximum" policy problem exhibited by AIL, but also allowed for the reuse of expert data between tasks, increasing their expert data sample efficienty.
+The separation between tasks could also be easily applied to transfer learning, but we left investigating that possibility to future work.
 
 An example of DAC's poor performance is shown on the left side of the video at the top of the page, and the improved exploration exhibited by LfGP is shown on the right. The diagram below is a simplified description of our multitask environment and the different types of play used in our method.
 
@@ -122,24 +135,17 @@ As stated, we also used simple-to-define auxiliary tasks to assist in learning a
 {:/}
 
 ### Results
-We compared our method to both multitask and single-task baselines:
+In our main performance results, we compared against the following baselines:
 
-_Multitask_
-- A no-scheduler variant of our method, where only the main task is executed (LfGP-NS)
-- Multitask Behaviour Cloning (BC (Multi))
-
-_Single-task_
-- Discriminator Actor-Critic (DAC)
-- Behaviour Cloning (BC)
-- Behaviour Cloning with the same amount of main task data as the multitask methods (BC (less data))
-- GAIL
-
+- Off-policy AIL (DAC[^1]) _(single-task)_
+- Behavioural cloning (BC) _(single-task)_ 
+- BC _(multitask)_
 
 To try to make a fair comparison, we used an equivalent amount of _total_ expert data for the single-task methods, as compared to the multitask methods. However, it is also important to note that the single-task methods cannot reuse data between tasks. The following table describes this idea in further detail:
 
 {::nomarkdown} 
 <div style='text-align:center'>
-    <img src='/assets/lfgp/data/table-wide.png' width='75%'>
+    <img src='/assets/lfgp/data/table-updated.png' width='60%'>
     <div><small>Expert dataset sizes for each task, including quantity of auxiliary task data. Each letter under "Dataset Sizes" corresponds to an auxiliary or main task, and bolded letters correspond to datasets that were reused (e.g., <b>O</b>pen-Gripper, <b>S</b>tack). Numbers are total number of <i>(s,a)</i> pairs. </small></div>
 </div>
 {:/}
@@ -148,24 +154,22 @@ Our main performance results are shown below.
 
 {::nomarkdown} 
 <div style='text-align:center'>
-    <img src='/assets/lfgp/results/s_fig_plus_gail.png' width='90%'>
+    <img src='/assets/lfgp/results/s_fig_updated.png' width='100%'>
     <div><small>Final performance results on each main task.</small></div>
 </div>
 {:/}
 
-Although single-task BC beats LfGP in three out of four tasks, remember that it cannot reuse learned data or learned models. However, this result shows that there is still further work to be done to better understand the differences in performance between AIL and BC, especially since with the exact same data, single-task BC dramatically outperforms DAC in all of our environments.
+It is clear that LfGP is able to achieve expert-level behaviour in all tasks apart from Bring.
+In Bring, it nearly achieves expert performance, but is also matched by single-task BC.
+Remember, however, that single-task BC has far more main-task data than LfGP, and cannot reuse expert data, so LfGP is still more expert-data efficient than BC.
 
-The results of our simple transfer learning are shown here:
 
-{::nomarkdown} 
-<div style='text-align:center'>
-    <img src='/assets/lfgp/results/transfer_s_fig.png' width='50%'>
-    <div><small>Transfer learning using existing models. See our code and paper for more implementation details.</small></div>
-</div>
-{:/}
-
-In three out of four main tasks, transfer learning shows improved learning speed. We used a very simple method for transfer learning, in which we simply reused the existing buffer and models as warm-starts for a new main-task, but we believe that with future work, a more efficient method for transfer learning could do even better.
-
+### Ablation Studies
+We performed a series of ablation experiments, including:
+- TODO grab them from the paper here, then also fix the analysis section
+- 2
+- 3
+- 4
 
 ### Analysis
 We also visualized the learned stack models for LfGP and DAC.
