@@ -166,10 +166,31 @@ Remember, however, that single-task BC has far more main-task data than LfGP, an
 
 ### Ablation Studies
 We performed a series of ablation experiments, including:
-- TODO grab them from the paper here, then also fix the analysis section
-- 2
+- Dataset ablations:
+    - Half the original dataset size
+    - 1.5x the original dataset size
+    - Subsampling the expert dataset, taking every 20th \\((s,a)\\) pair.
+    - Without added extra final \\((s_T, \boldsymbol{0})\\) pairs
+- Scheduler ablations:
+    - Weighted Random Scheduler with Handcrafted trajectories (WRS + HC)
+    - Weighted Random Scheduler only
+    - 
 - 3
 - 4
+For more description of these ablations, please see our paper.
+The results of these ablations are shown below.
+
+{::nomarkdown} 
+<div style='text-align:center'>
+    <img src='/assets/lfgp/results/s_fig_updated.png' width='100%'>
+    <div><small>Dataset ablations.</small></div>
+</div>
+<div style='text-align:center'>
+    <img src='/assets/lfgp/results/s_fig_updated.png' width='100%'>
+    <div><small>Scheduler, expert sampling, and baseline ablations.</small></div>
+</div>
+{:/}
+
 
 ### Analysis
 We also visualized the learned stack models for LfGP and DAC.
