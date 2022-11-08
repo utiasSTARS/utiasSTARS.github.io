@@ -18,7 +18,7 @@ usemathjax: true
 #### Submitted to Robotics and Automation Letters (RA-L) with IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS'23) Option
 
 ---
-*Also presented as Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning*
+*Preliminary version presented as Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning*
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2112.08932){: .btn .btn-blue }
 [<i class="fa fa-film" aria-hidden="true"></i> SlidesLive](https://slideslive.com/38971121){: .btn .btn-purple }
