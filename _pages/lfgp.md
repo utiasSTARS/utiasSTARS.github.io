@@ -28,16 +28,6 @@ usemathjax: true
 
 <br />
 
-<!-- {::nomarkdown} 
-<div style='text-align:left'>
-    <video width='100%' autoplay loop muted>
-        <source src='/assets/lfgp/lfgp-vs-dac/lfgp-dac-4x-combined-720p.webm' type='video/webm'>
-        Your browser does not support the video tag.
-    </video>
-    <div><small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Off-policy Adversarial Imitation Learning (DAC)<sup>1</sup> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Learning from Guided Play (LfGP)</small></div>
-</div>
-{:/} -->
-
 {::nomarkdown} 
 <div style='text-align:center'>
     <video width='100%' autoplay loop muted>
@@ -163,30 +153,164 @@ It is clear that LfGP is able to achieve expert-level behaviour in all tasks apa
 In Bring, it nearly achieves expert performance, but is also matched by single-task BC.
 Remember, however, that single-task BC has far more main-task data than LfGP, and cannot reuse expert data, so LfGP is still more expert-data efficient than BC.
 
+### Final Learned Policies for All Methods
+Here we visualize the final learned policies for all four methods and all four tasks.
+Each video shows five episodes on repeat.
+
+{::nomarkdown} 
+<div style='text-align:center'>
+    <table>
+        <tr>
+            <td style="width: 12px; min-width:10px"></td>
+            <td> DAC </td>
+            <td> Multitask BC </td>
+            <td> Single-task BC </td>
+            <td> <font size="+1"> <b>LfGP</b> </font> </td>
+        </tr>
+        <tr>
+            <td style="width: 12px; min-width:10px">Stack</td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/stack/dac.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/stack/multitask_bc.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/stack/bc.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/stack/lfgp.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 12px; min-width:10px">Unstack Stack</td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/unstack-stack/dac.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/unstack-stack/multitask_bc.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/unstack-stack/bc.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/unstack-stack/lfgp.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 12px; min-width:10px">Bring</td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/bring/dac.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/bring/multitask_bc.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/bring/bc.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/bring/lfgp.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 12px; min-width:10px">Insert</td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/insert/dac.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/insert/multitask_bc.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/insert/bc.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+            <td>
+                <video width='100%' autoplay loop muted>
+                    <source src='/assets/lfgp/final_policies/insert/lfgp.mp4' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </td>
+        </tr>
+    </table>
+    <!-- <div><small>Left to right: Open-Gripper, Close-Gripper, Reach, Lift, Move-Object.</small></div> -->
+</div>
+{:/}
 
 ### Ablation Studies
-We performed a series of ablation experiments, including:
-- Dataset ablations:
+We performed an extensive series of ablation experiments:
+- _Dataset ablations:_
     - Half the original dataset size
     - 1.5x the original dataset size
     - Subsampling the expert dataset, taking every 20th \\((s,a)\\) pair.
     - Without added extra final \\((s_T, \boldsymbol{0})\\) pairs
-- Scheduler ablations:
+- _Scheduler ablations:_
     - Weighted Random Scheduler with Handcrafted trajectories (WRS + HC)
     - Weighted Random Scheduler only
-    - 
-- 3
-- 4
+    - Learned Scheduler
+    - No Scheduler (only main task selected) 
+- _Sampling ablations:_
+    - Expert sampling for discriminator only
+    - No sampling bias for \\((s_T, \boldsymbol{0})\\) pairs
+- _Baseline Alternatives:_
+    - BC with early stopping (70%/30% training/validation split)
+    - GAIL (on-policy AIL)
+
 For more description of these ablations, please see our paper.
 The results of these ablations are shown below.
 
 {::nomarkdown} 
 <div style='text-align:center'>
-    <img src='/assets/lfgp/results/s_fig_updated.png' width='100%'>
+    <img src='/assets/lfgp/ablations/dataset_withmain_sideleg_s_fig.png' width='100%'>
     <div><small>Dataset ablations.</small></div>
 </div>
 <div style='text-align:center'>
-    <img src='/assets/lfgp/results/s_fig_updated.png' width='100%'>
+    <img src='/assets/lfgp/ablations/scheduler_halfw_s_fig.png' width='32%'>
+    <img src='/assets/lfgp/ablations/sampling_halfw_s_fig.png' width='32%'>
+    <img src='/assets/lfgp/ablations/baseline_halfw_s_fig.png' width='32%'>
     <div><small>Scheduler, expert sampling, and baseline ablations.</small></div>
 </div>
 {:/}
@@ -197,12 +321,12 @@ We also visualized the learned stack models for LfGP and DAC.
 
 {::nomarkdown} 
 <div style='text-align:center'>
-    <img src='/assets/lfgp/traj_3d/200k_to_1600k_cropped.png' width='100%'>
-    <div><small>LfGP and DAC trajectories for eight episodes throughout learning, with manually set consistent initial conditions. The LfGP trajectories contain many tasks composed, whereas the DAC trajectories only execute the main stacking task.</small></div>
+    <img src='/assets/lfgp/traj_3d/200k_to_800k.png' width='70%'>
+    <div><small>LfGP and DAC trajectories for four episodes throughout learning, with manually set consistent initial conditions. The LfGP trajectories contain many tasks composed, whereas the DAC trajectories only execute the main stacking task.</small></div>
 </div>
 {:/}
 
-The LfGP policies explore significantly more diversely than the DAC policies do, and the DAC policies eventually learn to partially reach the blue block and hover near the green block. This is understandable—DAC has learned a deceptive reward for hovering above the green block regardless of the position of the blue block, because it hasn’t sufficiently explored the alternative of grasping and moving the blue block closer. Even if hovering above the green block doesn’t fully match the expert data, the DAC policy receives some reward for doing so, as evidenced by its learned Q-Value (DAC on the right-most image):
+The LfGP policies exhibit significantly more diversity than the DAC policies do, and the DAC policies eventually only learn to partially reach the blue block and hover near the green block. This is understandable—DAC has learned a deceptive reward for hovering above the green block regardless of the position of the blue block, because it hasn’t sufficiently explored the alternative of grasping and moving the blue block closer. Even if hovering above the green block doesn’t fully match the expert data, the DAC policy receives some reward for doing so, as evidenced by its learned Q-Value (DAC on the right-most image):
 
 {::nomarkdown} 
 <div style='text-align:center'>
@@ -214,7 +338,7 @@ The LfGP policies explore significantly more diversely than the DAC policies do,
 Again, compared with DAC, the LfGP policies have made significantly more progress towards each of their individual tasks than DAC has, and the LfGP Stack policy, in particular, has already learned to reach and grasp the block, while learning high value for being near either block. Further on in training, it learns to only have high value near the green block *after* having grasped the blue block; an important step that DAC never achieves.
 
 
-For more details, see our [arXiv paper](https://arxiv.org/abs/2112.08932)!
+<!-- For more details, see our [arXiv paper](https://arxiv.org/abs/2112.08932)! -->
 
 
 ## Code
