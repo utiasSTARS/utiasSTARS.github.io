@@ -12,7 +12,7 @@ A place to create web pages for papers published by the STARS lab.
 
 4. [Optional] If you need to host images, add them to a custom folder in the `assets` directory and link to them in your markdown.
 
-5. [Optional] Use the lovely [UI components](https://pmarsceill.github.io/just-the-docs/docs/ui-components) provided by our theme [Just the Docs](https://github.com/pmarsceill/just-the-docs).
+5. [Optional] Use the lovely [UI components](https://just-the-docs.github.io/just-the-docs/docs/ui-components) provided by our theme [Just the Docs](https://github.com/just-the-docs/just-the-docs).
 
 6. [Optional] If you dont want your page to appear in the navigation area, add the ```nav_exclude: true``` tag to your page's front matter.
 
