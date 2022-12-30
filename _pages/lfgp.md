@@ -2,7 +2,7 @@
 layout: page
 title: Learning from Guided Play (RA-L and IROS 2023)
 subtitle:  Learning from Guided Play to improve Adversarial Imitation Learning
-description: Neurips (2021) Deep Reinforcement Learning Workshop paper on learning from guided play
+description: RA-L + IROS 2023 paper on learning from guided play
 permalink: /lfgp/
 nav_order: 9991
 usemathjax: true
@@ -15,7 +15,7 @@ usemathjax: true
 
 
 ### Trevor Ablett, Bryan Chan, Jonathan Kelly
-#### Submitted to Robotics and Automation Letters (RA-L) with IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS'23) Option
+#### Robotics and Automation Letters (RA-L) with IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS'23) Option
 
 ---
 *Preliminary version presented as Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning*
