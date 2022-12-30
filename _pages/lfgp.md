@@ -10,7 +10,7 @@ usemathjax: true
 
 # Learning from Guided Play: Improving Exploration for Adversarial Imitation Learning with Simple Auxiliary Tasks
 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> RA-L Appendix ](/assets/lfgp/RA-L-Learning_from_Guided_Play_Appendix.pdf){: .btn .btn-blue }
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> RA-L Paper (With Appendix) ](/assets/lfgp/Learning_from_Guided_Play-combined.pdf){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/lfgp){: .btn .btn-green }
 
 
