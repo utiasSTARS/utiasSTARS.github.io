@@ -11,9 +11,9 @@ youtubeId: Jjxrk53mQY0
 
 # The Sum of Its Parts: Visual Part Segmentation for Inertial Parameter Identification of Manipulated Objects
 
-<!-- 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2203.00830){: .btn .btn-blue }
--->
+
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2302.06685){: .btn .btn-blue }
+
 
 ### Abstract
 To operate safely and efficiently alongside human workers, collaborative robots (cobots) require the ability to quickly understand the dynamics of manipulated objects. However, traditional methods for estimating the full set of inertial parameters rely on motions that are necessarily fast and unsafe (to achieve a sufficient signal-to-noise ratio). In this work, we follow an alternative approach: by combining visual and force-torque measurements, we develop an inertial parameter identification algorithm that requires slow or "stop-and-go" motions only, and hence is ideally tailored for use  around humans. Our technique, called Homogeneous Part Segmentation (HPS), leverages the observation that man-made objects are typically composed of distinct, homogeneous parts. We combine a surface-based point clustering method with a volumetric shape segmentation algorithm to quickly produce a part-level segmentation of a manipulated object; the segmented representation is then used by HPS to accurately estimate the object's inertial parameters. To benchmark our algorithm, we create and utilize a novel dataset consisting of realistic meshes, segmented point clouds, and inertial parameters for 20 common workshop tools. Finally, we demonstrate the real-world performance and accuracy of HPS by performing an intricate `hammer balancing act' autonomously and online with a low-cost collaborative robotic arm. Our code and dataset are open source and freely available.
