@@ -10,8 +10,10 @@ usemathjax: true
 
 # Learning from Guided Play: Improving Exploration for Adversarial Imitation Learning with Simple Auxiliary Tasks
 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> RA-L Paper (With Appendix) ](/assets/lfgp/Learning_from_Guided_Play-combined.pdf){: .btn .btn-blue }
-[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/lfgp){: .btn .btn-green }
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv (with Appendix) ](https://arxiv.org/abs/2301.00051){: .btn .btn-blue }
+[<i class="fa fa-github" aria-hidden="true"></i> Github](https://github.com/utiasSTARS/lfgp){: .btn .btn-green }
+[<i class="fa fa-newspaper-o" aria-hidden="true"></i> DOI ](https://doi.org/10.1109/LRA.2023.3236882){: .btn .btn-red }
+
 
 
 ### Trevor Ablett, Bryan Chan, Jonathan Kelly
@@ -20,9 +22,9 @@ usemathjax: true
 ---
 *Preliminary version presented as Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning*
 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2112.08932){: .btn .btn-blue }
-[<i class="fa fa-film" aria-hidden="true"></i> SlidesLive](https://slideslive.com/38971121){: .btn .btn-purple }
-[<i class="fa fa-image" aria-hidden="true"></i> Poster](/assets/lfgp/2021-neurips-lfgp-poster.pdf){: .btn }
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv ](https://arxiv.org/abs/2112.08932){: .btn .btn-blue }
+[<i class="fa fa-film" aria-hidden="true"></i> SlidesLive ](https://slideslive.com/38971121){: .btn .btn-purple }
+[<i class="fa fa-image" aria-hidden="true"></i> Poster ](/assets/lfgp/2021-neurips-lfgp-poster.pdf){: .btn }
 #### Poster at Neurips 2021 Deep Reinforcement Learning Workshop
 
 
