@@ -11,7 +11,7 @@ usemathjax: true
 
 # Seeing All the Angles: Learning Multiview Manipulation Policies for Contact-Rich Tasks from Demonstrations
 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2104.13907){: .btn .btn-blue }
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv ](https://arxiv.org/abs/2104.13907){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> Github ](https://github.com/utiasSTARS/multiview-manipulation){: .btn .btn-green }
 [<i class="fa fa-newspaper-o" aria-hidden="true"></i> DOI ](https://ieeexplore.ieee.org/document/9636440){: .btn .btn-red }
 
