@@ -1,15 +1,15 @@
 ---
 layout: page
-title: Fallback Policies for the Exploration of Lunar Permanently Shadowed Regions by a Solar-Powered Rover (Acta Astronautica)
+title: Recovery Policies for Safe Exploration of Lunar Permanently Shadowed Regions by a Solar-Powered Rover (Acta Astronautica)
 # subtitle:  Representing Rotations in Deep Learning
 description: Submitted to Acta Astronautica
-permalink: /fallback-policies-psr-exploration/
+permalink: /recovery-policies-psr-exploration/
 nav_exclude: true
 nav_order: 9990
 # youtubeId: 8QMcNmCPYR0
 ---
 
-# Fallback Policies for the Exploration of Lunar Permanently Shadowed Regions by a Solar-Powered Rover
+# Recovery Policies for Safe Exploration of Lunar Permanently Shadowed Regions by a Solar-Powered Rover
 **Article currently under review to appear in the Acta Astronautica journal.**
 
 As part of this publication, we release the [`gplanetary_nav`](https://github.com/utiasSTARS/global-planetary-nav) Python library, an open-source repository to facilitate the interface between orbital data and global navigation planning algorithms in support of long-range/strategic planetary mobility.
@@ -21,9 +21,11 @@ As part of this publication, we release the [`gplanetary_nav`](https://github.co
 </div>
 {:/}
 
-## Supplementary material: simulated exits from PSRs in the Cabeus, Faustini and Shoemaker regions at the lunar south pole
+## Supplementary material: simulated exits from PSRs in the Cabeus Region
 
 Supplementary experiments in progress and results will be shared here.
+
+
 
 
 
