@@ -12,7 +12,7 @@ nav_order: 9989
 # Recovery Policies for Safe Exploration of Lunar Permanently Shadowed Regions by a Solar-Powered Rover
 **Article currently under review to appear in the Acta Astronautica journal.**
 
-As part of this publication, we release the [`gplanetary_nav`](https://github.com/utiasSTARS/global-planetary-nav) Python library, an open-source repository to facilitate the interface between orbital data and global navigation planning algorithms in support of long-range/strategic planetary mobility.
+As part of this publication, we release the [`gplanetary_nav`](https://github.com/utiasSTARS/gplanetary-nav) Python library, an open-source repository to facilitate the interface between orbital data and global navigation planning algorithms in support of long-range/strategic planetary mobility.
 
 {::nomarkdown} 
 <div class=figure style='text-align:center'>
