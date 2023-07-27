@@ -4,6 +4,7 @@ title: Adaptive Traversal of Large and Correlated Field Environments (RA-L and I
 # subtitle:  Representing Rotations in Deep Learning
 description: Submitted to RA-L+ICRA (2022)
 permalink: /adaptive-graph-traversal/
+nav_exclude: true
 nav_order: 9994
 # youtubeId: 8QMcNmCPYR0
 ---
