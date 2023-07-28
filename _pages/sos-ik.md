@@ -30,6 +30,7 @@ Inverse kinematics is a fundamental problem for articulated robots: fast and acc
   author = {Filip Maric and Matthew Giamou and Soroush Khoubyarian and Ivan Petrovic and Jonathan Kelly},
   booktitle = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA'20})},
   date = {2020-05-31/2020-06-04},
+  doi = {10.1109/ICRA40945.2020.9196704},
   month = {May 31--Jun. 4},
   title = {Inverse Kinematics for Serial Kinematic Chains via Sum of Squares Optimization},
   url = {http://arxiv.org/abs/1909.09318},
