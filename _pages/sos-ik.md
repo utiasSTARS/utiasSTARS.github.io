@@ -28,7 +28,7 @@ Inverse kinematics is a fundamental problem for articulated robots: fast and acc
 @inproceedings{2020_Maric_Inverse,
   address = {Paris, France},
   author = {Filip Maric and Matthew Giamou and Soroush Khoubyarian and Ivan Petrovic and Jonathan Kelly},
-  booktitle = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA'20})},
+  booktitle = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA})},
   date = {2020-05-31/2020-06-04},
   doi = {10.1109/ICRA40945.2020.9196704},
   month = {May 31--Jun. 4},
