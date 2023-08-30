@@ -49,7 +49,7 @@ We empirically validate the benefits of our formulation by training deep neural 
 <pre wrap='true'>
 @inproceedings{2020_Peretroukhin_Smooth,
    address = {Corvalis, Oregon, USA},
-   author = {Valentin Peretroukhin AND Matthew Giamou AND W. Nicholas Greene AND David Rosen AND Jonathan Kelly AND Nicholas Roy}, 
+   author = {Valentin Peretroukhin and Matthew Giamou and David Rosen and W. Nicholas Greene and Nicholas Roy and Jonathan Kelly}, 
    booktitle = {Proceedings of Robotics: Science and Systems},
    date = {2020-07-12/2020-07-16},
    doi = {10.15607/RSS.2020.XVI.007},
