@@ -215,14 +215,19 @@ For more details, be sure to check out our [paper published at IROS 2021](https:
 
 ## Citation
 <pre wrap='true'>
-@inproceedings{ablett_multiview_2021, 
-    AUTHOR    = {Trevor Ablett and Yifan Zhai and Jonathan Kelly}, 
-    TITLE     = {Seeing All the Angles: Learning Multiview Manipulation Policies for Contact-Rich Tasks from Demonstrations}, 
-    BOOKTITLE = {Proceedings of the {IEEE/RSJ} International Conference on Intelligent Robots and Systems {(IROS'21)}}, 
-    YEAR      = {2021}, 
-    ADDRESS   = {Prague, Czech Republic}, 
-    MONTH     = {Sep. 27--Oct. 1}, 
-    URL       = {http://arxiv.org/abs/2104.13907}
+
+@inproceedings{2021_Ablett_Seeing,
+   address = {Prague, Czech Republic},
+   author = {Trevor Ablett and Yifan Zhai and Jonathan Kelly},
+   booktitle = {Proceedings of the {IEEE/RSJ} International Conference on Intelligent Robots and Systems {(IROS)}},
+   code = {https://github.com/utiasSTARS/multiview-manipulation},
+   date = {2021-09-27/2021-10-01},
+   doi = {10.1109/IROS51168.2021.9636440},
+   pages = {7843--7850},
+   title = {Seeing All the Angles: Learning Multiview Manipulation Policies for Contact-Rich Tasks from Demonstrations},
+   url = {http://arxiv.org/abs/2104.13907},
+   video1 = {https://www.youtube.com/watch?v=oh0JMeyoswg},
+   year = {2021}
 }
 </pre>
 
