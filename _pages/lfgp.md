@@ -355,13 +355,19 @@ Again, compared with DAC, the LfGP policies have made significantly more progres
 
 ## Citation
 <pre wrap='true'>
-@misc{ablett2021learning,
-      title={Learning from Guided Play: A Scheduled Hierarchical Approach for Improving Exploration in Adversarial Imitation Learning}, 
-      author={Trevor Ablett and Bryan Chan and Jonathan Kelly},
-      year={2021},
-      eprint={2112.08932},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG}
+@article{2023_Ablett_Learning,
+  author = {Trevor Ablett and Bryan Chan and Jonathan Kelly},
+  code = {https://github.com/utiasSTARS/lfgp},
+  doi = {10.1109/LRA.2023.3236882},
+  journal = {{IEEE} Robotics and Automation Letters},
+  month = {March},
+  number = {3},
+  pages = {1263--1270},
+  site = {https://papers.starslab.ca/lfgp/},
+  title = {Learning from Guided Play: Improving Exploration for Adversarial Imitation Learning with Simple Auxiliary Tasks},
+  url = {https://arxiv.org/abs/2301.00051},
+  volume = {8},
+  year = {2023}
 }
 </pre>
 
