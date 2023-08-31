@@ -13,7 +13,8 @@ youtubeId: Jjxrk53mQY0
 
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2302.06685){: .btn .btn-blue }
-
+[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/inertial-identification-with-part-segmentation){: .btn .btn-green }
+[<i class="fa fa-newspaper-o" aria-hidden="true"></i> DOI ](https://doi.org/10.1109/ICRA48891.2023.10160394){: .btn .btn-red }
 
 ### Abstract
 To operate safely and efficiently alongside human workers, collaborative robots (cobots) require the ability to quickly understand the dynamics of manipulated objects. However, traditional methods for estimating the full set of inertial parameters rely on motions that are necessarily fast and unsafe (to achieve a sufficient signal-to-noise ratio). In this work, we follow an alternative approach: by combining visual and force-torque measurements, we develop an inertial parameter identification algorithm that requires slow or "stop-and-go" motions only, and hence is ideally tailored for use  around humans. Our technique, called Homogeneous Part Segmentation (HPS), leverages the observation that man-made objects are typically composed of distinct, homogeneous parts. We combine a surface-based point clustering method with a volumetric shape segmentation algorithm to quickly produce a part-level segmentation of a manipulated object; the segmented representation is then used by HPS to accurately estimate the object's inertial parameters. To benchmark our algorithm, we create and utilize a novel dataset consisting of realistic meshes, segmented point clouds, and inertial parameters for 20 common workshop tools. Finally, we demonstrate the real-world performance and accuracy of HPS by performing an intricate `hammer balancing act' autonomously and online with a low-cost collaborative robotic arm. Our code and dataset are open source and freely available.
@@ -62,11 +63,14 @@ The dataset can be accessed [here](https://github.com/utiasSTARS/inertial-identi
 @inproceedings{Nadeau_PartSegForInertialIdent_2023, 
     AUTHOR    = {Philippe Nadeau AND Matthew Giamou AND Jonathan Kelly}, 
     TITLE     = { {The Sum of Its Parts: Visual Part Segmentation for Inertial Parameter Identification of Manipulated Objects} }, 
-    BOOKTITLE = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA'23})},
+    BOOKTITLE = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA)}},
     YEAR      = {2023}, 
     ADDRESS   = {London, UK}, 
     MONTH     = {May}, 
-    DOI       = {}
+    DATE      = {2023-05-29/2023-06-02},
+    DOI       = {10.1109/ICRA48891.2023.10160394},
+    VIDEO     = {https://www.youtube.com/watch?v=Jjxrk53mQY0},
+    URL       = {https://arxiv.org/abs/2302.06685}
 }
 </pre>
 

@@ -12,7 +12,8 @@ youtubeId: BNgGSMkgfY4
 # Fast Object Inertial Parameter Identification for Collaborative Robots
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2203.00830){: .btn .btn-blue }
-
+[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/pyb-sim-models/tree/main/pbsm/models/CompositeTestObject){: .btn .btn-green }
+[<i class="fa fa-newspaper-o" aria-hidden="true"></i> DOI ](https://doi.org/10.1109/ICRA46639.2022.9916213){: .btn .btn-red }
 
 ### Abstract
 Collaborative robots (cobots) are machines designed to work safely alongside people in human-centric environments. Providing cobots with the ability to quickly infer the inertial parameters of manipulated objects will improve their flexibility and enable greater usage in manufacturing and other areas. To ensure safety, cobots are subject to kinematic limits that result in low signal-to-noise ratios (SNR) for velocity, acceleration, and force-torque data. This renders existing inertial parameter identification algorithms prohibitively slow and inaccurate. Motivated by the desire for faster model acquisition, we investigate the use of an approximation of rigid body dynamics to improve the SNR. Additionally, we introduce a mass discretization method that can make use of shape information to quickly identify plausible inertial parameters for a manipulated object. We present extensive simulation studies and real-world experiments demonstrating that our approach complements existing inertial parameter identification methods by specifically targeting the typical cobot operating regime.
@@ -95,11 +96,14 @@ This repository contains code used to generate URDF models of a variety of test 
 @inproceedings{nadeau_fastInertialIdent_2022, 
     AUTHOR    = {Philippe Nadeau AND Matthew Giamou AND Jonathan Kelly}, 
     TITLE     = { {Fast Object Inertial Parameter Identification for Collaborative Robots} }, 
-    BOOKTITLE = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA'22})}, 
+    BOOKTITLE = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA)}}, 
+    DATE      = {2022-05-23/2022-05-27},
     YEAR      = {2022}, 
-    ADDRESS   = {Philadelphia, PA, USA}, 
     MONTH     = {May}, 
-    DOI       = {}
+    ADDRESS   = {Philadelphia, PA, USA},
+    DOI       = {10.1109/icra46639.2022.9916213},
+    URL       = {https://arxiv.org/abs/2203.00830},
+    VIDEO     = {https://www.youtube.com/watch?v=BNgGSMkgfY4}
 }
 </pre>
 
