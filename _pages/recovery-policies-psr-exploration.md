@@ -4,15 +4,23 @@ title: Recovery Policies for Safe Exploration of Lunar Permanently Shadowed Regi
 # subtitle:  Representing Rotations in Deep Learning
 description: Submitted to Acta Astronautica
 permalink: /recovery-policies-psr-exploration/
-nav_exclude: true
+nav_exclude: false
 nav_order: 9989
 # youtubeId: 8QMcNmCPYR0
 ---
 
 # Recovery Policies for Safe Exploration of Lunar Permanently Shadowed Regions by a Solar-Powered Rover
-**Article currently under review to appear in the Acta Astronautica journal.**
 
-As part of this publication, we release the [`gplanetary_nav`](https://github.com/utiasSTARS/gplanetary-nav) Python library, an open-source repository to facilitate the interface between orbital data and global navigation planning algorithms in support of long-range/strategic planetary mobility.
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv preprint ](https://arxiv.org/abs/2307.16786){: .btn .btn-blue }
+[<i class="fa fa-github" aria-hidden="true"></i> gplanetary_nav on Github](https://github.com/utiasSTARS/gplanetary-nav){: .btn .btn-green }
+
+### Olivier Lamarre, Shantanu Malhotra, Jonathan Kelly
+#### Article currently under review, to appear in the Acta Astronautica journal
+
+
+<!-- As part of this publication, we release the [`gplanetary_nav`](https://github.com/utiasSTARS/gplanetary-nav) Python library, an open-source repository to facilitate the interface between orbital data and global navigation planning algorithms in support of long-range/strategic planetary mobility. -->
+
+## Overview
 
 {::nomarkdown} 
 <div class=figure style='text-align:center'>
@@ -41,3 +49,12 @@ Departure from timestamp t<sub>4</sub> (UNIX timestamp 1882514000s, August 27 20
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_-If01n-UmI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+## Citation
+<pre wrap='true'>
+@unpublished{lamarre2023recovery,
+  author = {Olivier Lamarre and Shantanu Malhotra and Jonathan Kelly},
+  title  = {Recovery Policies for Safe Exploration of Lunar Permanently Shadowed Regions by a Solar-Powered Rover},
+  note   = {Acta Astronautica (submitted)},
+  year   = {2023},
+}
+</pre>

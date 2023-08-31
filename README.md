@@ -19,3 +19,21 @@ A place to create web pages for papers published by the STARS lab.
 7. Preview your changes locally by setting up `jekyll` and `github-pages` and then running `bundle exec jekyll serve` (see [here](https://help.github.com/en/enterprise/2.14/user/articles/setting-up-your-github-pages-site-locally-with-jekyll#step-2-install-jekyll-using-bundler) for more info).
 
 8. When happy with your page, push back to this repo (everything should be compiled automagically).
+
+## Documented errors / issues
+
+### jekyll-include-cache ([source](https://iamfullstack.tistory.com/12))
+
+After running `bundle exec jekyll serve` , you get an issue similar to this:
+
+```txt
+Dependency Error: Yikes! It looks like you don't have jekyll-include-cache or one of its dependencies installed.
+```
+
+Install the `jekyll-include-cache` gem:
+
+```sh
+sudo gem install jekyll-include-cache
+```
+
+Then add `gem 'jekyll-include-cache'` to the Gemfile.
