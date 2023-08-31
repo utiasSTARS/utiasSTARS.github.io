@@ -359,7 +359,7 @@ Again, compared with DAC, the LfGP policies have made significantly more progres
   author = {Trevor Ablett and Bryan Chan and Jonathan Kelly},
   code = {https://github.com/utiasSTARS/lfgp},
   doi = {10.1109/LRA.2023.3236882},
-  journal = {{IEEE} Robotics and Automation Letters},
+  journal = {IEEE Robotics and Automation Letters},
   month = {March},
   number = {3},
   pages = {1263--1270},
