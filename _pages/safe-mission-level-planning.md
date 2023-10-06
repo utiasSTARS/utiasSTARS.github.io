@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Safe Mission-Level Path Planning for Exploration of Lunar Permanently Shadowed Regions by a Solar-Powered Rover (AERO 2024)
+title: Safe Mission-Level Path Planning for Exploration of Lunar Shadowed Regions by a Solar-Powered Rover (AERO 2024)
 # subtitle:  Representing Rotations in Deep Learning
 description: Submitted to IEEE Aerospace 2024
 permalink: /safe-mission-level-planning/
@@ -9,7 +9,7 @@ nav_order: 9988
 # youtubeId: 8QMcNmCPYR0
 ---
 
-# Safe Mission-Level Path Planning for Exploration of Lunar Permanently Shadowed Regions by a Solar-Powered Rover
+# Safe Mission-Level Path Planning for Exploration of Lunar Shadowed Regions by a Solar-Powered Rover
 
 ### Olivier Lamarre, Shantanu Malhotra, Jonathan Kelly
 #### Article currently under review, to appear at the 2024 IEEE Aerospace Conference
@@ -26,11 +26,44 @@ nav_order: 9988
 </div>
 {:/}
 
-## Supplementary material: animation of recovery drives from the LCROSS crash site
 
-(TODO)
+## Supplementary material
+
+### Distribution of Monte-Carlo trials between our approach and the CCDP algorithm
+
+<div class=figure style='text-align:center'>
+<img src='/assets/safe-mission-level-planning/exp1_mc_barplots.png' width='100%' />
+<figcaption>
+
+### Traverse trials for the medium-scale traverse generated with our proposed algorithm
+
+<!-- 0 -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IzGCmaPK47s?si=TXKhrirFxS7XGMiI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<!-- 1116 -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0XSyNmswyY0?si=DmGUBTvciDoYieQ5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<!-- 1002 -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7BP7wJ-0UNs?si=9jTRnHmjmuy5hPtP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<!-- 189 -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Xeq6KNWubnk?si=ganqV4eYoa4qb4Hx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<!-- 6031 -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/d9BJOB0DsyI?si=vjzmQNtTFvyMVhK3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+### Traverse trials near the LCROSS impact site
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wnyS_jxWAvE?si=3ce5NWv5flsRcuNV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UBQ_o2kqWc4?si=AR36c80QN4nRSXLn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/J-F9Y7e69hI?si=69T4PdAOFq7EaAfz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 
 ## Citation
+
 <pre wrap='true'>
 @unpublished{lamarre2024safe,
   author = {Olivier Lamarre and Shantanu Malhotra and Jonathan Kelly},
