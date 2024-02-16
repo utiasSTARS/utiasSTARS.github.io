@@ -12,7 +12,11 @@ usemathjax: true
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv (with Appendix) ](https://arxiv.org/abs/2301.00051){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> Github](https://github.com/utiasSTARS/lfgp){: .btn .btn-green }
-[<i class="fa fa-newspaper-o" aria-hidden="true"></i> DOI ](https://doi.org/10.1109/LRA.2023.3236882){: .btn .btn-red }
+[<i class="fa fa-newspaper-o" aria-hidden="true"></i> DOI ](https://doi.org/10.1109/LRA.2023.3236882){: .btn .btn-grey }
+[<i class="fa fa-youtube" aria-hidden="true"></i> Youtube ](https://youtu.be/qa4EVT_HSOg?si=ZLVLsFcS7ZXvQ5Md){: .btn .btn-purple }
+
+
+
 
 
 
