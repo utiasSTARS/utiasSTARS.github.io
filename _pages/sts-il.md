@@ -24,7 +24,7 @@ usemathjax: true
 
 <small>\**work completed while Trevor Ablett, Oliver Limoyo, and Affan Jilani were on internship at Samsung AI Centre, Montreal*</small>
 
-#### Submittted to IEEE Transactions on Robotics (T-RO): Special Section on Tactile Robotics
+#### Submitted to IEEE Transactions on Robotics (T-RO): Special Section on Tactile Robotics
 
 ---
 
