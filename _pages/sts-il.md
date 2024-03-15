@@ -12,6 +12,7 @@ usemathjax: true
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv ](https://arxiv.org/abs/2311.01248){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> Github](https://github.com/SAIC-MONTREAL/tactile-il){: .btn .btn-green }
+[<i class="fa fa-youtube" aria-hidden="true"></i> Supplementary Video](https://youtu.be/1BgS78-5_vA){: .btn .btn-purple }
 
 
 ### Trevor Ablett<sup>1</sup>, Oliver Limoyo<sup>1</sup>, Adam Sigal<sup>2</sup>, Affan Jilani<sup>3</sup>, Jonathan Kelly<sup>1</sup> , Kaleem Siddiqi<sup>3</sup>, Francois Hogan<sup>2</sup>, Gregory Dudek<sup>2,3</sup>
