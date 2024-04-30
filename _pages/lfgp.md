@@ -176,25 +176,25 @@ Each video shows five episodes on repeat.
         <tr>
             <td style="width: 12px; min-width:10px">Stack</td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/stack/dac.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/stack/multitask_bc.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/stack/bc.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/stack/lfgp.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
@@ -203,25 +203,25 @@ Each video shows five episodes on repeat.
         <tr>
             <td style="width: 12px; min-width:10px">Unstack Stack</td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/unstack-stack/dac.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/unstack-stack/multitask_bc.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/unstack-stack/bc.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/unstack-stack/lfgp.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
@@ -230,25 +230,25 @@ Each video shows five episodes on repeat.
         <tr>
             <td style="width: 12px; min-width:10px">Bring</td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/bring/dac.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/bring/multitask_bc.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/bring/bc.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/bring/lfgp.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
@@ -257,25 +257,25 @@ Each video shows five episodes on repeat.
         <tr>
             <td style="width: 12px; min-width:10px">Insert</td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/insert/dac.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/insert/multitask_bc.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/insert/bc.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
             </td>
             <td>
-                <video width='100%' autoplay loop muted>
+                <video width='100%' autoplay loop muted playsinline>
                     <source src='/assets/lfgp/final_policies/insert/lfgp.mp4' type='video/mp4'>
                     Your browser does not support the video tag.
                 </video>
