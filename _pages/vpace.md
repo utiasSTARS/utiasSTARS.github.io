@@ -43,7 +43,8 @@ usemathjax: true
 <!-- {:/} -->
 
 ## Table of contents
-{: .no_toc .text-delta }
+{: .no_toc }
+<!-- {: .no_toc .text-delta } -->
 
 1. TOC
 {:toc}
