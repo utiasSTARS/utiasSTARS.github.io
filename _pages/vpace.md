@@ -11,7 +11,7 @@ usemathjax: true
 # Value-Penalized Auxiliary Control from Examples for Learning without Rewards or Demonstrations
 {: .no_toc }
 
-<!-- [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv ](https://arxiv.org/abs/2311.01248){: .btn .btn-blue } -->
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv ](https://arxiv.org/abs/2407.03311){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> Github](https://github.com/utiasSTARS/vpace){: .btn .btn-green }
 <!-- [<i class="fa fa-youtube" aria-hidden="true"></i> Supplementary Video](https://youtu.be/1BgS78-5_vA){: .btn .btn-purple } -->
 
