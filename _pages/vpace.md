@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Value-Penalized Auxiliary Control from Examples (CoRL 2024)
+title: Value-Penalized Auxiliary Control from Examples (CoRL 2024, submitted)
 subtitle:  Multimodal and Force-Matched Imitation Learning with a See-Through Visuotactile Sensor
-description: CoRL paper on learning from example states
+description: CoRL (submitted) paper on learning from example states
 permalink: /vpace/
 nav_order: 9985
 usemathjax: true
