@@ -18,7 +18,7 @@ nav_exclude: true
 
 {::nomarkdown} 
 <div style='text-align:center'>
-<h1>FaVoR: Features via Voxel Rendering</h1>
+<h1>FaVoR: Features via Voxel Rendering for Camera Relocalization</h1>
 <div class="container_">
     <p class="masthead-subheading font-weight-light mb-0">Vincenzo Polizzi<sup>1</sup>, Marco Cannici<sup>2</sup>, Davide Scaramuzza<sup>2</sup>, Jonathan Kelly<sup>1</sup></p>
     <br>
