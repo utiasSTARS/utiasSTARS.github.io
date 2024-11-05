@@ -31,6 +31,8 @@ usemathjax: true
 ---
 *Also presented as "Fast Reinforcement Learning without Rewards or Demonstrations via Auxiliary Task Examples"*
 
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> OpenReview](https://openreview.net/forum?id=5gRB5Z4QIg){: .btn .btn-blue }
+
 #### Poster at Conference on Robot Learning (CoRL) 2024 [Workshop on Mastering Robot Manipulation in a World of Abundant Data](https://www.dynsyslab.org/mastering-robot-manipulation-in-a-world-of-abundant-data/)
 
 ---
