@@ -5,15 +5,16 @@ subtitle: ""
 description: WACV (2025) paper on rendering feature descriptors from unseen views
 permalink: /favor/
 nav_order: 9984
-usemathjax: true
 nav_exclude: true
 ---
 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2409.07571){: .btn .btn-blue }
-[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/){: .btn .btn-green }
-[<i class="fa fa-newspaper-o" aria-hidden="true"></i> WACV Paper](){: .btn .btn-red }
-[<i class="fa fa-newspaper-o" aria-hidden="true"></i> Supplementary](){: .btn .btn-red }
 
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2409.07571){: .btn .btn-blue }
+<!-- 
+[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/){: .btn .btn-green }
+[<i class="fa fa-newspaper-o" aria-hidden="true"></i> WACV Paper](http://papers.starslab.ca/favor){: .btn .btn-red }
+[<i class="fa fa-newspaper-o" aria-hidden="true"></i> Supplementary](http://papers.starslab.ca/favor){: .btn .btn-red }
+-->
 
 {::nomarkdown} 
 <div style='text-align:center'>
@@ -254,7 +255,7 @@ Camera relocalization methods range from dense image alignment to direct camera 
       <h2 class="portfolio-modal-title">Great Court</h2>
       <div class="divider-custom">
         <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon"><i class="fas fa-camera"></i></div>
+        <div class="divider-custom-icon"><i class="fa fa-camera"></i></div>
         <div class="divider-custom-line"></div>
       </div>
       <p>The video below shows the camera pose relocalization computed using FaVoR. The purple frame indicates the starting camera position provided by the first DenseVLAD result, while the blue frame represents the ground truth camera pose of the query image. The estimated camera pose is shown in black, connected to the initial pose by a green line.</p> 
@@ -284,7 +285,7 @@ Camera relocalization methods range from dense image alignment to direct camera 
       <h2 class="portfolio-modal-title">King's College</h2>
       <div class="divider-custom">
         <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon"><i class="fas fa-camera"></i></div>
+        <div class="divider-custom-icon"><i class="fa fa-camera"></i></div>
         <div class="divider-custom-line"></div>
       </div>
       <p>The video below shows the camera pose relocalization computed using FaVoR. The purple frame indicates the starting camera position provided by the first DenseVLAD result, while the blue frame represents the ground truth camera pose of the query image. The estimated camera pose is shown in black, connected to the initial pose by a green line.</p>   
@@ -314,7 +315,7 @@ Camera relocalization methods range from dense image alignment to direct camera 
       <h2 class="portfolio-modal-title">Old Hospital</h2>
       <div class="divider-custom">
         <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon"><i class="fas fa-camera"></i></div>
+        <div class="divider-custom-icon"><i class="fa fa-camera"></i></div>
         <div class="divider-custom-line"></div>
       </div>
       <p>The video below shows the camera pose relocalization computed using FaVoR. The purple frame indicates the starting camera position provided by the first DenseVLAD result, while the blue frame represents the ground truth camera pose of the query image. The estimated camera pose is shown in black, connected to the initial pose by a green line.</p>   
@@ -344,7 +345,7 @@ Camera relocalization methods range from dense image alignment to direct camera 
       <h2 class="portfolio-modal-title">Shop Facade</h2>
       <div class="divider-custom">
         <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon"><i class="fas fa-camera"></i></div>
+        <div class="divider-custom-icon"><i class="fa fa-camera"></i></div>
         <div class="divider-custom-line"></div>
       </div>
       <p>The video below shows the camera pose relocalization computed using FaVoR. The purple frame indicates the starting camera position provided by the first DenseVLAD result, while the blue frame represents the ground truth camera pose of the query image. The estimated camera pose is shown in black, connected to the initial pose by a green line.</p>   
@@ -374,7 +375,7 @@ Camera relocalization methods range from dense image alignment to direct camera 
       <h2 class="portfolio-modal-title">St. Mary's Church</h2>
       <div class="divider-custom">
         <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon"><i class="fas fa-camera"></i></div>
+        <div class="divider-custom-icon"><i class="fa fa-camera"></i></div>
         <div class="divider-custom-line"></div>
       </div>
       <p>The video below shows the camera pose relocalization computed using FaVoR. The purple frame indicates the starting camera position provided by the first DenseVLAD result, while the blue frame represents the ground truth camera pose of the query image. The estimated camera pose is shown in black, connected to the initial pose by a green line.</p>   
@@ -410,19 +411,11 @@ Camera relocalization methods range from dense image alignment to direct camera 
 In the video below, we extract Alike-l features from a target image. We then match the target features with those extracted from a query image under Standard feature matching. On the rigth side, we report the matches in three iterations of the FaVoR method queried from the target image pose. It is noticeble that the amount of matches is much higher in the 3rd iteration of FaVoR compared to the standard matching approach. The text at the bottom left of the image reports the distance in meters and degree between the target image and the query images and the number of matches for both the methods, the text turn out red when the number of standard feature matches is higher than the FaVoR ones.
 </p>
 <div class="text-center">
-   <video width='48%' loop autoplay muted controls>
-      <source src="/assets/favor/video/video_desc_invariance_comp.mp4" alt="feature invariance">
+   <video width='100%' loop autoplay muted controls>
+      <source src="/assets/favor/video/video_desc_invariance_comp.webm" alt="feature invariance">
         Your browser does not support the video tag.
    </video> 
 </div>
-
-<div class="video-container">
-  <video width="640" height="360" controls>
-    <source src="{{ '/assets/favor/video/video_desc_invariance_comp.mp4' | relative_url }}" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
-
 
 </br>
 
@@ -835,19 +828,19 @@ In the video below, we extract Alike-l features from a target image. We then mat
 
   <div class="row">
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> Great Court Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> Great Court Model</a>
     </div>
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> King's College Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> King's College Model</a>
     </div>
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> Old Hospital Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> Old Hospital Model</a>
     </div>
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> Shop Facade Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> Shop Facade Model</a>
     </div>
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> St. Mary's Church Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> St. Mary's Church Model</a>
     </div>
   </div>
 
@@ -857,25 +850,25 @@ In the video below, we extract Alike-l features from a target image. We then mat
   <!-- Buttons for 7-Scenes Dataset -->
   <div class="row">
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> Chess Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> Chess Model</a>
     </div>
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> Fire Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> Fire Model</a>
     </div>
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> Heads Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> Heads Model</a>
     </div>
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> Office Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> Office Model</a>
     </div>
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> Pumpkin Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> Pumpkin Model</a>
     </div>
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> Red Kitchen Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> Red Kitchen Model</a>
     </div>
     <div class="col">
-      <a class="btn" href="#"><i class="fas fa-cubes"></i> Stairs Model</a>
+      <a class="btn" href="#"><i class="fa fa-cubes"></i> Stairs Model</a>
     </div>
   </div>
 
