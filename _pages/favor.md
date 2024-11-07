@@ -16,7 +16,7 @@ nav_exclude: true
 [<i class="fa fa-newspaper-o" aria-hidden="true"></i> Supplementary](http://papers.starslab.ca/favor){: .btn .btn-red }
 -->
 
-{::nomarkdown} 
+{::nomarkdown}
 <div style='text-align:center'>
 <h1>FaVoR: Features via Voxel Rendering for Camera Relocalization</h1>
 <div class="container_">
@@ -43,6 +43,11 @@ Camera relocalization methods range from dense image alignment to direct camera 
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    .double-underline {
+        text-decoration: underline;
+        text-decoration-style: double;
     }
 
     /* Container Styling */
@@ -161,6 +166,7 @@ Camera relocalization methods range from dense image alignment to direct camera 
       .video-viewport {
             width: 512px;
             height: 288px;
+            aspect-ratio: 16 / 9;
             overflow: hidden;
             position: relative;
       }
@@ -399,7 +405,6 @@ Camera relocalization methods range from dense image alignment to direct camera 
   </div>
   
   <!-- Optional Font Awesome for Icons -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
   <script src="/assets/favor/scripts.js"></script>
 
@@ -420,6 +425,71 @@ In the video below, we extract Alike-l features from a target image. We then mat
 </br>
 
 <!-- -->
+<style>
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+
+  th, td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+  }
+
+  /* Styling for fixed columns in header and body cells */
+  .fixed-header, .fixed-cell {
+    position: sticky;
+    background-color: #f9f9f9;
+    z-index: 1;
+  }
+
+  .fixed-header {
+    left: 0;
+    z-index: 2; /* Ensures headers are on top of cells */
+  }
+
+  .fixed-header-method {
+    left: 60px; /* Reduced offset for "Method" to minimize movement */
+  }
+
+  .fixed-cell {
+    left: 0;
+  }
+
+  .fixed-cell-method {
+    left: 60px; /* Consistent reduced offset for "Method" cells */
+  }
+
+  .highlight-column {
+    background-color: #e6f7ff; /* Light blue highlight */
+  }
+
+  /* Highlight for the first, second, and third columns */
+  .highlight-column-first {
+    background-color: #1cb6ff; /* Strong red for the first column */
+  }
+
+  .highlight-column-second {
+    background-color: #72d0fc; /* Light blue for the second column */
+  }
+
+  .highlight-column-third {
+    background-color: #b6e6fc; /* Lighter green for the third column */
+  }
+
+  /* Strong separation lines for categories */
+  .category-start td {
+    border-top: 2px solid #444;
+  }
+
+  /* Final average row styling */
+  .final-average td {
+    font-weight: bold;
+    background-color: #f2f2f2;
+    border-top: 3px solid #000;
+  }
+</style>
 
 <h2 class="text-center">Results</h2>
 
@@ -429,7 +499,7 @@ In the video below, we extract Alike-l features from a target image. We then mat
   <thead>
     <tr>
       <th>Category</th>
-      <th>Method</th>
+      <th class="fixed-cell">Method</th>
       <th>Chess</th>
       <th>Fire</th>
       <th>Heads</th>
@@ -437,13 +507,13 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <th>Pumpkin</th>
       <th>Kitchen</th>
       <th>Stairs</th>
-      <th>Average</th>
+      <th class="highlight-column">Average</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td rowspan="4">IBMs</td>
-      <td>PoseNet17</td>
+      <td class="fixed-cell">PoseNet17</td>
       <td>13, 4.5</td>
       <td>27, 11.3</td>
       <td>17, 13.0</td>
@@ -451,10 +521,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>26, 4.8</td>
       <td>23, 5.4</td>
       <td>35, 12.4</td>
-      <td>22.9, 8.1</td>
+      <td class="highlight-column">22.9, 8.1</td>
     </tr>
     <tr>
-      <td>MapNet</td>
+      <td class="fixed-cell">MapNet</td>
       <td>8, 3.3</td>
       <td>27, 11.7</td>
       <td>18, 13.3</td>
@@ -462,10 +532,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>22, 4.0</td>
       <td>23, 4.9</td>
       <td>30, 12.1</td>
-      <td>20.7, 7.8</td>
+      <td class="highlight-column">20.7, 7.8</td>
     </tr>
     <tr>
-      <td>PAEs</td>
+      <td class="fixed-cell">PAEs</td>
       <td>12, 5.0</td>
       <td>24, 9.3</td>
       <td>14, 12.5</td>
@@ -473,10 +543,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>18, 4.9</td>
       <td>18, 6.2</td>
       <td>25, 8.7</td>
-      <td>18.6, 7.5</td>
+      <td class="highlight-column">18.6, 7.5</td>
     </tr>
     <tr>
-      <td>LENS</td>
+      <td class="fixed-cell">LENS</td>
       <td>3, 1.3</td>
       <td>10, 3.7</td>
       <td>7, 5.8</td>
@@ -484,11 +554,11 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>8, 2.2</td>
       <td>9, 2.2</td>
       <td>14, 3.6</td>
-      <td>8.3, 3.0</td>
+      <td class="highlight-column">8.3, 3.0</td>
     </tr>
     <tr>
       <td>HM</td>
-      <td>HLoc (RGB-D SP+SG)</td>
+      <td class="fixed-cell">HLoc (RGB-D SP+SG)</td>
       <td>2, 0.8</td>
       <td>2, 0.8</td>
       <td>1, 0.8</td>
@@ -496,11 +566,11 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>4, 1.1</td>
       <td>3, 1.1</td>
       <td>4, 1.2</td>
-      <td>2.7, 0.9</td>
+      <td class="highlight-column">2.7, 0.9</td>
     </tr>
     <tr>
       <td rowspan="3">SBMs</td>
-      <td>SC-WLS</td>
+      <td class="fixed-cell">SC-WLS</td>
       <td>3, 0.8</td>
       <td>5, 1.1</td>
       <td>3, 1.9</td>
@@ -508,10 +578,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>8, 1.3</td>
       <td>9, 1.4</td>
       <td>12, 2.8</td>
-      <td>6.6, 1.5</td>
+      <td class="highlight-column">6.6, 1.5</td>
     </tr>
     <tr>
-      <td>DSAC* (RGB)</td>
+      <td class="fixed-cell">DSAC* (RGB)</td>
       <td>2, 1.1</td>
       <td>2, 1.2</td>
       <td>1, 1.8</td>
@@ -519,10 +589,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>4, 1.3</td>
       <td>4, 1.7</td>
       <td>3, 1.2</td>
-      <td>2.7, 1.4</td>
+      <td class="highlight-column">2.7, 1.4</td>
     </tr>
     <tr>
-      <td>ACE</td>
+      <td class="fixed-cell">ACE</td>
       <td>2, 1.1</td>
       <td>2, 1.8</td>
       <td>2, 1.1</td>
@@ -530,11 +600,11 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>3, 1.3</td>
       <td>3, 1.3</td>
       <td>3, 1.2</td>
-      <td>2.6, 1.3</td>
+      <td class="highlight-column">2.6, 1.3</td>
     </tr>
     <tr>
       <td rowspan="9">SFRMs</td>
-      <td>FQN</td>
+      <td class="fixed-cell">FQN</td>
       <td>4, 1.3</td>
       <td>5, 1.8</td>
       <td>4, 2.4</td>
@@ -542,10 +612,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>9, 2.5</td>
       <td>16, 4.4</td>
       <td>140, 34.7</td>
-      <td>27.4, 7.4</td>
+      <td class="highlight-column">27.4, 7.4</td>
     </tr>
     <tr>
-      <td>CROSSFIRE</td>
+      <td class="fixed-cell">CROSSFIRE</td>
       <td>1, 0.4</td>
       <td>5, 1.9</td>
       <td>3, 2.3</td>
@@ -553,10 +623,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>3, 0.8</td>
       <td>2, 0.8</td>
       <td>12, 1.9</td>
-      <td>4.4, 1.4</td>
+      <td class="highlight-column">4.4, 1.4</td>
     </tr>
     <tr>
-      <td>NeRF-loc</td>
+      <td class="fixed-cell">NeRF-loc</td>
       <td>2, 1.1</td>
       <td>2, 1.1</td>
       <td>1, 1.9</td>
@@ -564,10 +634,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>3, 1.3</td>
       <td>3, 1.5</td>
       <td>3, 1.3</td>
-      <td>2.3, 1.3</td>
+      <td class="highlight-column">2.3, 1.3</td>
     </tr>
     <tr>
-      <td>(Ours) Alike-t</td>
+      <td class="fixed-cell">(Ours) Alike-t</td>
       <td>1, 0.3</td>
       <td>1, 0.5</td>
       <td>1, 0.4</td>
@@ -575,10 +645,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>2, 0.4</td>
       <td>1, 0.3</td>
       <td>4, 1.1</td>
-      <td><strong>1.7, 0.5</strong></td>
+      <td class="highlight-column-third"><p class="double-underline">1.7, 0.5</p></td>
     </tr>
     <tr>
-      <td>(Ours) Alike-s</td>
+      <td class="fixed-cell">(Ours) Alike-s</td>
       <td>1, 0.2</td>
       <td>2, 0.6</td>
       <td>1, 0.4</td>
@@ -586,10 +656,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>1, 0.3</td>
       <td>4, 0.9</td>
       <td>5, 1.5</td>
-      <td>2.3, 0.6</td>
+      <td class="highlight-column">2.3, 0.6</td>
     </tr>
     <tr>
-      <td>(Ours) Alike-n</td>
+      <td class="fixed-cell">(Ours) Alike-n</td>
       <td>1, 0.2</td>
       <td>1, 0.4</td>
       <td>1, 0.6</td>
@@ -597,10 +667,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>1, 0.3</td>
       <td>1, 0.3</td>
       <td>6, 1.6</td>
-      <td>1.9, 0.5</td>
+      <td class="highlight-column">1.9, 0.5</td>
     </tr>
     <tr>
-      <td>(Ours) Alike-l</td>
+      <td class="fixed-cell">(Ours) Alike-l</td>
       <td>1, 0.2</td>
       <td>1, 0.3</td>
       <td>1, 0.4</td> 
@@ -608,10 +678,10 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>1, 0.3</td>    
       <td>1, 0.2</td>    
       <td>3, 0.8</td>
-      <td><strong>1.4, 0.4</strong></td>
+      <td class="highlight-column-first"><strong>1.4, 0.4</strong></td>
     </tr>
     <tr>
-      <td>(Ours) SP</td>
+      <td class="fixed-cell">(Ours) SP</td>
       <td>1, 0.2</td>
       <td>1, 0.4</td> 
       <td>1, 0.3</td> 
@@ -619,7 +689,7 @@ In the video below, we extract Alike-l features from a target image. We then mat
       <td>1, 0.3</td> 
       <td>1, 0.2</td> 
       <td>4, 1.0</td>
-      <td>1.6, 0.4</td>
+      <td class="highlight-column-second"><u>1.6, 0.4</u></td>
     </tr>
   </tbody>
 </table>
@@ -630,190 +700,190 @@ In the video below, we extract Alike-l features from a target image. We then mat
   <thead>
     <tr>
       <th>Category</th>
-      <th>Method</th>
+      <th class="fixed-cell">Method</th>
       <th>College</th>
       <th>Court</th>
       <th>Hospital</th>
       <th>Shop</th>
       <th>Church</th>
-      <th>Average</th>
-      <th>Average w/o Court</th>
+      <th class="highlight-column">Average</th>
+      <th class="highlight-column">Average w/o Court</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td rowspan="4">IBMs</td>
-      <td>PoseNet</td>
+      <td class="fixed-cell">PoseNet</td>
       <td>88, 1.0</td>
       <td>683, 3.5</td>
       <td>88, 3.8</td>
       <td>157, 3.3</td>
       <td>320, 3.3</td>
-      <td>267, 3.0</td>
-      <td>163, 2.9</td>
+      <td class="highlight-column">267, 3.0</td>
+      <td class="highlight-column">163, 2.9</td>
     </tr>
     <tr>
-      <td>MapNet</td>
+      <td class="fixed-cell">MapNet</td>
       <td>107, 1.9</td>
       <td>785, 3.8</td>
       <td>149, 4.2</td>
       <td>200, 4.5</td>
       <td>194, 3.9</td>
-      <td>287, 3.7</td>
-      <td>163, 3.6</td>
+      <td class="highlight-column">287, 3.7</td>
+      <td class="highlight-column">163, 3.6</td>
     </tr>
     <tr>
-      <td>PAEs</td>
+      <td class="fixed-cell">PAEs</td>
       <td>90, 1.5</td>
       <td>-</td>
       <td>207, 2.6</td>
       <td>99, 3.9</td>
       <td>164, 4.2</td>
-      <td>-</td>
-      <td>140, 3.1</td>
+      <td class="highlight-column">-</td>
+      <td class="highlight-column">140, 3.1</td>
     </tr>
     <tr>
-      <td>LENS</td>
+      <td class="fixed-cell">LENS</td>
       <td>33, 0.5</td>
       <td>-</td>
       <td>44, 0.9</td>
       <td>27, 1.6</td>
       <td>53, 1.6</td>
-      <td>-</td>
-      <td>39, 1.2</td>
+      <td class="highlight-column">-</td>
+      <td class="highlight-column">39, 1.2</td>
     </tr>
     <tr>
       <td rowspan="2">HM</td>
-      <td>HLoc<sub>SP+SG</sub></td>
+      <td class="fixed-cell">HLoc<sub>SP+SG</sub></td>
       <td>6, 0.1</td>
       <td>10, 0.1</td>
       <td>13, 0.2</td>
       <td>3, 0.1</td>
       <td>4, 0.1</td>
-      <td><strong>7, 0.1</strong></td>
-      <td><strong>7, 0.1</strong></td>
+      <td class="highlight-column-first"><strong>7, 0.1</strong></td>
+      <td class="highlight-column-first"><strong>7, 0.1</strong></td>
     </tr>
     <tr>
-      <td>SceneSqueezer</td>
+      <td class="fixed-cell">SceneSqueezer</td>
       <td>27, 0.4</td>
       <td>-</td>
       <td>37, 0.5</td>
       <td>11, 0.4</td>
       <td>15, 0.4</td>
-      <td>-</td>
-      <td>23, 0.4</td>
+      <td class="highlight-column">-</td>
+      <td class="highlight-column">23, 0.4</td>
     </tr>
     <tr>
       <td rowspan="3">SBMs</td>
-      <td>SC-WLS</td>
+      <td class="fixed-cell">SC-WLS</td>
       <td>14, 0.6</td>
       <td>164, 0.9</td>
       <td>42, 1.7</td>
       <td>11, 0.7</td>
       <td>39, 1.3</td>
-      <td>54, 0.7</td>
-      <td>27, 1.1</td>
+      <td class="highlight-column">54, 0.7</td>
+      <td class="highlight-column">27, 1.1</td>
     </tr>
     <tr>
-      <td>DSAC* (RGB)</td>
+      <td class="fixed-cell">DSAC* (RGB)</td>
       <td>18, 0.3</td>
       <td>34, 0.2</td>
       <td>21, 0.4</td>
       <td>5, 0.3</td>
       <td>15, 0.6</td>
-      <td>19, 0.3</td>
-      <td>15, 0.4</td>
+      <td class="highlight-column">19, 0.3</td>
+      <td class="highlight-column">15, 0.4</td>
     </tr>
     <tr>
-      <td>ACE</td>
+      <td class="fixed-cell">ACE</td>
       <td>28, 0.4</td>
       <td>42, 0.2</td>
       <td>31, 0.6</td>
       <td>5, 0.3</td>
       <td>19, 0.6</td>
-      <td>25, 0.4</td>
-      <td>21, 0.5</td>
+      <td class="highlight-column">25, 0.4</td>
+      <td class="highlight-column">21, 0.5</td>
     </tr>
     <tr>
       <td rowspan="9">SFRMs</td>
-      <td>FQN-MN</td>
+      <td class="fixed-cell">FQN-MN</td>
       <td>28, 0.4</td>
       <td>4253, 39.2</td>
       <td>54, 0.8</td>
       <td>13, 0.6</td>
       <td>58, 2.0</td>
-      <td>881, 8.6</td>
-      <td>38, 1.0</td>
+      <td class="highlight-column">881, 8.6</td>
+      <td class="highlight-column">38, 1.0</td>
     </tr>
     <tr>
-      <td>CROSSFIRE</td>
+      <td class="fixed-cell">CROSSFIRE</td>
       <td>47, 0.7</td>
       <td>-</td>
       <td>43, 0.7</td>
       <td>20, 1.2</td>
       <td>39, 1.4</td>
-      <td>-</td>
-      <td>37, 1.0</td>
+      <td class="highlight-column">-</td>
+      <td class="highlight-column">37, 1.0</td>
     </tr>
     <tr>
-      <td>NeRF-loc</td>
+      <td class="fixed-cell">NeRF-loc</td>
       <td>11, 0.2</td>
       <td>25, 0.1</td>
       <td>18, 0.4</td>
       <td>4, 0.2</td>
       <td>7, 0.2</td>
-      <td><u>13, 0.2</u></td>
-      <td><u>10, 0.3</u></td>
+      <td class="highlight-column-second"><u>13, 0.2</u></td>
+      <td class="highlight-column-second"><u>10, 0.3</u></td>
     </tr>
     <tr>
-      <td>(Ours) Alike-t</td>
+      <td class="fixed-cell">(Ours) Alike-t</td>
       <td>17, 0.3</td>
       <td>29, 0.1</td>
       <td>20, 0.4</td>
       <td>5, 0.3</td>
       <td>11, 0.4</td>
-      <td>16, 0.3</td>
-      <td>13, 0.4</td>
+      <td class="highlight-column">16, 0.3</td>
+      <td class="highlight-column">13, 0.4</td>
     </tr>
     <tr>
-      <td>(Ours) Alike-s</td>
+      <td class="fixed-cell">(Ours) Alike-s</td>
       <td>16, 0.2</td>
       <td>32, 0.2</td>
       <td>21, 0.4</td>
       <td>6, 0.3</td>
       <td>11, 0.4</td>
-      <td>17, 0.3</td>
-      <td>14, 0.4</td>
+      <td class="highlight-column">17, 0.3</td>
+      <td class="highlight-column">14, 0.4</td>
     </tr>
     <tr>
-      <td>(Ours) Alike-n</td>
+      <td class="fixed-cell">(Ours) Alike-n</td>
       <td>18, 0.3</td>
       <td>32, 0.2</td>
       <td>21, 0.4</td>
       <td>5, 0.2</td>
       <td>11, 0.3</td>
-      <td>17, 0.3</td>
-      <td>14, 0.3</td>
+      <td class="highlight-column">17, 0.3</td>
+      <td class="highlight-column">14, 0.3</td>
     </tr>
     <tr>
-      <td>(Ours) Alike-l</td>
+      <td class="fixed-cell">(Ours) Alike-l</td>
       <td>15, 0.2</td>
       <td>27, 0.1</td>
       <td>19, 0.4</td>
       <td>5, 0.3</td>
       <td>10, 0.3</td>
-      <td><strong>15, 0.3</strong></td>
-      <td><strong>12, 0.3</strong></td>
+      <td class="highlight-column-third"><p class="double-underline">15, 0.3</p></td>
+      <td class="highlight-column-third"><p class="double-underline">12, 0.3</p></td>
     </tr>
     <tr>
-      <td>(Ours) SP</td>
+      <td class="fixed-cell">(Ours) SP</td>
       <td>18, 0.3</td>
       <td>29, 0.2</td>
       <td>27, 0.5</td>
       <td>5, 0.3</td>
       <td>11, 0.4</td>
-      <td>18, 0.3</td>
-      <td>15, 0.4</td>
+      <td class="highlight-column">18, 0.3</td>
+      <td class="highlight-column">15, 0.4</td>
    </tr>
    </tbody>
 </table>
