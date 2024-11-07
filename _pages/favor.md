@@ -9,7 +9,7 @@ nav_exclude: true
 ---
 
 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print ](https://arxiv.org/abs/2409.07571){: .btn
+[<i class="fa fa-file-text-o" aria-hidden="true"></i>  arXiv pre-print ](https://arxiv.org/abs/2409.07571){: .btn
 .btn-blue }
 <!-- 
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/){: .btn .btn-green }
@@ -26,6 +26,7 @@ nav_exclude: true
     <br>
     <p class="masthead-subheading font-weight-light mb-0"><sup>1</sup>University of Toronto, <sup>2</sup>University of
       Zurich</p>
+      <br>
   </div>
   <br>
   <img src='/assets/favor/eyecatcher.png' width='100%'>
@@ -447,13 +448,7 @@ nav_exclude: true
 <h3 class="text-center">7-Scenes Chess, features invariance</h3>
 
 <p class="text-center">
-  In the video below, we extract Alike-l features from a target image. We then match the target features with those
-  extracted from a query image under Standard feature matching. On the rigth side, we report the matches in three
-  iterations of the FaVoR method queried from the target image pose. It is noticeble that the amount of matches is much
-  higher in the 3rd iteration of FaVoR compared to the standard matching approach. The text at the bottom left of the
-  image reports the distance in meters and degree between the target image and the query images and the number of
-  matches for both the methods, the text turn out red when the number of standard feature matches is higher than the
-  FaVoR ones.
+  In the video below, we extract Alike-l features from a fixed target image and match these features with those extracted from a query image using standard feature matching. On the right side, we display the matches from three iterations of the FaVoR method, where FaVoR is queried using the fixed target's pose. It is noticeable that the number of matches significantly increases in the third iteration of FaVoR compared to the standard matching approach. The text at the bottom left of the image shows the distance (in meters and degrees) between the target and query images, as well as the number of matches for both methods. The text turns red when the number of standard feature matches are more than the FaVoR matches.
 </p>
 <div class="text-center">
   <video width='100%' loop autoplay muted controls>
@@ -463,6 +458,20 @@ nav_exclude: true
 </div>
 
 </br>
+
+<h2 class="text-center">Rendering Capabilities</h2>
+<p class="text-center">
+To evaluate the view invariance of feature descriptors, we extract dense descriptor maps from images taken at different angles. Using Alike-l, we compute similarity scores between features from a target image and the dense maps. The same process is applied to FaVoR, using the ground truth pose for rendering. The figure below shows the median similarity scores of the top thirty matches for both Alike-l and FaVoR across different query angles. FaVoR maintains nearly constant scores, indicating good descriptor fidelity from unseen views. In contrast, Alike-l shows a noticeable drop in similarity beyond ±30 degrees, highlighting the advantage of FaVoR in maintaining descriptor consistency across viewpoints.
+</p>
+<div class="container text-center">
+<img src="/assets/favor/7Scene_medianscore_vs_angle_alike-l_favor.png"/>
+</div>
+<p class="text-center">
+In blue
+is the smoothed median score for FaVoR<sub>Alike-l</sub> obtained by convolving the descriptors rendered at different view angles with the
+corresponding dense descriptors map of each query image. In orange is the smoothed median score of Alike-l features extracted
+from the starting image (at angle 0 deg) convolved with the subsequent images in the test sequence.
+</p>
 
 <!-- -->
 <style>
@@ -543,6 +552,11 @@ nav_exclude: true
 <h2 class="text-center">Results</h2>
 
 <h3 class="text-center">7-Scenes Dataset</h3>
+
+<p><strong>6-DoF median localization errors on the 7-Scenes dataset.</strong> Comparison of visual localization methods. The overall top three results are shown in 
+<strong style="background-color: #1cb6ff">bold</strong>, 
+<u style="background-color: #72d0fc">underline</u>, and 
+<span class="double-underline" style="background-color: #b6e6fc">double-underline</span>.</p>
 
 <table>
   <thead>
@@ -745,7 +759,11 @@ nav_exclude: true
   </tbody>
 </table>
 </br>
-<h3 class="text-center">7-Scenes Dataset</h3>
+<h3 class="text-center">Cambridge Landmarks Dataset</h3>
+<p><strong>6-DoF median localization errors on the Cambridge Landmarks dataset.</strong> Comparison of visual localization methods. The overall top three results are shown in 
+<strong style="background-color: #1cb6ff">bold</strong>, 
+<u style="background-color: #72d0fc">underline</u>, and 
+<span class="double-underline" style="background-color: #b6e6fc">double-underline</span>.</p>
 
 <table>
   <thead>
@@ -948,26 +966,7 @@ nav_exclude: true
 </br>
 <!--  -->
 <h2 class="text-center">Models Downlaod</h2>
-<p>Coming soon</p>
-<h3 class="text-center">Cambridge Landmarks Dataset</h3>
-
-<div class="row">
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Great Court Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> King's College Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Old Hospital Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Shop Facade Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> St. Mary's Church Model</a>
-  </div>
-</div>
+<p>Coming soon!</p>
 
 <!-- 7-Scenes Dataset Heading -->
 <h3 class="text-center">7-Scenes Dataset</h3>
@@ -997,8 +996,28 @@ nav_exclude: true
   </div>
 </div>
 
+<h3 class="text-center">Cambridge Landmarks Dataset</h3>
 
-<h2 class="text-center">Cite us</h2>
+<div class="row">
+  <div class="col">
+    <a class="btn" href="#"><i class="fa fa-cubes"></i> Great Court Model</a>
+  </div>
+  <div class="col">
+    <a class="btn" href="#"><i class="fa fa-cubes"></i> King's College Model</a>
+  </div>
+  <div class="col">
+    <a class="btn" href="#"><i class="fa fa-cubes"></i> Old Hospital Model</a>
+  </div>
+  <div class="col">
+    <a class="btn" href="#"><i class="fa fa-cubes"></i> Shop Facade Model</a>
+  </div>
+  <div class="col">
+    <a class="btn" href="#"><i class="fa fa-cubes"></i> St. Mary's Church Model</a>
+  </div>
+</div>
+
+
+<h2 class="text-center">Cite this work</h2>
 <div class="citation-box">
   <pre class="citation-pre">
 @misc{polizzi2024arXiv,
