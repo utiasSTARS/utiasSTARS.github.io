@@ -21,8 +21,9 @@ nav_exclude: true
 <div style='text-align:center'>
   <h1>FaVoR: Features via Voxel Rendering for Camera Relocalization</h1>
   <div class="container_">
-    <p class="masthead-subheading font-weight-light mb-0">Vincenzo Polizzi<sup>1</sup>, Marco Cannici<sup>2</sup>,
-      Davide Scaramuzza<sup>2</sup>, Jonathan Kelly<sup>1</sup></p>
+    <p class="masthead-subheading font-weight-light mb-0">
+    <a href="https://polivi.iobii.com/">Vincenzo Polizzi<sup>1</sup><a>, <a href="https://marcocannici.github.io/">Marco Cannici<sup>2</sup></a>,
+      <a href="https://rpg.ifi.uzh.ch/people_scaramuzza.html">Davide Scaramuzza<sup>2</sup></a>, <a href="https://starslab.ca/people/prof-jonathan-kelly/">Jonathan Kelly<sup>1</sup></a></p>
     <br>
     <p class="masthead-subheading font-weight-light mb-0"><sup>1</sup>University of Toronto, <sup>2</sup>University of
       Zurich</p>
