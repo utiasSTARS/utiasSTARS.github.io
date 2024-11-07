@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         slider.addEventListener('input', function() {
             const segmentIndex = parseInt(slider.value);
-            const offsetY = segmentIndex * 288;
+            const videoHeight = video.parentElement.offsetHeight; // Get the height of the video container
+            const offsetY = segmentIndex * videoHeight;
 
             video.style.transform = `translateY(-${offsetY}px)`;
         });
