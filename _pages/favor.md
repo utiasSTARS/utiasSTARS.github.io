@@ -10,10 +10,9 @@ nav_exclude: true
 
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i>  arXiv pre-print ](https://arxiv.org/abs/2409.07571){: .btn
-.btn-blue }
-<!-- 
-[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/){: .btn .btn-green }
-[<i class="fa fa-newspaper-o" aria-hidden="true"></i> WACV Paper](http://papers.starslab.ca/favor){: .btn .btn-red }
+.btn-blue } 
+[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/FaVoR){: .btn .btn-green }
+<!--[<i class="fa fa-newspaper-o" aria-hidden="true"></i> WACV Paper](http://papers.starslab.ca/favor){: .btn .btn-red }
 [<i class="fa fa-newspaper-o" aria-hidden="true"></i> Supplementary](http://papers.starslab.ca/favor){: .btn .btn-red }
 -->
 
