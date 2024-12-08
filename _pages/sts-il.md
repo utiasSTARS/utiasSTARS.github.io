@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Multimodal and Force-Matched Imitation Learning (T-RO 2024)
+title: Multimodal and Force-Matched Imitation Learning (T-RO 2025 and ICRA 2025)
 subtitle:  Multimodal and Force-Matched Imitation Learning with a See-Through Visuotactile Sensor
 description: T-RO paper multimodal and force-matched imitation learning
 permalink: /sts-il/
@@ -27,7 +27,7 @@ usemathjax: true
 
 <small>\**work completed while Trevor Ablett, Oliver Limoyo, and Affan Jilani were on internship at Samsung AI Centre, Montreal*</small>
 
-#### Submitted to IEEE Transactions on Robotics (T-RO): Special Section on Tactile Robotics
+#### IEEE Transactions on Robotics (T-RO): Special Section on Tactile Robotics (to appear), to be presented at ICRA 2025
 {: .no_toc }
 
 ---
