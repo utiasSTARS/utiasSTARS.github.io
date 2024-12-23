@@ -988,7 +988,7 @@ from the starting image (at angle 0 deg) convolved with the subsequent images in
 
 </br>
 <!--  -->
-<h2 class="text-center">Models Downlaod</h2>
+<h2 class="text-center">Models Download</h2>
 <p>The models used to generate the results in the paper can be downloaded from the <a href="https://huggingface.co/viciopoli/FaVoR">Hugging Face model hub</a>. To download the models, you can use the following command, make sure the <ita>huggingface-cli</ita> is installed:</p>
 
 
