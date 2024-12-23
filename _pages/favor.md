@@ -239,6 +239,29 @@ nav_exclude: true
     max-width: 300px;
     margin: 10px;
   }
+  
+    .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: transform 0.3s ease;
+    }
+
+    .copy-btn:hover {
+        transform: scale(1.2);
+    }
+
+    .citation-box {
+        position: relative;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 10px;
+        background-color: #f8f8f8;
+    }
 </style>
 
 <h2 class="text-center">Cambridge Landmarks Visualization</h2>
@@ -966,15 +989,27 @@ from the starting image (at angle 0 deg) convolved with the subsequent images in
 </br>
 <!--  -->
 <h2 class="text-center">Models Downlaod</h2>
-<p>The models used to generate the results in the paper can be downloaded from the <a href="https://huggingface.co/viciopoli/FaVoR">Hugging Face model hub</a>. TO donwload the models, you can use the following command, make sure the <ita>huggingface-cli</ita> is installed:</p>
+<p>The models used to generate the results in the paper can be downloaded from the <a href="https://huggingface.co/viciopoli/FaVoR">Hugging Face model hub</a>. To download the models, you can use the following command, make sure the <ita>huggingface-cli</ita> is installed:</p>
 
-<code>
-huggingface-cli download viciopoli/FaVoR 7Scenes/chess/alike-l/model_ckpts/model_last.tar --local-dir-use-symlinks False --local-dir /path/to/your/directory 
-</code>
+
+<div class="citation-box" style="position: relative; border: 1px solid #ddd; border-radius: 6px; padding: 10px; background-color: #f8f8f8;">
+    <button class="copy-btn" onclick="copyContent(this)" title="Copy to clipboard">
+        📋
+    </button>
+    <pre class="citation-pre" id="code-block" style="margin: 0; font-family: 'Courier New', monospace; white-space: pre-wrap;">
+DATASET=7Scenes # or Cambridge
+SCENE=chess # or ShopFacade etc.
+NETWORK=alike-l # or alike-s, alike-n, alike-t, superpoint
+huggingface-cli download viciopoli/FaVoR $DATASET/$SCENE/$NETWORK/model_ckpts/model_last.tar --local-dir-use-symlinks False --local-dir /path/to/your/directory
+    </pre>
+</div>
 
 <h2 class="text-center">Cite this work</h2>
-<div class="citation-box">
-  <pre class="citation-pre">
+<div class="citation-box" style="position: relative; border: 1px solid #ddd; border-radius: 6px; padding: 10px; background-color: #f8f8f8;">
+    <button class="copy-btn" onclick="copyContent(this)" title="Copy to clipboard">
+        📋
+    </button>
+    <pre class="citation-pre" id="citation-block" style="margin: 0; font-family: 'Courier New', monospace; white-space: pre-wrap;">
 @misc{polizzi2024arXiv,
     title={FaVoR: Features via Voxel Rendering for Camera Relocalization}, 
     author={Vincenzo Polizzi and Marco Cannici and Davide Scaramuzza and Jonathan Kelly},
@@ -984,6 +1019,22 @@ huggingface-cli download viciopoli/FaVoR 7Scenes/chess/alike-l/model_ckpts/model
     primaryClass={cs.CV},
     url={https://arxiv.org/abs/2409.07571}, 
 }
-</pre>
+    </pre>
 </div>
+
+<script>
+    function copyContent(button) {
+        const codeBox = button.closest('.citation-box').querySelector('pre');
+        const code = codeBox.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            button.innerText = '✔️';
+            setTimeout(() => {
+                button.innerText = '📋';
+            }, 1500);
+        }).catch(err => {
+            console.error('Error copying text: ', err);
+        });
+    }
+</script>
+
 {:/}
