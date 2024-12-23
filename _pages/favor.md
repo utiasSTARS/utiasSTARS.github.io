@@ -966,56 +966,11 @@ from the starting image (at angle 0 deg) convolved with the subsequent images in
 </br>
 <!--  -->
 <h2 class="text-center">Models Downlaod</h2>
-<p>Coming soon!</p>
+<p>The models used to generate the results in the paper can be downloaded from the <a href="https://huggingface.co/viciopoli/FaVoR">Hugging Face model hub</a>. TO donwload the models, you can use the following command, make sure the <ita>huggingface-cli</ita> is installed:</p>
 
-<!-- 7-Scenes Dataset Heading -->
-<h3 class="text-center">7-Scenes Dataset</h3>
-
-<!-- Buttons for 7-Scenes Dataset -->
-<div class="row">
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Chess Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Fire Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Heads Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Office Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Pumpkin Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Red Kitchen Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Stairs Model</a>
-  </div>
-</div>
-
-<h3 class="text-center">Cambridge Landmarks Dataset</h3>
-
-<div class="row">
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Great Court Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> King's College Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Old Hospital Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> Shop Facade Model</a>
-  </div>
-  <div class="col">
-    <a class="btn" href="#"><i class="fa fa-cubes"></i> St. Mary's Church Model</a>
-  </div>
-</div>
-
+<code>
+huggingface-cli download viciopoli/FaVoR 7Scenes/chess/alike-l/model_ckpts/model_last.tar --local-dir-use-symlinks False --local-dir /path/to/your/directory 
+</code>
 
 <h2 class="text-center">Cite this work</h2>
 <div class="citation-box">
