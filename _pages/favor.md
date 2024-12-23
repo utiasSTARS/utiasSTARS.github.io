@@ -5,7 +5,7 @@ subtitle: ""
 description: WACV (2025) paper on rendering feature descriptors from unseen views
 permalink: /favor/
 nav_order: 9984
-nav_exclude: true
+nav_exclude: false
 ---
 
 
