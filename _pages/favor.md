@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "FaVoR: Features via Voxel Rendering for Camera Relocalization (WACV 2025)"
+title: "FaVoR: Features via Voxel Rendering for Camera Relocalization (WACV 2025, oral presentation)"
 subtitle: ""
 description: WACV (2025) paper on rendering feature descriptors from unseen views
 permalink: /favor/
@@ -19,6 +19,7 @@ nav_exclude: false
 {::nomarkdown}
 <div style='text-align:center'>
   <h1>FaVoR: Features via Voxel Rendering for Camera Relocalization</h1>
+  <h3 style="color:red;">(Oral presentation at WACV25)</h3>
   <div class="container_">
     <p class="masthead-subheading font-weight-light mb-0">
     <a href="https://polivi.iobii.com/">Vincenzo Polizzi<sup>1</sup><a>, <a href="https://marcocannici.github.io/">Marco Cannici<sup>2</sup></a>,
