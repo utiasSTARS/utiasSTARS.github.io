@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Value-Penalized Auxiliary Control from Examples (ICRA 2025, submitted)
+title: Value-Penalized Auxiliary Control from Examples (ICRA 2025)
 subtitle:  Efficient Imitation Without Demonstrations
-description: ICRA (submitted) paper on learning from example states
+description: ICRA paper on learning from example states
 permalink: /vpace/
 nav_order: 9985
 usemathjax: true
@@ -25,7 +25,7 @@ usemathjax: true
     </i>
 </h5>
 
-#### Submitted to IEEE International Conference on Robotics and Automation (ICRA) 2025
+#### IEEE International Conference on Robotics and Automation (ICRA) 2025
 {: .no_toc }
 
 ---
@@ -34,6 +34,7 @@ usemathjax: true
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> OpenReview](https://openreview.net/forum?id=5gRB5Z4QIg){: .btn .btn-blue }
 
 #### Poster at Conference on Robot Learning (CoRL) 2024 [Workshop on Mastering Robot Manipulation in a World of Abundant Data](https://www.dynsyslab.org/mastering-robot-manipulation-in-a-world-of-abundant-data/)
+{: .no_toc }
 
 ---
 
