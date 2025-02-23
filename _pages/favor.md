@@ -6,6 +6,7 @@ description: WACV (2025) paper on rendering feature descriptors from unseen view
 permalink: /favor/
 nav_order: 9984
 nav_exclude: false
+youtubeId: rgV8TZzX7qc
 ---
 
 
@@ -34,6 +35,7 @@ nav_exclude: false
 </div>
 {:/}
 
+{% include youtubePlayer.html id=page.youtubeId %}
 
 {::nomarkdown}
 <h2 class="text-center">Abstract</h2>
