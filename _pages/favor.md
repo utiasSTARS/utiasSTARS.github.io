@@ -1013,14 +1013,13 @@ huggingface-cli download viciopoli/FaVoR $DATASET/$SCENE/$NETWORK/model_ckpts/mo
         📋
     </button>
     <pre class="citation-pre" id="citation-block" style="margin: 0; font-family: 'Courier New', monospace; white-space: pre-wrap;">
-@misc{polizzi2024arXiv,
-    title={FaVoR: Features via Voxel Rendering for Camera Relocalization}, 
-    author={Vincenzo Polizzi and Marco Cannici and Davide Scaramuzza and Jonathan Kelly},
-    year={2024},
-    eprint={2409.07571},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV},
-    url={https://arxiv.org/abs/2409.07571}, 
+@InProceedings{Polizzi_2025_WACV,
+    author    = {Polizzi, Vincenzo and Cannici, Marco and Scaramuzza, Davide and Kelly, Jonathan},
+    title     = {FaVoR: Features via Voxel Rendering for Camera Relocalization},
+    booktitle = {Proceedings of the Winter Conference on Applications of Computer Vision (WACV)},
+    month     = {February},
+    year      = {2025},
+    pages     = {44-53}
 }
     </pre>
 </div>
