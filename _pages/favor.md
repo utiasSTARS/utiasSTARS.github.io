@@ -10,6 +10,8 @@ youtubeId: rgV8TZzX7qc
 ---
 
 
+[<i class="fa fa-file-text-o" aria-hidden="true"></i>  CVF OpenAccess ](https://openaccess.thecvf.com/content/WACV2025/papers/Polizzi_FaVoR_Features_via_Voxel_Rendering_for_Camera_Relocalization_WACV_2025_paper.pdf){: .btn
+.btn-purple } 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i>  arXiv pre-print ](https://arxiv.org/abs/2409.07571){: .btn
 .btn-blue } 
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/FaVoR){: .btn .btn-green }
