@@ -15,6 +15,7 @@ youtubeId: rgV8TZzX7qc
 [<i class="fa fa-file-text-o" aria-hidden="true"></i>  arXiv pre-print ](https://arxiv.org/abs/2409.07571){: .btn
 .btn-blue } 
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/FaVoR){: .btn .btn-green }
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> Poster](https://starslab.ca/wp-content/papercite-data/posters/2025_polizzi_favor_wacv_poster.pdf){: .btn }
 <!--[<i class="fa fa-newspaper-o" aria-hidden="true"></i> WACV Paper](http://papers.starslab.ca/favor){: .btn .btn-red }
 [<i class="fa fa-newspaper-o" aria-hidden="true"></i> Supplementary](http://papers.starslab.ca/favor){: .btn .btn-red }
 -->
@@ -1018,10 +1019,11 @@ huggingface-cli download viciopoli/FaVoR $DATASET/$SCENE/$NETWORK/model_ckpts/mo
 @InProceedings{Polizzi_2025_WACV,
     author    = {Polizzi, Vincenzo and Cannici, Marco and Scaramuzza, Davide and Kelly, Jonathan},
     title     = {FaVoR: Features via Voxel Rendering for Camera Relocalization},
-    booktitle = {Proceedings of the Winter Conference on Applications of Computer Vision (WACV)},
+    booktitle = {2025 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
     month     = {February},
     year      = {2025},
-    pages     = {44-53}
+    pages     = {44-53},
+    doi       = {10.1109/WACV61041.2025.00015}
 }
     </pre>
 </div>
