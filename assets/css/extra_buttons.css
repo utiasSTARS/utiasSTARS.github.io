@@ -1,0 +1,29 @@
+/* red button */
+
+.btn-red {
+    color: #fff;
+    background-color: #d93025;
+    background-image: linear-gradient(#e0483c, #d93025);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25),
+                0 4px 10px rgba(0, 0, 0, 0.12);
+  }
+  
+  .btn-red:hover,
+  .btn-red.zeroclipboard-is-hover {
+    color: #fff;
+    background-color: #c62828;
+    background-image: linear-gradient(#dd3a34, #c62828);
+  }
+  
+  .btn-red:active,
+  .btn-red.selected,
+  .btn-red.zeroclipboard-is-active {
+    background-color: #b71c1c;
+    background-image: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+  
+  .btn-red.selected:hover {
+    background-color: #a51818;
+  }
+  

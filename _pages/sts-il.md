@@ -14,6 +14,7 @@ usemathjax: true
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv ](https://arxiv.org/abs/2311.01248){: .btn .btn-blue }
 [<i class="fa fa-github" aria-hidden="true"></i> Github](https://github.com/SAIC-MONTREAL/tactile-il){: .btn .btn-green }
 [<i class="fa fa-newspaper-o" aria-hidden="true"></i> DOI ](https://doi.org/10.1109/TRO.2024.3521864){: .btn .btn-grey }
+[<i class="fa fa-youtube" aria-hidden="true"></i> Presentation](https://youtu.be/8MU040jO_8k?si=fW-b6G8iBUrVxVFv){: .btn .btn-red }
 [<i class="fa fa-youtube" aria-hidden="true"></i> Supplementary Video](https://youtu.be/1BgS78-5_vA){: .btn .btn-purple }
 
 
