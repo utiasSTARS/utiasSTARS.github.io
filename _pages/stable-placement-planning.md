@@ -161,10 +161,12 @@ This work defines an inertia-aware object placement planner that can scale to sc
 @article{2025_Nadeau_Stable,
   author = {Philippe Nadeau and Jonathan Kelly},
   journal = {IEEE Transactions on Robotics},
-  note = {To Appear},
   title = {Stable Object Placement Planning from Contact Point Robustness},
   url = {https://arxiv.org/abs/2410.12483},
-  year = {2025}
+  year = {2025},
+  volume = {41},
+  pages={3669-3683},
+  doi={10.1109/TRO.2025.3577049}
 }
 </pre>
 {:/}
