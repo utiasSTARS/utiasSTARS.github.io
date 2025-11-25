@@ -228,7 +228,7 @@ Our approach combines mechanical vibration with computational motion compensatio
 
 {::nomarkdown}
 <div style='text-align:center; margin: 40px 0;'>
-  <img src='/assets/vibes/qualitative_eval_method.png' width='100%' style='border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);'>
+  <img src='/assets/vibes/eyecatcher.png' width='100%' style='border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);'>
   <p style='margin-top: 15px; font-style: italic; color: #666;'>Figure: VibES processing pipeline from vibration induction to motion-compensated events</p>
 </div>
 
