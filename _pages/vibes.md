@@ -32,7 +32,7 @@ nav_exclude: true
     <br>
   </div>
   <br>
-  <img src='/assets/vibes/qualitative_eval_method.png' width='100%'>
+  <img src='/assets/vibes/eyecatcher.png' width='100%'>
 </div>
 {:/}
 
