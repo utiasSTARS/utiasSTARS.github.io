@@ -10,9 +10,9 @@ nav_exclude: true
 ---
 
 <!-- [<i class="fa fa-file-text-o" aria-hidden="true"></i> Paper (3DV)](#){: .btn .btn-purple }  -->
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print](#){: .btn .btn-blue } 
-[<i class="fa fa-github" aria-hidden="true"></i> Code (Coming Soon)](#){: .btn .btn-green }
-[<i class="fa fa-file-text-o" aria-hidden="true"></i> Supplementary](#){: .btn }
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print](https://arxiv.org/abs/2508.19094){: .btn .btn-blue } 
+[<i class="fa fa-github" aria-hidden="true"></i> Code (Coming Soon)](https://github.com/utiasSTARS/VibES){: .btn .btn-green }
+<!-- [<i class="fa fa-file-text-o" aria-hidden="true"></i> 3DV proceedings](#){: .btn } -->
 
 {::nomarkdown}
 <div style='text-align:center'>
