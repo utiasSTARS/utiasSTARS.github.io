@@ -18,7 +18,7 @@ nav_exclude: true
 
   <p>
     <a href="https://polivi.iobii.com/">Vincenzo Polizzi<sup>1</sup></a>, 
-    Stephen Yang<sup>1</sup>, 
+    <a href="https://stephyang.xyz/">Stephen Yang<sup>1</sup></a>, 
     Quentin Clark<sup>2</sup>, 
     <a href="https://starslab.ca/people/prof-jonathan-kelly/">Jonathan Kelly<sup>1</sup></a>, 
     <a href="https://gilitschenski.org/igor/">Igor Gilitschenski<sup>2</sup></a>, 
