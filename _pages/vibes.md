@@ -195,10 +195,10 @@ nav_exclude: true
 </div>
 
 <div class="slider-container">
-  <input type="range" id="vibes_slider" min="1" max="8" value="0" step="1">
+  <input type="range" id="vibes_slider" min="1" max="7" value="0" step="1">
   <div class="label-container">
     <span>12.5%</span><span>25%</span><span>37.5%</span>
-    <span>50%</span><span>62.5%</span><span>75%</span><span>87.5%</span><span>100%</span>
+    <span>50%</span><span>62.5%</span><span>75%</span><span>87.5%</span>
   </div>
 </div>
 
@@ -211,10 +211,6 @@ nav_exclude: true
   <div class="contribution-card">
     <h4>⚡ Real-Time Compensation</h4>
     <p>We introduce a real-time motion-compensation pipeline that estimates and removes induced vibrations online, without requiring calibration or prior knowledge of physical parameters.</p>
-  </div>
-  <div class="contribution-card">
-    <h4>✅ Validated Performance</h4>
-    <p>We validate our method on four real-world datasets, demonstrating improved event density and higher-quality results for edge detection and image reconstruction.</p>
   </div>
 </div>
 {:/}
