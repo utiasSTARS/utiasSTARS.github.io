@@ -6,39 +6,33 @@ description: 3DV (2025) paper on using mechanical vibration for persistent event
 permalink: /vibes/
 nav_order: 9982
 nav_exclude: true
-# youtubeId: placeholder_video_id
 ---
 
-<!-- [<i class="fa fa-file-text-o" aria-hidden="true"></i> Paper (3DV)](#){: .btn .btn-purple }  -->
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print](https://arxiv.org/abs/2508.19094){: .btn .btn-blue } 
 [<i class="fa fa-github" aria-hidden="true"></i> Code (Coming Soon)](https://github.com/utiasSTARS/VibES){: .btn .btn-green }
-<!-- [<i class="fa fa-file-text-o" aria-hidden="true"></i> 3DV proceedings](#){: .btn } -->
 
 {::nomarkdown}
-<div style='text-align:center'>
+<div style="text-align:center">
   <h1>VibES: Induced Vibration for Persistent Event-Based Sensing</h1>
   <h3 style="color:red;">(3DV 2025)</h3>
-  <div class="container_">
-    <p class="masthead-subheading font-weight-light mb-0">
+
+  <p>
     <a href="https://polivi.iobii.com/">Vincenzo Polizzi<sup>1</sup></a>, 
-    <a href="#">Stephen Yang<sup>1</sup></a>, 
-    <a href="#">Quentin Clark<sup>2</sup></a>, 
+    Stephen Yang<sup>1</sup>, 
+    Quentin Clark<sup>2</sup>, 
     <a href="https://starslab.ca/people/prof-jonathan-kelly/">Jonathan Kelly<sup>1</sup></a>, 
     <a href="https://gilitschenski.org/igor/">Igor Gilitschenski<sup>2</sup></a>, 
     <a href="https://davidlindell.com/">David B. Lindell<sup>2</sup></a>
-    </p>
-    <br>
-    <p class="masthead-subheading font-weight-light mb-0"><sup>1</sup>University of Toronto, Robotics Institute &nbsp;|&nbsp; <sup>2</sup>University of Toronto, Department of Computer Science</p>
-    <br>
-  </div>
-  <br>
-  <img src='/assets/vibes/eyecatcher.png' width='100%'>
+  </p>
+
+  <p>
+    <sup>1</sup>University of Toronto, Robotics Institute &nbsp;|&nbsp;
+    <sup>2</sup>University of Toronto, Department of Computer Science
+  </p>
+
+  <img src="/assets/vibes/eyecatcher.png" width="100%">
 </div>
-{:/}
 
-<!-- {% include youtubePlayer.html id=page.youtubeId %} -->
-
-{::nomarkdown}
 <h2 class="text-center">Abstract</h2>
 <div style='text-align:center; max-width: 900px; margin: 0 auto;'>
   <p style='text-align: justify; margin-bottom: 15px;'>
@@ -46,127 +40,117 @@ nav_exclude: true
   </p>
 </div>
 
+
 <style>
-  .double-underline {
-    text-decoration: underline;
-    text-decoration-style: double;
-  }
+/* ---------- Video viewport ---------- */
+.video-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 640 / 360;
+  overflow: hidden;
+  margin: 40px auto;
+  border-radius: 12px;
+  background: #000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
 
-  .contribution-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin: 30px 0;
-  }
+/* ---------- Vertical strip ---------- */
+.video-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 800%;              /* 8 stacked frames */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;                /* BELOW bar */
+}
 
-  .contribution-card {
-    background: #f8f9fa;
-    padding: 25px;
-    border-radius: 8px;
-    border-left: 4px solid #667eea;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
+#vibes_video {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
 
-  .contribution-card h4 {
-    color: #667eea;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-  }
+/* ---------- Sliding bar (FIXED) ---------- */
+#boundary_bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: #ff3e3e;
+  box-shadow: 0 0 10px rgba(255,62,62,0.8);
+  pointer-events: none;
+  transition: left 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+  z-index: 5;                /* ABOVE video */
+}
 
-  .results-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin: 30px 0;
-  }
+/* ---------- Slider ---------- */
+.slider-container {
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
 
-  .result-card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    text-align: center;
-    border-top: 3px solid #764ba2;
-  }
+.slider-container input {
+  width: 100%;
+  cursor: pointer;
+}
 
-  .result-card h4 {
-    color: #764ba2;
-    margin-bottom: 10px;
-    font-size: 1.1em;
-  }
+.label-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #555;
+}
 
-  .metric {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #667eea;
-    margin: 10px 0;
-  }
+/* ---------- Contributions ---------- */
+.contribution-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
 
-  .comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 30px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
+.contribution-card {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
 
-  .comparison-table th,
-  .comparison-table td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-  }
+/* ---------- Citation ---------- */
+.citation-box {
+  position: relative;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 10px;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
 
-  .comparison-table th {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    font-weight: 600;
-  }
+.citation-pre {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
 
-  .comparison-table tr:nth-child(even) {
-    background-color: #f8f9fa;
-  }
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  .highlight-best {
-    background-color: #d4edda !important;
-    font-weight: bold;
-  }
-
-  .citation-box {
-    position: relative;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 10px;
-    background-color: #f8f8f8;
-    margin: 30px auto;
-    max-width: 900px;
-  }
-
-  .citation-pre {
-    width: 100%;
-    padding: 10px;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    border: none;
-    background-color: #f8f8f8;
-    white-space: pre-wrap;
-    margin: 0;
-  }
-
-  .copy-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border: none;
-    background: #667eea;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s ease;
-  }
-
-  .copy-btn:hover {
+.copy-btn:hover {
     background: #764ba2;
   }
 
@@ -196,8 +180,29 @@ nav_exclude: true
   }
 </style>
 
-<h2 class="text-center">Key Contributions</h2>
+<h2 class="text-center">Interactive Compensation Visualization</h2>
+<p class="text-center">
+  Left: <b>Uncompensated</b> &nbsp;|&nbsp; Right: <b>Motion-Compensated</b>
+</p>
 
+<div class="video-viewport">
+  <div class="video-wrapper" id="video_mover">
+    <video id="vibes_video" muted autoplay loop playsinline>
+      <source src="/assets/vibes/vibes_fast.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div id="boundary_bar"></div>
+</div>
+
+<div class="slider-container">
+  <input type="range" id="vibes_slider" min="1" max="8" value="0" step="1">
+  <div class="label-container">
+    <span>12.5%</span><span>25%</span><span>37.5%</span>
+    <span>50%</span><span>62.5%</span><span>75%</span><span>87.5%</span><span>100%</span>
+  </div>
+</div>
+
+<h2 class="text-center">Key Contributions</h2>
 <div class="contribution-grid">
   <div class="contribution-card">
     <h4>🔧 Vibrating Event Camera</h4>
@@ -237,31 +242,6 @@ Our approach combines mechanical vibration with computational motion compensatio
 <div style='text-align:center; margin: 40px 0;'>
   <img src='/assets/vibes/niqe_entropy.png' width='100%' style='border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);'>
   <p style='margin-top: 15px; font-style: italic; color: #666;'>Comparison showing (a) No Vibration: blurred accumulated events, (b) With Vibration: increased event density, (c) With Compensation: sharp, motion-corrected results</p>
-</div>
-
-<h2 class="text-center">Quantitative Results</h2>
-
-<div class="results-grid">
-  <div class="result-card">
-    <h4>Shannon Entropy</h4>
-    <div class="metric">↑148%</div>
-    <p>Logo scene: 0.21±0.09 → 0.52±0.01</p>
-  </div>
-  <div class="result-card">
-    <h4>Image Variance</h4>
-    <div class="metric">↑1875%</div>
-    <p>Pattern Checkerboard: 0.16±0.11 → 3.16±0.33</p>
-  </div>
-  <div class="result-card">
-    <h4>Edge Continuity</h4>
-    <div class="metric">↑87%</div>
-    <p>Logo scene: Average contour length increased dramatically</p>
-  </div>
-  <div class="result-card">
-    <h4>Processing Speed</h4>
-    <div class="metric">65 Mev/s</div>
-    <p>Real-time: 15.28ns per event</p>
-  </div>
 </div>
 
 <h3 class="text-center">Performance Across Datasets</h3>
@@ -361,15 +341,13 @@ Our approach combines mechanical vibration with computational motion compensatio
 | | **VIBES** | **82.9±14.1** | **8.3±1.6** | **147.9±31.8** |
 
 {::nomarkdown}
-<h2 class="text-center">Cite this work</h2>
 
+<h2 class="text-center">Cite this work</h2>
 <div class="citation-box">
-    <button class="copy-btn" onclick="copyContent(this)" title="Copy to clipboard">
-        📋 Copy
-    </button>
-    <pre class="citation-pre" id="citation-block">@inproceedings{polizzi_2026_3DV,
+  <button class="copy-btn" onclick="copyContent(this)">📋 Copy</button>
+<pre class="citation-pre" id="citation-block">@inproceedings{polizzi_2026_3DV,
   title={VibES: Induced Vibration for Persistent Event-Based Sensing},
-  author={Polizzi, Vincenzo and Yang, Stephen and Clark, Quentin and 
+  author={Polizzi, Vincenzo and Yang, Stephen and Clark, Quentin and
           Kelly, Jonathan and Gilitschenski, Igor and Lindell, David B.},
   booktitle={International Conference on 3D Vision (3DV)},
   year={2026}
@@ -377,17 +355,34 @@ Our approach combines mechanical vibration with computational motion compensatio
 </div>
 
 <script>
-    function copyContent(button) {
-        const codeBox = button.closest('.citation-box').querySelector('pre');
-        const code = codeBox.innerText;
-        navigator.clipboard.writeText(code).then(() => {
-            button.innerText = '✔️ Copied!';
-            setTimeout(() => {
-                button.innerText = '📋 Copy';
-            }, 1500);
-        }).catch(err => {
-            console.error('Error copying text: ', err);
-        });
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const mover = document.getElementById("video_mover");
+  const slider = document.getElementById("vibes_slider");
+  const bar = document.getElementById("boundary_bar");
+
+  function updateUI() {
+    const step = Number(slider.value);
+
+    /* vertical frame shift */
+    mover.style.transform = `translateY(-${(step-1) * 12.5}%)`;
+
+    /* horizontal boundary */
+    const pos = step * 12.5;
+    bar.style.left = pos + "%";
+    bar.style.opacity = (pos >= 100) ? "0" : "1";
+  }
+
+  slider.addEventListener("input", updateUI);
+  updateUI();
+});
+
+function copyContent(btn) {
+  navigator.clipboard.writeText(
+    document.getElementById("citation-block").innerText
+  ).then(() => {
+    btn.innerText = "✔ Copied!";
+    setTimeout(() => btn.innerText = "📋 Copy", 1500);
+  });
+}
 </script>
 {:/}
