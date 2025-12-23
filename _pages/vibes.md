@@ -10,6 +10,8 @@ nav_exclude: true
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print](https://arxiv.org/abs/2508.19094){: .btn .btn-blue } 
 [<i class="fa fa-github" aria-hidden="true"></i> Code (Coming Soon)](https://github.com/utiasSTARS/VibES){: .btn .btn-green }
+[<i class="fa fa-database" aria-hidden="true"></i> Dataset](https://huggingface.co/datasets/viciopoli/VibES){: .btn .btn-purple }
+
 
 {::nomarkdown}
 <div style="text-align:center">
@@ -337,6 +339,13 @@ Our approach combines mechanical vibration with computational motion compensatio
 | | **VIBES** | **82.9±14.1** | **8.3±1.6** | **147.9±31.8** |
 
 {::nomarkdown}
+
+<h2 class="text-center">Dataset Download</h2>
+<p>
+The dataset used to generate the results in the paper can be downloaded from the
+<a href="https://huggingface.co/datasets/viciopoli/VibES">Hugging Face dataset hub</a>.
+</p>
+
 
 <h2 class="text-center">Cite this work</h2>
 <div class="citation-box">
