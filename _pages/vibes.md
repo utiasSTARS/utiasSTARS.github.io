@@ -5,11 +5,11 @@ subtitle: ""
 description: 3DV (2025) paper on using mechanical vibration for persistent event camera sensing
 permalink: /vibes/
 nav_order: 9982
-nav_exclude: true
+nav_exclude: false
 ---
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print](https://arxiv.org/abs/2508.19094){: .btn .btn-blue } 
-[<i class="fa fa-github" aria-hidden="true"></i> Code (Coming Soon)](https://github.com/utiasSTARS/VibES){: .btn .btn-green }
+[<i class="fa fa-github" aria-hidden="true"></i> Code](https://github.com/utiasSTARS/VibES){: .btn .btn-green }
 [<i class="fa fa-database" aria-hidden="true"></i> Dataset](https://huggingface.co/datasets/viciopoli/VibES){: .btn .btn-purple }
 
 
