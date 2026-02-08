@@ -6,6 +6,7 @@ description: 3DV (2025) paper on using mechanical vibration for persistent event
 permalink: /vibes/
 nav_order: 9982
 nav_exclude: false
+youtubeId: FYi1kAFGK7U
 ---
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print](https://arxiv.org/abs/2508.19094){: .btn .btn-blue } 
@@ -32,8 +33,10 @@ nav_exclude: false
     <sup>2</sup>University of Toronto, Department of Computer Science
   </p>
 
-  <img src="/assets/vibes/eyecatcher.png" width="100%">
 </div>
+
+{% include youtubePlayer.html id=page.youtubeId %}
+
 
 <h2 class="text-center">Abstract</h2>
 <div style='text-align:center; max-width: 900px; margin: 0 auto;'>
@@ -63,7 +66,6 @@ nav_exclude: false
   inset: 0;
   width: 100%;
   height: 800%;              /* 8 stacked frames */
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;                /* BELOW bar */
 }
 
@@ -189,9 +191,7 @@ nav_exclude: false
 
 <div class="video-viewport">
   <div class="video-wrapper" id="video_mover">
-    <video id="vibes_video" muted autoplay loop playsinline>
-      <source src="/assets/vibes/vibes_fast.mp4" type="video/mp4">
-    </video>
+    <img id="vibes_video" src="/assets/vibes/vibes_fast.gif">
   </div>
   <div id="boundary_bar"></div>
 </div>
