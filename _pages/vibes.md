@@ -6,7 +6,7 @@ description: 3DV (2025) paper on using mechanical vibration for persistent event
 permalink: /vibes/
 nav_order: 9982
 nav_exclude: false
-youtubeId: FYi1kAFGK7U
+youtubeId: MzZWF6IdYDE
 ---
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print](https://arxiv.org/abs/2508.19094){: .btn .btn-blue } 
