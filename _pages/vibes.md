@@ -1,8 +1,8 @@
 ---
 layout: page
-title: "VibES: Induced Vibration for Persistent Event-Based Sensing (3DV 2025)"
+title: "VibES: Induced Vibration for Persistent Event-Based Sensing (3DV 2026)"
 subtitle: ""
-description: 3DV (2025) paper on using mechanical vibration for persistent event camera sensing
+description: 3DV (2026) paper on using mechanical vibration for persistent event camera sensing
 permalink: /vibes/
 nav_order: 9982
 nav_exclude: false
@@ -17,7 +17,7 @@ youtubeId: MzZWF6IdYDE
 {::nomarkdown}
 <div style="text-align:center">
   <h1>VibES: Induced Vibration for Persistent Event-Based Sensing</h1>
-  <h3 style="color:red;">(3DV 2025)</h3>
+  <h3 style="color:red;">(3DV 2026)</h3>
 
   <p>
     <a href="https://polivi.iobii.com/">Vincenzo Polizzi<sup>1</sup></a>, 
