@@ -12,7 +12,7 @@ youtubeId: MzZWF6IdYDE
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print](https://arxiv.org/abs/2508.19094){: .btn .btn-blue } 
 [<i class="fa fa-github" aria-hidden="true"></i> Code](https://github.com/utiasSTARS/VibES){: .btn .btn-green }
 [<i class="fa fa-database" aria-hidden="true"></i> Dataset](https://huggingface.co/datasets/viciopoli/VibES){: .btn .btn-purple }
-
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> Poster](https://starslab.ca/wp-content/papercite-data/posters/2026_polizzi_vibes_3dv_poster.pdf){: .btn }
 
 {::nomarkdown}
 <div style="text-align:center">
