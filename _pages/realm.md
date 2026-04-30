@@ -66,7 +66,7 @@ youtubeId: # Replace with your YouTube ID if you have an accompanying video
     src="https://viciopoli-realm-demo.hf.space"
     frameborder="0" 
     width="100%" 
-    height="850" 
+    height="1200" 
     style="border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
   </iframe>
 </div>
