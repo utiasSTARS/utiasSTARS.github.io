@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "REALM: An RGB and Event Aligned Latent Manifold for Cross-Modal Perception (Under Review)"
+title: "REALM: An RGB and Event Aligned Latent Manifold for Cross-Modal Perception"
 subtitle: ""
 description: Cross-modal framework projecting event representations into the pretrained latent space of RGB foundation models.
 permalink: /realm/
@@ -25,7 +25,7 @@ youtubeId: # Replace with your YouTube ID if you have an accompanying video
   }
 </style>
 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i>  Paper (Under Review) ](#){: .btn .btn-purple } 
+[<i class="fa fa-file-text-o" aria-hidden="true"></i>  Paper ](#){: .btn .btn-purple } 
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/REALM){: .btn .btn-green }
 [<i class="fa-brands fa-hugging-face" aria-hidden="true"></i> Demo](https://naver-mast3r.hf.space){: .btn .btn-yellow }
 
@@ -33,7 +33,6 @@ youtubeId: # Replace with your YouTube ID if you have an accompanying video
 <div style='text-align:center'>
   <img src='/assets/realm/logo.png' alt='REALM Logo' width='400' style="margin-bottom: 20px;" />
   <h1>An RGB and Event Aligned Latent Manifold for Cross-Modal Perception</h1>
-  <h3 style="color:red;">(Under Review)</h3>
   <div class="container_">
     <p class="masthead-subheading font-weight-light mb-0">
     <a href="https://polivi.iobii.com/">Vincenzo Polizzi<sup>1</sup></a>, 
