@@ -27,7 +27,7 @@ youtubeId: # Replace with your YouTube ID if you have an accompanying video
 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i>  Paper ](#){: .btn .btn-purple } 
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/REALM){: .btn .btn-green }
-[<i class="fa-brands fa-hugging-face" aria-hidden="true"></i> Demo](https://naver-mast3r.hf.space){: .btn .btn-yellow }
+[<i class="fa-brands fa-hugging-face" aria-hidden="true"></i> Demo](https://viciopoli-realm-demo.hf.space){: .btn .btn-yellow }
 
 {::nomarkdown}
 <div style='text-align:center'>
@@ -63,7 +63,7 @@ youtubeId: # Replace with your YouTube ID if you have an accompanying video
 
 <div class="centered-image-container" style="margin-top: 30px; margin-bottom: 30px;">
   <iframe 
-    src="https://naver-mast3r.hf.space"
+    src="https://viciopoli-realm-demo.hf.space"
     frameborder="0" 
     width="100%" 
     height="850" 
