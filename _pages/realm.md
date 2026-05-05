@@ -25,8 +25,8 @@ youtubeId: # Replace with your YouTube ID if you have an accompanying video
   }
 </style>
 
-[<i class="fa fa-file-text-o" aria-hidden="true"></i>  Paper ](#){: .btn .btn-purple } 
-[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/REALM){: .btn .btn-green }
+[<i class="fa fa-file-text-o" aria-hidden="true"></i>  arXiv pre-print ](https://arxiv.org/abs/2605.00271){: .btn .btn-blue } 
+[<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/REALM){: .btn .btn-purple }
 [<i class="fa-brands fa-hugging-face" aria-hidden="true"></i> Demo](https://viciopoli-realm-demo.hf.space){: .btn .btn-yellow }
 
 {::nomarkdown}
