@@ -9,6 +9,7 @@ nav_exclude: false
 youtubeId: MzZWF6IdYDE
 ---
 
+[<i class="fa fa-file-text-o" aria-hidden="true"></i> IEEE Explorer](https://ieeexplore.ieee.org/document/11533286){: .btn .btn-blue } 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv pre-print](https://arxiv.org/abs/2508.19094){: .btn .btn-blue } 
 [<i class="fa fa-github" aria-hidden="true"></i> Code](https://github.com/utiasSTARS/VibES){: .btn .btn-green }
 [<i class="fa fa-database" aria-hidden="true"></i> Dataset](https://huggingface.co/datasets/viciopoli/VibES){: .btn .btn-purple }
@@ -350,13 +351,16 @@ The dataset used to generate the results in the paper can be downloaded from the
 <h2 class="text-center">Cite this work</h2>
 <div class="citation-box">
   <button class="copy-btn" onclick="copyContent(this)">📋 Copy</button>
-<pre class="citation-pre" id="citation-block">@inproceedings{polizzi_2026_3DV,
-  title={VibES: Induced Vibration for Persistent Event-Based Sensing},
-  author={Polizzi, Vincenzo and Yang, Stephen and Clark, Quentin and
-          Kelly, Jonathan and Gilitschenski, Igor and Lindell, David B.},
-  booktitle={International Conference on 3D Vision (3DV)},
-  year={2026}
-}</pre>
+<pre class="citation-pre" id="citation-block">
+@INPROCEEDINGS{polizzi_2026_3DV,
+  author={Polizzi, Vincenzo and Yang, Stephen and Clark, Quentin and Kelly, Jonathan and Gilitschenski, Igor and Lindell, David B.},
+  booktitle={2026 International Conference on 3D Vision (3DV)}, 
+  title={VibES: Induced Vibration for Persistent Event-Based Sensing}, 
+  year={2026},
+  pages={1-10},
+  doi={10.1109/3DV69130.2026.00035}
+}
+</pre>
 </div>
 
 <script>

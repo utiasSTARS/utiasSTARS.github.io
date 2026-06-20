@@ -5,7 +5,7 @@ subtitle: ""
 description: Cross-modal framework projecting event representations into the pretrained latent space of RGB foundation models.
 permalink: /realm/
 nav_order: 9981
-nav_exclude: true
+nav_exclude: false
 youtubeId: # Replace with your YouTube ID if you have an accompanying video
 ---
 
