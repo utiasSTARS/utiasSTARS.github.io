@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "REALM: An RGB and Event Aligned Latent Manifold for Cross-Modal Perception"
+title: "REALM: An RGB- and Event-Aligned Latent Manifold for Cross-Modal Perception"
 subtitle: ""
 description: Cross-modal framework projecting event representations into the pretrained latent space of RGB foundation models.
 permalink: /realm/
@@ -428,14 +428,11 @@ youtubeId: # Replace with your YouTube ID if you have an accompanying video
 <div class="citation-box">
     <button class="copy-btn" onclick="copyContent(this)" title="Copy to clipboard">📋</button>
     <pre class="citation-pre" id="citation-block" style="margin: 0; font-family: 'Courier New', monospace; white-space: pre-wrap;">
-@misc{polizzi_2026_realm,
-      title={REALM: An RGB and Event Aligned Latent Manifold for Cross-Modal Perception}, 
+@inproceedings{polizzi_2026_realm,
+      title={REALM: An RGB- and Event-Aligned Latent Manifold for Cross-Modal Perception}, 
       author={Vincenzo Polizzi and David B. Lindell and Jonathan Kelly},
-      year={2026},
-      eprint={},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/}, 
+      booktitle={European Conference on Computer Vision (ECCV)},
+      year={2026}
 }
     </pre>
 </div>
