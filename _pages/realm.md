@@ -32,7 +32,7 @@ youtubeId: # Replace with your YouTube ID if you have an accompanying video
 {::nomarkdown}
 <div style='text-align:center'>
   <img src='/assets/realm/logo.png' alt='REALM Logo' width='400' style="margin-bottom: 20px;" />
-  <h1>An RGB and Event Aligned Latent Manifold for Cross-Modal Perception</h1>
+  <h1>An RGB- and Event-Aligned Latent Manifold for Cross-Modal Perception</h1>
   <div class="container_">
     <p class="masthead-subheading font-weight-light mb-0">
     <a href="https://polivi.iobii.com/">Vincenzo Polizzi<sup>1</sup></a>, 
