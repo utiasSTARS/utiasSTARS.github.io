@@ -289,7 +289,18 @@ The same data was used for the original and the delta-position variants.
 {:/}
 
 ## Citation
-Check back soon!
+
+<pre class="citation-pre" id="citation-block" style="margin: 0; font-family: 'Courier New', monospace; white-space: pre-wrap;">
+@inproceedings{2025_Ablett_Efficient,
+    address = {Atlanta, Georgia, USA},
+    author = {Trevor Ablett and Bryan Chan and Haoran Wang and Jonathan Kelly},
+    booktitle = {Proceedings of the {IEEE} International Conference on Robotics and Automation {(ICRA)}},
+    doi = {10.1109/ICRA55743.2025.11128275},
+    pages = {2333--2339},
+    title = {Efficient Imitation Without Demonstrations via Value-Penalized Auxiliary Control from Examples},
+    year = {2025}
+}
+</pre>
 
 ## Bibliography
 
