@@ -2,7 +2,7 @@
 layout: page
 title: Safe Mission-Level Path Planning for Exploration of Lunar Shadowed Regions by a Solar-Powered Rover (AERO 2024)
 # subtitle:  Representing Rotations in Deep Learning
-description: Submitted to IEEE Aerospace 2024
+description: IEEE Aerospace Conference 2024
 permalink: /safe-mission-level-planning/
 nav_exclude: false
 nav_order: 9988
@@ -80,10 +80,14 @@ nav_order: 9988
 ## Citation
 
 <pre wrap='true'>
-@unpublished{lamarre2024safe,
-  author = {Olivier Lamarre and Shantanu Malhotra and Jonathan Kelly},
-  title  = {Safe Mission-Level Path Planning for Exploration of Lunar Permanently Shadowed Regions by a Solar-Powered Rover},
-  note   = {2024 IEEE Aerospace (accepted)},
-  year   = {2024},
+@inproceedings{2024_Lamarre_Safe,
+    address = {Big Sky, Montana, USA},
+    author = {Olivier Lamarre and Shantanu Malhotra and Jonathan Kelly},
+    booktitle = {Proceedings of the {IEEE} Aerospace Conference},
+    month = {March},
+    doi = {10.1109/AERO58975.2024.10521136},
+    pages = {1--14},
+    title = {Safe Mission-Level Path Planning for Exploration of Lunar Shadowed Regions by a Solar-Powered Rover},
+    year = {2024}
 }
 </pre>
