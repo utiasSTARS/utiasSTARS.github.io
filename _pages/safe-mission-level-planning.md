@@ -83,7 +83,7 @@ nav_order: 9988
 @inproceedings{2024_Lamarre_Safe,
     address = {Big Sky, Montana, USA},
     author = {Olivier Lamarre and Shantanu Malhotra and Jonathan Kelly},
-    booktitle = {Proceedings of the {IEEE} Aerospace Conference},
+    booktitle = {Proceedings of the IEEE Aerospace Conference},
     month = {March},
     doi = {10.1109/AERO58975.2024.10521136},
     pages = {1--14},

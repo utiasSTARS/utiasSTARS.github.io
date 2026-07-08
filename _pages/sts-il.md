@@ -290,17 +290,15 @@ Through over 3,000 test episodes from real-world manipulation experiments, we fi
 
 ## Citation
 <pre wrap='true'>
-```
 @article{2025_Ablett_Multimodal,
     author = {Trevor Ablett and Oliver Limoyo and Adam Sigal and Affan Jilani and Jonathan Kelly and Kaleem Siddiqi and Francois Hogan and Gregory Dudek},
     doi = {10.1109/TRO.2024.3521864},
-    journal = {{IEEE} Transactions on Robotics},
+    journal = {IEEE Transactions on Robotics},
     pages = {946--959},
     title = {Multimodal and Force-Matched Imitation Learning with a See-Through Visuotactile Sensor},
     volume = {41},
     year = {2025}
 }
-```
 </pre>
 
 ## Bibliography
