@@ -6,7 +6,7 @@ description: Cross-modal framework projecting event representations into the pre
 permalink: /realm/
 nav_order: 9981
 nav_exclude: false
-youtubeId: # Replace with your YouTube ID if you have an accompanying video
+youtubeId: zi1l7-jrxEY
 ---
 
 <style>
@@ -50,9 +50,12 @@ youtubeId: # Replace with your YouTube ID if you have an accompanying video
     <br>
   </div>
   <br>
-  <img style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" src='/assets/realm/demo_realm.gif' width='100%' alt='REALM Demo'>
+  <!-- <img style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" src='/assets/realm/demo_realm.gif' width='100%' alt='REALM Demo'> -->
 </div>
 {:/}
+
+{% include youtubePlayer.html id=page.youtubeId %}
+
 
 {::nomarkdown}
 <h2 class="text-center">Abstract</h2>
