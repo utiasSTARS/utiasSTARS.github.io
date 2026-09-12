@@ -37,11 +37,16 @@ youtubeId: rgV8TZzX7qc
   <br>
   <img src='/assets/favor/eyecatcher.png' width='100%'>
 </div>
-{:/}
 
-{% include youtubePlayer.html id=page.youtubeId %}
+<iframe
+  src="https://www.youtube.com/embed/{{ page.youtubeId }}"
+  title="FaVoR"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+  style="display:block; width:100%; max-width:900px; aspect-ratio:16/9; height:auto; margin:30px auto; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+</iframe>
 
-{::nomarkdown}
 <h2 class="text-center">Abstract</h2>
 <div style='text-align:center'>
   Camera relocalization methods range from dense image alignment to direct camera pose regression from a query image.

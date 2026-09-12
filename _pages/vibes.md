@@ -36,8 +36,16 @@ youtubeId: MzZWF6IdYDE
 
 </div>
 
-{% include youtubePlayer.html id=page.youtubeId %}
-
+<div style="position:relative; z-index:10; isolation:isolate; width:100%; max-width:900px; margin:30px auto; background:#000; border-radius:8px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+  <iframe
+    src="https://www.youtube.com/embed/{{ page.youtubeId }}"
+    title="VibES"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="display:block; width:100%; aspect-ratio:16/9; height:auto; border:0;">
+  </iframe>
+</div>
 
 <h2 class="text-center">Abstract</h2>
 <div style='text-align:center; max-width: 900px; margin: 0 auto;'>

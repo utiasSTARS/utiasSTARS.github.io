@@ -34,6 +34,7 @@ youtubeId: zi1l7-jrxEY
 <div style='text-align:center'>
   <img src='/assets/realm/logo.png' alt='REALM Logo' width='400' style="margin-bottom: 20px;" />
   <h1>An RGB- and Event-Aligned Latent Manifold for Cross-Modal Perception</h1>
+  <h3 style="color:red;">(ECCV 2026)</h3>
   <p style="max-width: 750px; margin: 10px auto 25px auto; font-size: 1.1em; color: #444; text-align: left;">
     <strong>TL;DR:</strong> REALM maps event-camera data into the frozen latent space of the DUNE RGB foundation model using lightweight LoRA adapters &mdash; no task-specific training. This lets a single encoder drive depth estimation and segmentation via simple linear heads, and enables the direct, zero-shot use of frozen image-trained decoders like MASt3R on raw event data, setting a new state of the art in event-based feature matching.
   </p>
@@ -50,14 +51,23 @@ youtubeId: zi1l7-jrxEY
     <br>
   </div>
   <br>
-  <!-- <img style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" src='/assets/realm/demo_realm.gif' width='100%' alt='REALM Demo'> -->
+  <img style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);" src='/assets/realm/realm_slam_x8.gif' width='100%' alt='REALM Demo'>
+  <p style="margin-top: 12px; color: #555; font-size: 0.95em; text-align: center;">
+    REALM running in MASt3R-SLAM &mdash; a demo application, not part of the paper.
+  </p>
 </div>
-{:/}
 
-{% include youtubePlayer.html id=page.youtubeId %}
+<div style="position:relative; z-index:10; isolation:isolate; width:100%; max-width:900px; margin:30px auto; background:#000; border-radius:8px; overflow:hidden; box-shadow:0 4px 8px rgba(0,0,0,0.1);">
+  <iframe
+    src="https://www.youtube.com/embed/{{ page.youtubeId }}"
+    title="REALM"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+    style="display:block; width:100%; aspect-ratio:16/9; height:auto; border:0;">
+  </iframe>
+</div>
 
-
-{::nomarkdown}
 <h2 class="text-center">Abstract</h2>
 <div style='text-align:center'>
   Event cameras provide several unique advantages over standard frame-based sensors, including high temporal resolution, low latency, and robustness to extreme lighting. However, existing learning-based approaches for event processing are typically confined to narrow, task-specific silos and lack the ability to generalize across modalities. We address this gap with REALM, a cross-modal framework that learns an RGB and Event Aligned Latent Manifold by projecting event representations into the pretrained latent space of RGB foundation models. Instead of task-specific training, we leverage low-rank adaptation (LoRA) to bridge the modality gap, effectively unlocking the geometric and semantic priors of frozen RGB backbones for asynchronous event streams. We demonstrate that REALM effectively maps events into the ViT-based foundation latent space. Our method allows us to perform downstream tasks like depth estimation and semantic segmentation by simply transferring linear heads trained on the RGB teacher. Most significantly, REALM enables the direct, zero-shot application of complex, frozen image-trained decoders, such as MASt3R, to raw event data. We demonstrate state-of-the-art performance in wide-baseline feature matching, significantly outperforming specialized architectures.
@@ -121,11 +131,20 @@ youtubeId: zi1l7-jrxEY
 </div>
 
 <style>
-  /* Basic Reset */
-  * {
+  /* Scoped box-sizing — replaces the old global * reset.
+     The global version zeroed margin/padding on the theme's
+     wrappers too, which let .site-footer overlap the video. */
+  .realm-container,
+  .realm-container *,
+  .card,
+  .card *,
+  .modal,
+  .modal *,
+  .citation-box,
+  .citation-box *,
+  .seg-container-wrapper,
+  .seg-container-wrapper * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
   }
 
   .double-underline {
@@ -134,7 +153,7 @@ youtubeId: zi1l7-jrxEY
   }
 
   /* Container Styling */
-  .container {
+  .realm-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center; /* This centers the bottom row */
@@ -211,6 +230,8 @@ youtubeId: zi1l7-jrxEY
     padding: 20px;
     max-width: 1200px;
     width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
     border-radius: 8px;
     position: relative;
     text-align: center;
@@ -251,7 +272,6 @@ youtubeId: zi1l7-jrxEY
 
   .video-viewport {
     max-width: 512px;
-    max-height: 288px;
     aspect-ratio: 512 / 288;
     overflow: hidden;
     position: relative;
@@ -266,7 +286,7 @@ youtubeId: zi1l7-jrxEY
   .citation-box {
     width: 100%;
     max-width: 1000px;
-    margin: 20px 0;
+    margin: 20px auto;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -290,7 +310,6 @@ youtubeId: zi1l7-jrxEY
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
   }
 
   .copy-btn {
@@ -310,20 +329,11 @@ youtubeId: zi1l7-jrxEY
 
   /* Constraints specifically for the Segmentation Modal Content */
   .seg-container-wrapper {
-    /* Limit the entire image/legend area to 80% of the white modal content */
-    width: 80%; 
-    margin: 0 auto 30px auto; /* Centered, with bottom margin */
+    width: 80%;
+    margin: 0 auto 30px auto;
     display: flex;
     flex-direction: column;
-  }
-
-  /* Constraints specifically for the Segmentation Modal Content */
-  .seg-container-wrapper {
-    width: 80%; 
-    margin: 0 auto 30px auto; 
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Ensures everything centers nicely */
+    align-items: center;
   }
 
   /* Force the legend to span the full width and divide into exactly 4 equal parts */
