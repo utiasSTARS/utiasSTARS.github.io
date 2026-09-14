@@ -24,7 +24,8 @@ youtubeId: zi1l7-jrxEY
     text-decoration: none;
   }
 </style>
-
+[<i class="fa fa-file-text-o" aria-hidden="true"></i>  Springer Nature](https://link.springer.com/chapter/10.1007/978-3-032-37369-4_1){: .btn
+.btn-purple } 
 [<i class="fa fa-file-text-o" aria-hidden="true"></i>  arXiv pre-print ](https://arxiv.org/abs/2605.00271){: .btn .btn-blue } 
 [<i class="fa fa-github" aria-hidden="true"></i> View it on Github](https://github.com/utiasSTARS/REALM){: .btn .btn-purple }
 [<i class="fa-brands fa-hugging-face" aria-hidden="true"></i> Demo](https://viciopoli-realm-demo.hf.space){: .btn .btn-yellow }
@@ -187,6 +188,7 @@ youtubeId: zi1l7-jrxEY
     height: auto;
     display: block;
   }
+  
 
   /* Hover Overlay with "+" icon */
   .card .overlay {
@@ -306,10 +308,11 @@ youtubeId: zi1l7-jrxEY
   }
 
   .centered-image-container {
-    display: flex;
+    display: flex;s
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
   }
 
   .copy-btn {
