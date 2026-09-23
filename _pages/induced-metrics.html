@@ -1,0 +1,344 @@
+---
+layout: page
+title: "Induced Riemannian Metrics for Motion Planning with Constraints"
+description: The implicit and explicit representations of a constraint submanifold induce the same Riemannian metric, for any metric on the configuration space.
+permalink: /induced-metrics/
+nav_order: 9980
+nav_exclude: false
+---
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="/assets/induced-metrics/page.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script defer src="/assets/induced-metrics/page.js"></script>
+
+<div class="im">
+
+<div class="im-hero">
+  <h1 id="induced-riemannian-metrics">Induced Riemannian Metrics for Motion Planning with Constraints</h1>
+  <p class="im-authors">
+    Phone Thiha Kyaw<sup>1</sup>,&nbsp;
+    Thomas Cohn<sup>2</sup>,&nbsp;
+    Miguel Angel Rogel Garcia<sup>1</sup>,&nbsp;
+    <a href="https://starslab.ca/people/prof-jonathan-kelly/">Jonathan Kelly</a><sup>1</sup>
+  </p>
+  <p class="im-affil">
+    <sup>1</sup>Space &amp; Terrestrial Autonomous Robotic Systems Laboratory, University of Toronto Institute for Aerospace Studies<br>
+    <sup>2</sup>Robot Locomotion Group, MIT Computer Science and Artificial Intelligence Laboratory
+  </p>
+  <div class="im-links">
+    <a class="btn btn-blue" href="https://arxiv.org/abs/2609.25695"><i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv</a>
+    <a class="btn btn-purple" href="https://arxiv.org/pdf/2609.25695"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
+    <a class="btn" href="#video"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Video</a>
+    <a class="btn" href="#explore-3d"><i class="fa fa-cube" aria-hidden="true"></i> Interactive 3D</a>
+    <a class="btn" href="#citation"><i class="fa fa-quote-right" aria-hidden="true"></i> BibTeX</a>
+  </div>
+</div>
+
+<figure class="im-figure im-teaser">
+  <picture>
+    <source srcset="/assets/induced-metrics/figures/teaser.webp" type="image/webp">
+    <img src="/assets/induced-metrics/figures/teaser.jpg" width="1400" height="1163" alt="Two Franka arms holding a book between their grippers, shown at several instants as they carry it from the bottom compartment of a white bookcase to the top compartment.">
+  </picture>
+  <figcaption>Two Franka arms executing a constraint-satisfying motion plan under the kinetic-energy Riemannian metric to transfer a book between shelf compartments in our bimanual experimental setup.</figcaption>
+</figure>
+
+<p class="lede">
+  Task and loop-closure constraints restrict a robot's motion to a curved, lower-dimensional submanifold of its configuration space.
+  We show that the implicit and explicit representations of this submanifold induce the same Riemannian metric for any metric on the configuration space, so a planner can choose its metric and its representation independently.
+  We then plan with the induced metric in a sampling-based planner and a trajectory optimizer, and run the resulting motions on two Franka arms that carry a book between the compartments of a shelf.
+</p>
+
+<div class="im-points">
+  <div class="im-point"><span class="k">One geometry</span><p>The restricted metric of the implicit representation and the pullback metric of the explicit representation are related by an invertible change of basis.</p></div>
+  <div class="im-point"><span class="k">Any ambient metric</span><p>The equivalence holds for the constant Euclidean metric and for any configuration-dependent metric, such as the kinetic-energy metric, whose metric tensor is the robot's mass matrix.</p></div>
+  <div class="im-point"><span class="k">One length, two solvers</span><p>A sampling-based planner and a trajectory optimizer both minimize the same induced Riemannian length on the constraint submanifold.</p></div>
+</div>
+
+<h2 id="video">Video</h2>
+<div class="im-video im-bleed">
+  <video controls playsinline preload="metadata" poster="/assets/induced-metrics/video/overview.webp" width="1280" height="846">
+    <source src="/assets/induced-metrics/video/overview.mp4" type="video/mp4">
+  </video>
+</div>
+<p class="small muted">
+  Two Franka arms under a loop-closure constraint transfer a book between shelf compartments.
+  The video shows each of the six tasks under the three metrics, from two synchronized camera views.
+</p>
+
+<h2 id="abstract">Abstract</h2>
+<div class="im-abstract">
+  <p>
+    In constrained motion planning problems, task and loop-closure constraints restrict a robot's motion to a curved, lower-dimensional submanifold of its configuration space.
+    Planners measure path length with a metric, which sets the cost of moving in each direction.
+    Under the Euclidean metric, this cost is the same everywhere, whereas under a general Riemannian metric, such as the kinetic-energy metric, the cost can vary with direction and configuration.
+    Existing methods often describe the submanifold either implicitly, as a constraint level set, or explicitly, through a parameterization.
+    The implicit representation is typically combined with the Euclidean metric of the configuration space, and the explicit representation with the parameter domain, so the path length that a planner minimizes depends on the representation.
+    Instead, we measure path length with the induced metric, which the submanifold inherits from a Riemannian metric on the configuration space.
+    The implicit and explicit representations yield the same induced metric, expressed in different coordinates, and hence the same geometry.
+    This result holds for any Riemannian metric on the configuration space, not only the Euclidean one.
+    The choice of metric is therefore independent of the choice of representation.
+    Using this result, we extend planning under a Riemannian metric from unconstrained spaces to constraint submanifolds by applying the induced metric in both a sampling-based planner and a trajectory optimizer.
+    For an explicit representation, the induced metric also accounts for the distortion that the parameterization introduces.
+    In experiments on a bimanual manipulation setup with two Franka arms under end-effector task constraints, we compare the Euclidean and kinetic-energy metrics.
+  </p>
+</div>
+
+<h2 id="induced-geometry">Induced geometry of constraint submanifolds</h2>
+<p>
+  A smooth constraint map \(h : \mathcal{M} \to \mathbb{R}^{k}\) encodes the task and loop-closure constraints, and the configurations that satisfy it form the zero level set \(\mathcal{Q} = \{ q \in \mathcal{M} : h(q) = \mathbf{0} \}\).
+  Restricting the ambient metric \(\mat{G}_q\) to the tangent spaces of \(\mathcal{Q}\) makes \(\mathcal{Q}\) a Riemannian manifold in its own right, and the resulting induced metric determines the cost of feasible motion.
+  We derive this metric twice, first from the implicit constraint level set and then from an explicit parameterization.
+</p>
+
+<div class="im-diagram" id="im-diagram">
+  <div class="im-toolbar im-light" style="padding: 0.2rem 0.3rem 0.4rem;">
+    <div class="im-group"><span class="lbl">Ambient metric</span><div class="im-seg" data-role="metric"></div></div>
+    <span class="small muted" style="margin-left:auto">Drag the point in \(\mathcal{U}\) to move \(q\).</span>
+  </div>
+  <div class="svgwrap"><svg data-role="svg" viewBox="0 0 760 330" role="img" aria-label="A flat parameter domain with a square grid maps through the parameterization onto a curved surface, where the grid stretches unevenly. At the image point, the tangent plane carries an orthonormal basis B, the columns of the differential Phi, and the ellipse of unit vectors under the induced metric."></svg></div>
+  <div class="im-diagram-caption">
+    <div data-role="readout" class="num" style="display:flex;flex-wrap:wrap;gap:0.4rem 1.6rem;justify-content:center;margin-bottom:0.5rem"></div>
+    The parameterization \(\varphi\) maps a square grid on the parameter domain \(\mathcal{U}\) onto the curved submanifold \(\mathcal{Q}\), where it stretches unevenly.
+    At \(q = \varphi(u)\), the columns \(\partial_1\varphi, \partial_2\varphi\) of \(\mat{\Phi} = \mathrm{D}\varphi(u)\) (dashed) and the columns \(b_1, b_2\) of an orthonormal basis \(\mat{B}\) (solid) span the same tangent space \(\mathcal{T}_q\mathcal{Q}\).
+    The ellipse collects the tangent vectors of unit length under the induced metric, and both bases describe it.
+    The pullback metric \(g(u)\) and \(\mat{R}^{\mathsf{T}} \mat{G}_{\mathcal{Q}}(q) \mat{R}\) above agree for every \(u\) and for either ambient metric of this toy example.
+  </div>
+</div>
+
+<div class="im-reps">
+  <div class="im-rep">
+    <h3 id="implicit">Implicit representation</h3>
+    <p>
+      The implicit representation describes \(\mathcal{Q}\) as the zero level set of the constraint map.
+      Its tangent space is the kernel of the constraint Jacobian \(\mat{H} = \mathrm{D}h(q)\), and projection with the damped pseudoinverse returns ambient configurations to \(\mathcal{Q}\).
+      With an orthonormal basis \(\mat{B} \in \mathbb{R}^{n \times d}\) of \(\ker \mat{H}\), the induced metric is
+    </p>
+    <div class="eq">\[ \mat{G}_{\mathcal{Q}}(q) = \mat{B}^{\mathsf{T}} \mat{G}_q \mat{B} \in \mathbb{S}^{d}_{++}. \]</div>
+  </div>
+  <div class="im-rep">
+    <h3 id="explicit">Explicit representation</h3>
+    <p>
+      The explicit representation describes \(\mathcal{Q}\) as the image of a parameterization \(\varphi : \mathcal{U} \subseteq \mathbb{R}^{d} \to \mathcal{Q}\), which satisfies the constraint by construction, so sampling \(\mathcal{U}\) yields feasible configurations without projection.
+      Pulling the ambient metric back through the differential \(\mat{\Phi} = \mathrm{D}\varphi(u)\) gives
+    </p>
+    <div class="eq">\[ g(u) = \mat{\Phi}^{\mathsf{T}} \mat{G}_q \mat{\Phi}, \qquad q = \varphi(u). \]</div>
+  </div>
+</div>
+
+<div class="im-theorem">
+  <p><span class="k">Theorem (Equivalence of induced metrics).</span>
+    Let \(q = \varphi(u) \in \mathcal{Q}\), let \(\mat{B}\) be an orthonormal basis of \(\ker \mat{H}\), and let \(\mat{R} = \mat{B}^{\mathsf{T}} \mat{\Phi}\).
+    Then \(\mat{R}\) is invertible and the pullback metric and the induced metric are equivalent,</p>
+  <div class="eq">\[ g(u) = \mat{R}^{\mathsf{T}} \mat{G}_{\mathcal{Q}}(q) \, \mat{R}. \]</div>
+  <p>The two therefore define the same inner product on \(\mathcal{T}_q\mathcal{Q}\), and hence the same lengths, angles, and geodesics on \(\mathcal{Q}\).</p>
+</div>
+<p>
+  Since the ambient metric enters both constructions in the same place, the theorem holds for any positive definite ambient metric, not only the Euclidean one.
+  Treating the parameter domain as flat instead discards the pullback metric and distorts distances.
+</p>
+
+<h2 id="planning">Planning with the induced metric</h2>
+<p>
+  Existing motion planning algorithms can use the induced metric without any change to their search strategies.
+</p>
+<div class="im-solvers">
+  <div class="im-solver">
+    <h3 id="sampling-based">Sampling-based planning</h3>
+    <p>
+      We plan with anytime planner G-RRT* from our previous work <a class="cite" href="#ref-kyaw2024greedy">[1]</a>, using our matrix-valued lower bound heuristic for informed sampling <a class="cite" href="#ref-kyaw2026direct">[2]</a>.
+      Each edge cost is the midpoint approximation from our WAFR paper <a class="cite" href="#ref-kyaw2026geometry">[3]</a>, which evaluates the induced metric once and agrees with the induced distance to third order,
+    </p>
+    <div class="eq">\[ \hat{c}(q_x, q_y) = \big\| \mathcal{R}^{-1}_{q_{\text{mid}}}(q_y) - \mathcal{R}^{-1}_{q_{\text{mid}}}(q_x) \big\|_{q_{\text{mid}}}. \]</div>
+  </div>
+  <div class="im-solver">
+    <h3 id="trajectory-optimization">Trajectory optimization</h3>
+    <p>
+      The trajectory optimizer represents the path as a B-spline with control points \(P_i\) in the parameter domain, using Drake's KinematicTrajectoryOptimization.
+      It minimizes the induced Riemannian length through a discretized path energy that evaluates the metric at the lifted midpoint of each chord \(\Delta_i = \varphi(P_i) - \varphi(P_{i-1})\),
+    </p>
+    <div class="eq">\[ E(P) = \lambda \sum_{i=1}^{N} \Delta_i^{\mathsf{T}} \, \mat{G}_{\varphi(\bar{P}_i)} \, \Delta_i. \]</div>
+  </div>
+</div>
+
+<h2 id="bimanual">Bimanual book transfers</h2>
+<p>
+  Two Franka arms hold a book and move it between the bottom (B), middle (M) and top (T) compartments of a shelf, which gives six problems.
+  The explicit representation uses the analytic inverse kinematics parameterization of Cohn et al. <a class="cite" href="#ref-cohn2024constrained">[4]</a>, whose differential is available in closed form <a class="cite" href="#ref-cohn2026planning">[5]</a>, and we compare three metrics on its parameter domain.
+</p>
+<div class="im-legend" style="flex-direction:column;align-items:flex-start;gap:0.45rem;margin:0.4rem 0 0.2rem">
+  <span class="it"><span class="ln" style="background:var(--im-flat)"></span><b>flat</b>&nbsp;<span class="muted">parameter domain treated as flat</span></span>
+  <span class="it"><span class="ln" style="background:var(--im-euc)"></span><b>Euclidean</b>&nbsp;<span class="muted">Euclidean metric of the configuration space, pulled back to the parameter domain</span></span>
+  <span class="it"><span class="ln" style="background:var(--im-ke)"></span><b>kinetic-energy</b>&nbsp;<span class="muted">kinetic-energy metric of the robot, pulled back to the parameter domain</span></span>
+</div>
+
+<h3 id="real-setup">Execution on the real bimanual setup</h3>
+<p>
+  We seed trajectory optimization with a Euclidean-metric plan from G-RRT* <a class="cite" href="#ref-kyaw2024greedy">[1]</a> and time-parameterize each motion with TOPP-RA <a class="cite" href="#ref-pham2018new">[6]</a>.
+  The left arm runs under joint position control and the right arm under compliance control.
+</p>
+<div class="im-stage im-bleed" id="im-player">
+  <div class="im-toolbar">
+    <div class="im-group"><span class="lbl">Task</span><div class="im-seg" data-role="task" role="group" aria-label="Task"></div></div>
+    <div class="im-group"><span class="lbl">View</span><div class="im-seg" data-role="view" role="group" aria-label="Camera view"></div></div>
+    <div class="im-group"><span class="lbl">Metric</span><div class="im-group" data-role="metrics" role="group" aria-label="Metrics shown"></div></div>
+  </div>
+  <div class="im-head"><span class="title" data-role="title">Bottom to top</span><span class="clock" data-role="clock">0.0s</span></div>
+  <div class="im-grid" data-role="grid"></div>
+  <div class="im-view-label" data-role="viewlabel">Real · front view</div>
+  <div class="im-transport">
+    <button class="im-tbtn" type="button" data-role="play" aria-label="Play"></button>
+    <button class="im-tbtn" type="button" data-role="restart" aria-label="Restart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg></button>
+    <input class="im-range" type="range" min="0" max="20" step="0.01" value="0" data-role="scrub" aria-label="Playback position">
+    <div class="im-speed" data-role="speed" role="group" aria-label="Playback speed"></div>
+  </div>
+  <div class="im-meters" data-role="meters"></div>
+  <p class="im-stage-note">
+    Bars show the median over five trials and fill as each motion plays.
+    White outlines mark the lowest path length and the lowest kinetic energy.
+  </p>
+</div>
+
+<p>
+  The Euclidean metric gives the shortest joint-space paths and the fastest plans, while the kinetic-energy metric gives the lowest integrated kinetic energy on every task, with plans that take 17% to 30% longer than the Euclidean ones.
+</p>
+
+<details class="im-details">
+  <summary class="small">Show the full table of hardware results</summary>
+  <div data-role="hw-table" id="im-hw-table" style="margin-top:0.7rem"></div>
+</details>
+
+<h3 id="explore-3d">Explore the motions in 3D</h3>
+<figure class="im-figure">
+  <picture>
+    <source srcset="/assets/induced-metrics/figures/bimanual-plans.webp" type="image/webp">
+    <img src="/assets/induced-metrics/figures/bimanual-plans.jpg" width="2400" height="628" loading="lazy" alt="Three panels of the two arms in front of the bookcase, each overlaying intermediate configurations of one motion from the bottom compartment to the top one, tinted orange, blue and green from left to right.">
+  </picture>
+  <figcaption>
+    Trajectory-optimizer motions for B→T, with the white curve tracing the book's path.
+    The flat metric gives the longest motion (orange), the induced Euclidean metric takes the shortest route (blue), and under the kinetic-energy metric, the heavier joints of both arms barely move (green).
+  </figcaption>
+</figure>
+<p>
+  The viewer below replays the planned motions that the arms executed, side by side and timed to match the videos above.
+  Drag to orbit, scroll to zoom, and use the scene tree in the playback bar to show or hide a metric.
+</p>
+
+<div class="im-viewer im-bleed" id="im-viewer">
+  <div class="im-toolbar im-light">
+    <div class="im-group"><span class="lbl">Task</span><div class="im-seg" data-role="task" role="group" aria-label="Task"></div></div>
+    <div class="im-legend">
+      <span class="it"><span class="ln" style="background:var(--im-flat)"></span>flat</span>
+      <span class="it"><span class="ln" style="background:var(--im-euc)"></span>Euclidean</span>
+      <span class="it"><span class="ln" style="background:var(--im-ke)"></span>kinetic-energy</span>
+    </div>
+    <a class="im-open" data-role="open" href="#" target="_blank" rel="noopener">Open full window <i class="fa fa-external-link" aria-hidden="true"></i></a>
+  </div>
+  <div class="im-canvas" data-role="canvas">
+    <button class="im-launch" type="button" data-role="launch"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Launch the interactive 3D viewer</span></button>
+  </div>
+</div>
+<p class="small muted">Rendered in the browser with <a href="https://viser.studio">viser</a>.</p>
+
+<h2 id="simulation">Simulation results</h2>
+<p>
+  For each problem, we run 50 trials of G-RRT* <a class="cite" href="#ref-kyaw2024greedy">[1]</a> with a 10&nbsp;s budget, seed the trajectory optimizer with each solution, and report the median.
+</p>
+
+<h3 id="same-length">Both representations measure the same length</h3>
+<div class="im-stack">
+  <p>
+    We measure every solution path twice, with the pullback metric and with the induced metric of the implicit representation, and the two lengths match.
+    The eigenvalue ratio of the pullback metric shows that the parameterization is far from an isometry, so treating the parameter domain as flat optimizes the wrong functional.
+  </p>
+  <div class="im-card" style="padding:0.3rem 0.3rem 0.1rem">
+    <table class="im-table">
+      <thead>
+        <tr class="grp"><th></th><th colspan="2">Euclidean</th><th colspan="2">kinetic-energy</th></tr>
+        <tr><th>Planned under</th><th>explicit</th><th>implicit</th><th>explicit</th><th>implicit</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="metric"><span class="sw" style="background:var(--im-flat)"></span>flat</span></td><td>28.80</td><td>28.80</td><td>17.70</td><td>17.70</td></tr>
+        <tr><td><span class="metric"><span class="sw" style="background:var(--im-euc)"></span>Euclidean</span></td><td class="best">27.25</td><td class="best">27.25</td><td>18.01</td><td>18.01</td></tr>
+        <tr class="sep"><td><span class="metric"><span class="sw" style="background:var(--im-ke)"></span>kinetic-energy</span></td><td>32.93</td><td>32.93</td><td class="best">15.77</td><td class="best">15.77</td></tr>
+        <tr><td>Total</td><td>88.97</td><td>88.97</td><td>51.49</td><td>51.49</td></tr>
+        <tr><td>Eigenvalue ratio</td><td colspan="2" style="text-align:center">56</td><td colspan="2" style="text-align:center">5.2 × 10²</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted" style="margin:0.5rem 0.5rem 0.4rem">Induced length summed over the six problems, with totals computed before rounding. Bold marks the shortest path under each measure, and the last row gives the median eigenvalue ratio over 10,000 sampled configurations.</p>
+  </div>
+</div>
+
+<h3 id="planning-results">Pulling the metric back shortens the physical motion</h3>
+<p>
+  In the explicit representation, the Euclidean and kinetic-energy variants of both solvers give the shortest motion under their own metric on every problem, ahead of the flat metric.
+</p>
+<div class="im-chart im-bleed" id="im-chart">
+  <div class="im-toolbar im-light">
+    <div class="im-group"><span class="lbl">Measured under</span><div class="im-seg" data-role="measure" role="group" aria-label="Measured under"></div></div>
+    <div class="im-group"><span class="lbl">Solver</span><div class="im-seg" data-role="block" role="group" aria-label="Solver and representation"></div></div>
+  </div>
+  <div class="im-legend" data-role="legend" style="margin:0 0 0.3rem"></div>
+  <svg data-role="svg" role="img"></svg>
+  <div class="im-chart-foot">
+    <span class="small muted" data-role="note"></span>
+    <button class="im-linkbtn" type="button" data-role="toggle-table">Show as a table</button>
+  </div>
+  <div data-role="table" hidden style="margin-top:0.6rem"></div>
+</div>
+
+<h3 id="solve-time">A matching initial guess speeds up the optimizer</h3>
+<div class="im-stack">
+  <p>
+    In each column, the optimizer converges fastest from the guess planned under the same metric, and the flat guess is the slowest under both induced metrics.
+    The optimized motions are the same from every guess.
+  </p>
+  <div class="im-card" style="padding:0.3rem 0.3rem 0.1rem">
+    <table class="im-table">
+      <thead>
+        <tr class="grp"><th></th><th colspan="3">Time (s) per objective</th></tr>
+        <tr><th>Initial guess</th><th>flat</th><th>Euclidean</th><th>kinetic-energy</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="metric"><span class="sw" style="background:var(--im-flat)"></span>flat</span></td><td class="hl">9.2</td><td>55.2</td><td>92.8</td></tr>
+        <tr><td><span class="metric"><span class="sw" style="background:var(--im-euc)"></span>Euclidean</span></td><td>9.9</td><td class="hl">41.8</td><td>80.5</td></tr>
+        <tr><td><span class="metric"><span class="sw" style="background:var(--im-ke)"></span>kinetic-energy</span></td><td>10.9</td><td>44.3</td><td class="hl">78.8</td></tr>
+      </tbody>
+    </table>
+    <p class="small muted" style="margin:0.5rem 0.5rem 0.4rem">Median solve time over 50 trials. Rows name the metric of the initial guess and columns the metric that the optimizer minimizes.</p>
+  </div>
+</div>
+
+<h2 id="citation">Citation</h2>
+<div class="im-bib">
+<button class="copy" type="button" data-role="copy">Copy</button>
+<pre id="im-bibtex">@misc{kyaw2026induced,
+  title         = {Induced Riemannian Metrics for Motion Planning with Constraints},
+  author        = {Kyaw, Phone Thiha and Cohn, Thomas and
+                   Rogel Garcia, Miguel Angel and Kelly, Jonathan},
+  year          = {2026},
+  eprint        = {2609.25695},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2609.25695}
+}</pre>
+</div>
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p class="im-ack">
+  This work was supported in part by the Canada Research Chairs Program, the Natural Sciences and Engineering Research Council of Canada (NSERC) through Discovery Grant no. RGPIN-2023-05036, the National Science Foundation Graduate Research Fellowship Program under Grant No. 2141064, and the Secretaría de Ciencia, Humanidades, Tecnología e Innovación (SECIHTI), Mexico, under CVU number 1066015.
+  Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+</p>
+
+<h2 id="references">References</h2>
+<ol class="im-refs">
+  <li id="ref-kyaw2024greedy">P. T. Kyaw, A. V. Le, R. E. Mohan, and J. Kelly. Greedy heuristics for sampling-based motion planning in high-dimensional state spaces. 2024. <a href="https://arxiv.org/abs/2405.03411">arXiv:2405.03411</a></li>
+  <li id="ref-kyaw2026direct">P. T. Kyaw and J. Kelly. Direct informed sampling on Riemannian manifolds via Loewner order lower bounds. 2026. <a href="https://arxiv.org/abs/2606.02879">arXiv:2606.02879</a></li>
+  <li id="ref-kyaw2026geometry">P. T. Kyaw and J. Kelly. Geometry-aware sampling-based motion planning on Riemannian manifolds. In <i>Proceedings of the 17th World Symposium on the Algorithmic Foundations of Robotics (WAFR)</i>, 2026. <a href="https://arxiv.org/abs/2602.00992">arXiv:2602.00992</a></li>
+  <li id="ref-cohn2024constrained">T. Cohn, S. Shaw, M. Simchowitz, and R. Tedrake. Constrained bimanual planning with analytic inverse kinematics. 2024. <a href="https://arxiv.org/abs/2309.08770">arXiv:2309.08770</a></li>
+  <li id="ref-cohn2026planning">T. Cohn, S. Shaw, H. Biggie, T. Manderson, N. Roy, and R. Tedrake. Planning along differentiable charts of constraint manifolds with general-purpose IK solvers. 2026. <a href="https://arxiv.org/abs/2609.10905">arXiv:2609.10905</a></li>
+  <li id="ref-pham2018new">H. Pham and Q.-C. Pham. A new approach to time-optimal path parameterization based on reachability analysis. <i>IEEE Transactions on Robotics</i>, 34(3), 2018. <a href="https://arxiv.org/abs/1707.07239">arXiv:1707.07239</a></li>
+</ol>
+
+</div>
