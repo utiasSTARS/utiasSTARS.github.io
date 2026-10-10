@@ -1,0 +1,202 @@
+---
+layout: page
+title: "Intrinsic Geometry of Diffusion Models (CoRL 2026)"
+description: A diffusion model trained on constrained inverse kinematics recovers the intrinsic dimension of every constraint manifold from its score function, and straight lines in its latent space decode to motions that stay close to the manifold.
+permalink: /diffusion-ik-geometry/
+nav_order: 9979
+nav_exclude: false
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&display=swap">
+<link rel="stylesheet" href="/assets/diffusion-ik-geometry/page.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+<script type="module" src="/assets/diffusion-ik-geometry/js/main.js"></script>
+
+<div class="dg" id="dg">
+
+<div class="dg-hero">
+  <div class="dg-venue">
+    <span class="dg-badge dg-badge-main">CoRL 2026</span>
+    <span class="dg-badge dg-badge-sub">Earlier version at the RSS 2026 Workshop on Diffusion for Robot Learning</span>
+  </div>
+  <h1 id="exploring-the-intrinsic-geometry">Exploring the Intrinsic Geometry of Diffusion Models with Constrained Inverse Kinematics</h1>
+  <p class="dg-authors">
+    <a href="https://starslab.ca/people/miguel-rogel/">Miguel Angel Rogel Garcia</a><sup>*</sup><span class="sep">,</span>
+    <a href="https://www.phonethk.com">Phone Thiha Kyaw</a><sup>*</sup><span class="sep">,</span>
+    <a href="https://starslab.ca/people/prof-jonathan-kelly/">Jonathan Kelly</a>
+  </p>
+  <p class="dg-affil">
+    Space &amp; Terrestrial Autonomous Robotic Systems Laboratory, University of Toronto Institute for Aerospace Studies
+    <span class="dg-equal"><sup>*</sup>Equal contribution</span>
+  </p>
+  <div class="dg-links">
+    <a class="btn btn-blue" href="https://arxiv.org/abs/2606.26408"><i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv</a>
+    <a class="btn btn-purple" href="https://arxiv.org/pdf/2606.26408"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
+    <a class="btn" href="https://github.com/utiasSTARS/ConstraintIK"><i class="fa fa-github" aria-hidden="true"></i> Code</a>
+    <a class="btn" href="#real-robot"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Video</a>
+    <a class="btn" href="#walk-the-latent-space"><i class="fa fa-cube" aria-hidden="true"></i> Interactive</a>
+    <a class="btn" href="#citation"><i class="fa fa-quote-right" aria-hidden="true"></i> BibTeX</a>
+  </div>
+</div>
+
+<figure class="dg-teaser" id="dg-teaser">
+  <div class="dg-teaser-stage" data-role="stage">
+    <div class="dg-teaser-label dg-franka" data-role="label-franka" hidden><b>Franka</b><span>\(\mathrm{SE}(3)\) self-motion</span><em>intrinsic dimension 1</em></div>
+    <div class="dg-teaser-label dg-ur5" data-role="label-ur5" hidden><b>UR5</b><span>Line + Orientation</span><em>intrinsic dimension 2</em></div>
+    <div class="dg-loading" data-role="loading"><span></span>Loading the robots</div>
+    <picture class="dg-fallback" data-role="fallback" hidden>
+      <source srcset="/assets/diffusion-ik-geometry/figures/infographic.webp" type="image/webp">
+      <img src="/assets/diffusion-ik-geometry/figures/infographic.jpg" width="1400" height="1142" loading="lazy" alt="Two robot arms, a Franka and a UR5, above curved constraint manifolds. Straight segments in the diffusion latent space map to curves on each manifold, and the arms are drawn as translucent copies along those motions.">
+    </picture>
+    <noscript>
+      <img class="dg-noscript" src="/assets/diffusion-ik-geometry/figures/infographic.jpg" width="1400" height="1142" alt="Two robot arms, a Franka and a UR5, above curved constraint manifolds, with latent interpolations mapped to motions on each manifold.">
+    </noscript>
+  </div>
+  <figcaption>
+    Straight lines in the latent space of one conditional diffusion model per robot, decoded to joint configurations.
+    The Franka slides along its one-dimensional self-motion manifold while its end effector holds a full \(\mathrm{SE}(3)\) pose, and the UR5 moves its gripper along a line at a fixed tool axis.
+  </figcaption>
+</figure>
+
+<p class="dg-lede">
+  In constrained inverse kinematics, the geometry of the data manifold is known exactly.
+  We train one conditional diffusion model per robot on seven constraint families at once.
+  The model's score function recovers the intrinsic dimension of every solution manifold, and straight lines in the latent space decode to motions that stay close to the manifold.
+</p>
+
+<div class="dg-points">
+  <div class="dg-point">
+    <span class="k"><i class="dg-dot" style="background:var(--dg-ink)"></i>Ground truth</span>
+    <b class="fig">\(n - k\)</b>
+    <p>intrinsic dimension of the solution manifold when a constraint fixes \(k\) end-effector coordinates of an \(n\)-joint arm</p>
+  </div>
+  <div class="dg-point">
+    <span class="k"><i class="dg-dot" style="background:var(--dg-latent)"></i>Intrinsic dimension</span>
+    <b class="fig">14 of 14</b>
+    <p>robot and constraint conditions on which the learned score function recovers the analytical intrinsic dimension</p>
+  </div>
+  <div class="dg-point">
+    <span class="k"><i class="dg-dot" style="background:linear-gradient(90deg,var(--dg-franka) 50%,var(--dg-ur5) 50%)"></i>Latent interpolation</span>
+    <b class="fig">0.4&ndash;2.4&nbsp;mm</b>
+    <p>median position error of the decoded straight latent paths, on both robots and every end&#8209;effector constraint</p>
+  </div>
+</div>
+
+<h2 id="abstract">Abstract</h2>
+<div class="dg-abstract">
+  <p>
+    Recent studies suggest that diffusion models can recover geometric structure in the data manifolds they are trained on, yet the supporting evidence has so far come mostly from natural-image data, where the underlying geometry itself is unknown.
+    We study this question in a setting where the geometry is analytically tractable: <em>constrained inverse kinematics</em> (IK).
+    Each task-space constraint defines a configuration-space manifold with known intrinsic dimension, giving direct ground truth for evaluating the geometry learned by the model.
+    For each of the 6-DoF UR5 and 7-DoF Franka, we train a single conditional diffusion model across seven constraint families, spanning solution manifolds from discrete IK branches to self-motion manifolds.
+    Our empirical results reveal that the intrinsic dimension recovered from the model's score function matches the analytical degrees of freedom of the corresponding constraint manifold across both robots.
+    Moreover, linear interpolation in the latent space leads to generated solutions that remain close to the appropriate constraint manifold, indicating that the learned representation further captures geometric structure of the constraint family beyond intrinsic dimension alone.
+    Constrained IK therefore offers a controlled setting for studying the intrinsic geometry learned by diffusion models.
+  </p>
+</div>
+
+<h2 id="constraint-family">A family of constraint manifolds</h2>
+<p>
+  A constraint fixes \(k\) of the six task-space coordinates of the end effector.
+  The joint configurations that satisfy it form a manifold of intrinsic dimension \(n - k\), where \(n\) is 6 for the UR5 and 7 for the Franka.
+  For the non-redundant UR5 under a full \(\mathrm{SE}(3)\) pose, the manifold collapses to a finite set of isolated IK branches.
+  For the redundant Franka under the same constraint, the extra joint gives a one-dimensional self-motion manifold, along which the arm can reconfigure while the end-effector pose stays fixed.
+</p>
+<div class="dg-family" id="dg-family">
+  <div data-role="table"></div>
+  <p class="dg-family-note small" data-role="note">Select a robot column to explore that constraint in both widgets below.</p>
+</div>
+
+<h2 id="walk-the-latent-space">Walk the latent space</h2>
+<p>
+  We invert three IK solutions of the same target to the noise level \(\bar t\) with DDIM and span the plane of their latent codes \(x_a\), \(x_b\) and \(x_c\).
+  Every point of the pad is a latent code, and the arm shows the configuration that the model decodes from it.
+  The shading shows the position error of that configuration, or its orientation error under the Orientation constraint. Under \(\mathrm{SE}(3)\), it shows the joint 7 angle along the Franka's self-motion and the IK branch of the UR5 instead. At the paper's noise level, the region spanned by the three codes decodes close to the manifold, and at low noise the error grows.
+</p>
+<section class="dg-widget dg-walk" id="dg-walk" aria-label="Latent interpolation widget">
+  <div class="dg-toolbar" data-role="toolbar"></div>
+  <div class="dg-walk-grid">
+    <div class="dg-pad-col">
+      <div class="dg-pad" data-role="pad"></div>
+      <div class="dg-legend" data-role="legend"></div>
+    </div>
+    <div class="dg-view-col">
+      <div class="dg-stage" data-role="stage"></div>
+      <div class="dg-readout" data-role="readout" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<h2 id="count-the-knobs">Count the knobs</h2>
+<p>
+  At a configuration on the manifold, we perturb the sample \(K = 50\) times at noise level \(t\), evaluate the learned score function at each perturbation, and stack the results as the columns of a matrix \(S\).
+  Directions normal to the manifold carry large singular values because the score function pulls samples back onto it, while the \(n - k\) tangent directions stay near zero.
+  Counting the small singular values estimates the intrinsic dimension.
+  The model encodes each joint angle by its sine and cosine, so \(S\) has \(2n\) rows.
+</p>
+<section class="dg-widget dg-knobs" id="dg-knobs" aria-label="Intrinsic dimension widget">
+  <div class="dg-toolbar" data-role="toolbar"></div>
+  <div class="dg-console" data-role="console"></div>
+  <p class="dg-console-note small" data-role="console-note"></p>
+  <div class="dg-knob-grid">
+    <div class="dg-view-col">
+      <div class="dg-stage" data-role="stage"></div>
+      <div class="dg-readout" data-role="readout" aria-live="polite"></div>
+    </div>
+    <div class="dg-side" data-role="side"></div>
+  </div>
+</section>
+
+<h2 id="results">Results at a glance</h2>
+<h3 id="results-id">The score function recovers the intrinsic dimension</h3>
+<p>
+  The two neighbourhood baselines, run on the generated configurations, underestimate the analytical intrinsic dimension by a gap that widens as the dimension grows, and overestimate it on the two \(\mathrm{SE}(3)\) conditions.
+  The score-based estimates match it on every condition with a positive dimension, and Score-SVD\(^\dagger\) also returns zero for the isolated UR5 \(\mathrm{SE}(3)\) branches.
+</p>
+<div class="dg-chart" id="dg-idchart">
+  <div class="dg-legend dg-chart-legend" data-role="legend"></div>
+  <div class="dg-chart-panels" data-role="panels"></div>
+  <div class="dg-chart-foot">
+    <span class="small muted">Median over targets with 95% bootstrap intervals. The black tick marks the analytical intrinsic dimension \(n - k\), and a check marks an estimate that rounds to it.</span>
+    <button class="dg-linkbtn" type="button" data-role="toggle">Show all estimators as a table</button>
+  </div>
+  <div data-role="table" hidden></div>
+</div>
+
+<h3 id="results-interp">Straight latent lines stay close to the manifold</h3>
+<div class="dg-interp-table" id="dg-interp">
+  <div data-role="table"></div>
+</div>
+
+<h2 id="real-robot">Real-robot videos</h2>
+<p>
+  We run straight latent paths from the <a href="#walk-the-latent-space">Walk the latent space</a> widget on a Franka FR3 with a Robotiq 2F-85 gripper, for four of the seven constraints.
+  In every clip, the commanded configurations satisfy the constraint to within 5.3&nbsp;mm in position and 0.8&deg; in orientation.
+  The UR5 results on this page are simulated.
+</p>
+<div class="dg-reel" id="dg-reel"></div>
+
+<h2 id="citation">Citation</h2>
+<div class="dg-bib">
+<button class="dg-copy" type="button" data-role="copy">Copy</button>
+<pre id="dg-bibtex">@inproceedings{rogelgarcia2026intrinsic,
+  title     = {Exploring the Intrinsic Geometry of Diffusion Models
+               with Constrained Inverse Kinematics},
+  author    = {Rogel Garcia, Miguel Angel and Kyaw, Phone Thiha
+               and Kelly, Jonathan},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2606.26408}
+}</pre>
+</div>
+<p class="dg-code-note small" id="code"><i class="fa fa-github" aria-hidden="true"></i> Code and the data behind this page are available at <a href="https://github.com/utiasSTARS/ConstraintIK">utiasSTARS/ConstraintIK</a>, and the trained models at <a href="https://huggingface.co/mlsdpk/ConstraintIK">mlsdpk/ConstraintIK</a> on Hugging Face.</p>
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p class="dg-ack">This work was supported in part by the Canada Research Chairs Program, the Natural Sciences and Engineering Research Council of Canada (NSERC) through Discovery Grant no. RGPIN-2023-05036, and the Secretaría de Ciencia, Humanidades, Tecnología e Innovación (SECIHTI), Mexico, under CVU number 1066015.</p>
+
+</div>
