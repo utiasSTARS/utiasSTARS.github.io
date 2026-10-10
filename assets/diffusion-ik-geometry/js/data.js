@@ -28,12 +28,28 @@ export async function loadInterpLevel(manifest, robot, constraint, meta, t) {
   return { t, G, n, L, gridQ, gridErr, branch, segQ, segErr, range: meta.range };
 }
 
-/* Joint vector on the straight segment at alpha in [0, 1] (angle-aware linear interpolation). */
+/* Neighbouring decoded configurations that differ by more than this (rad, in any joint) lie on different IK
+ * branches or across a seam of the decoder; blending them would show a pose that is not a decoded one.
+ * On every condition and noise level, 99% of neighbouring steps stay below 0.45 rad, while branch switches and
+ * seams jump by 1 to 3 rad. */
+const JUMP = 0.5;
+
+function far(Q, a, b, n) {
+  for (let j = 0; j < n; j++) if (Math.abs(wrapAngle(Q[b + j] - Q[a + j])) > JUMP) return true;
+  return false;
+}
+
+/* Joint vector on the straight segment at alpha in [0, 1] (angle-aware linear interpolation, nearest frame across a jump). */
 export function segmentQ(level, alpha, out) {
   const { L, n, segQ } = level;
   out = out || new Float64Array(n);
   const s = Math.min(Math.max(alpha, 0), 1) * (L - 1);
   const i = Math.min(L - 2, Math.floor(s)), f = s - i;
+  if (far(segQ, i * n, (i + 1) * n, n)) {
+    const b = (f < 0.5 ? i : i + 1) * n;
+    for (let j = 0; j < n; j++) out[j] = segQ[b + j];
+    return out;
+  }
   for (let j = 0; j < n; j++) {
     const a = segQ[i * n + j], b = segQ[(i + 1) * n + j];
     out[j] = a + wrapAngle(b - a) * f;
@@ -57,7 +73,7 @@ export function gridIndex(level, u, v) {
   return [Math.min(Math.max(x, 0), G - 1), Math.min(Math.max(y, 0), G - 1)];
 }
 
-/* Bilinear, angle-aware joint vector at (u, v). */
+/* Bilinear, angle-aware joint vector at (u, v), or the nearest grid node when the cell spans a jump. */
 export function gridQ(level, u, v, out) {
   const { G, n, gridQ: Q } = level;
   out = out || new Float64Array(n);
@@ -65,6 +81,11 @@ export function gridQ(level, u, v, out) {
   const i = Math.min(G - 2, Math.floor(x)), k = Math.min(G - 2, Math.floor(y));
   const fx = x - i, fy = y - k;
   const b00 = (k * G + i) * n, b10 = (k * G + i + 1) * n, b01 = ((k + 1) * G + i) * n, b11 = ((k + 1) * G + i + 1) * n;
+  if (far(Q, b00, b10, n) || far(Q, b00, b01, n) || far(Q, b00, b11, n) || far(Q, b10, b11, n) || far(Q, b01, b11, n)) {
+    const b = (Math.round(y) * G + Math.round(x)) * n;
+    for (let j = 0; j < n; j++) out[j] = Q[b + j];
+    return out;
+  }
   for (let j = 0; j < n; j++) {
     const q00 = Q[b00 + j];
     const q10 = q00 + wrapAngle(Q[b10 + j] - q00);

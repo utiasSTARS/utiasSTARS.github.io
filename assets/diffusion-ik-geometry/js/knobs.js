@@ -11,8 +11,7 @@ import { loadKnobs } from "./data.js";
 import { el, sv, clamp, segmented, fmtErr, ROBOT_COLOR, reducedMotion, smooth, wrapAngle, showTip, hideTip } from "./util.js";
 import { getSelection } from "./state.js";
 import { conditionControls, levelSlider } from "./controls.js";
-import { tex, setHTML, SvgLabels, constraintHTML } from "./math.js";
-import { ScrubVideo, realRobotRow } from "./media.js";
+import { tex, setHTML, SvgLabels } from "./math.js";
 
 const NORMAL_BAR = "#b3afba";
 
@@ -26,17 +25,6 @@ function leadKnob(K) {
   return K.knobs.dirs.findIndex((d) => d.kind === "tangent");
 }
 
-/* Index of the IK branch the knob sample q0 sits on (UR5 SE(3)). */
-function startBranch(K) {
-  if (!K.branches) return 0;
-  let best = 0, bd = Infinity;
-  K.branches.forEach((b, i) => {
-    const d = b.reduce((acc, v, j) => acc + wrapAngle(v - K.q0[j]) ** 2, 0);
-    if (d < bd) { bd = d; best = i; }
-  });
-  return best;
-}
-
 function sweepQ(amps, qs, x, out) {
   const n = qs[0].length;
   out = out || new Float64Array(n);
@@ -45,6 +33,24 @@ function sweepQ(amps, qs, x, out) {
   const f = clamp((x - amps[i]) / (amps[i + 1] - amps[i]), 0, 1);
   for (let j = 0; j < n; j++) out[j] = qs[i][j] + wrapAngle(qs[i + 1][j] - qs[i][j]) * f;
   return out;
+}
+
+/* Range of a normal knob around zero over which the decoded arm moves continuously (steps of at most SNAP rad).
+ * Far out along a normal direction the pull-back can land on another part of the manifold (Franka Line, knobs 4
+ * and 9, beyond |0.8|); the arm then holds at the last continuous sample. */
+const SNAP = 0.1;
+const spans = new WeakMap();
+function normalSpan(amps, qs) {
+  let s = spans.get(qs);
+  if (s) return s;
+  const step = (i) => Math.max(...qs[i].map((v, j) => Math.abs(wrapAngle(qs[i + 1][j] - v))));
+  const c = amps.reduce((b, a, i) => (Math.abs(a) < Math.abs(amps[b]) ? i : b), 0);
+  let lo = c, hi = c;
+  while (lo > 0 && step(lo - 1) <= SNAP) lo--;
+  while (hi < amps.length - 1 && step(hi) <= SNAP) hi++;
+  s = [amps[lo], amps[hi]];
+  spans.set(qs, s);
+  return s;
 }
 
 function pad2dQ(p, a, b, out) {
@@ -71,7 +77,6 @@ export async function init(root, manifest) {
   const stageHost = root.querySelector("[data-role=stage]");
   const readout = root.querySelector("[data-role=readout]");
   const side = root.querySelector("[data-role=side]");
-  const realHost = root.querySelector("[data-role=real]");
 
   const st = { robot: null, constraint: null, K: null, t: 15, values: [], active: -1, branch: -1, pad: [0, 0], token: 0 };
 
@@ -300,14 +305,6 @@ export async function init(root, manifest) {
     return robots[name];
   }
 
-  /* ---------------------------------------------------------------- real robot */
-  const media = new ScrubVideo(realHost);
-  const showReal = realRobotRow(realHost, manifest);
-  const realText = el("div", { class: "dg-real-text" }, realHost);
-  const realTitle = el("h4", {}, realText);
-  const realP = el("p", {}, realText);
-  const realState = el("span", { class: "state" }, realText);
-
   function currentQ(out) {
     const K = st.K;
     const n = K.q0.length;
@@ -322,7 +319,8 @@ export async function init(root, manifest) {
     }
     if (st.active >= 0) {
       const dir = K.knobs.dirs[st.active];
-      const qq = sweepQ(K.knobs.amps, dir.q, st.values[st.active]);
+      const v = st.values[st.active];
+      const qq = sweepQ(K.knobs.amps, dir.q, dir.kind === "tangent" ? v : clamp(v, ...normalSpan(K.knobs.amps, dir.q)));
       for (let j = 0; j < n; j++) out[j] = base[j] + wrapAngle(qq[j] - K.q0[j]);
     }
     void tangentIdx;
@@ -360,20 +358,6 @@ export async function init(root, manifest) {
     if (err.orn !== null) parts.push('<span class="part">' + fmtErr(err.orn) + "<small>°</small></span>");
     setHTML(s3.v, parts.join('<span class="sep">·</span>'));
     s3.b.classList.toggle("good", (err.pos === null || err.pos < 5) && (err.orn === null || err.orn < 2));
-    const lead = leadKnob(K);
-    if (st.branch >= 0 || K.id_true === 0) {
-      media.seek((st.branch >= 0 ? st.branch : startBranch(K)) / Math.max(1, (K.branches || [1]).length - 1));
-      media.setSynced(true);
-      realState.classList.add("on");
-      realState.innerHTML = "<i></i>IK branch " + ((st.branch >= 0 ? st.branch : startBranch(K)) + 1);
-    } else {
-      const v = st.active === lead ? st.values[lead] : st.active === -2 ? st.pad[0] : 0;
-      media.seek((v + 1) / 2);
-      const on = st.active === lead || st.active === -2;
-      media.setSynced(on);
-      realState.classList.toggle("on", on);
-      setHTML(realState, "<i></i>" + (on ? "Following knob " + (lead + 1) + " at " + tex((v >= 0 ? "+" : "") + v.toFixed(2)) : "Move knob " + (lead + 1) + ", the leading tangent knob"));
-    }
     stage.invalidate();
   }
 
@@ -569,20 +553,6 @@ export async function init(root, manifest) {
     (K.branches || []).forEach((b) => pts.push(...R.model.keyPoints(b)));
     stage.fit(pts, { azimuth: robotName === "ur5" ? -0.75 : -0.95, elevation: 0.36, margin: 1.2, pad: 0.08 });
 
-    const real = manifest.real_media || {};
-    const key = robotName + "/" + constraint;
-    const timing = real.timing && real.timing[key + ":knob"];
-    if (showReal(robotName)) {
-      media.load(real.knob && real.knob[key], Array.isArray(real.have) ? real.have : !!real.available, {
-        robot: robotName,
-        title: "Real-robot recording coming soon",
-        sub: manifest.robots[robotName].label + " · " + ckey.label + " · leading tangent knob"
-      });
-    }
-    media.setTiming(timing);
-    const knobRange = timing && timing.alpha ? (1 - 2 * timing.alpha[0]).toFixed(1).replace(/\.0$/, "") : "1";
-    realTitle.innerHTML = "Real robot · " + manifest.robots[robotName].label + " · " + constraintHTML(ckey.key, ckey.label);
-    realP.innerHTML = "The robot sweeping the leading tangent knob from " + tex("-" + knobRange) + " to " + tex("+" + knobRange) + ". The video follows that knob.";
     update();
   }
 

@@ -106,15 +106,6 @@ export function fetchF32(url) {
   return binCache.get(url);
 }
 
-/* Resolve true when a media file exists, without downloading it. */
-const headCache = new Map();
-export function mediaExists(url) {
-  if (!headCache.has(url)) {
-    headCache.set(url, fetch(url, { method: "HEAD" }).then((r) => r.ok && !/text\/html/.test(r.headers.get("content-type") || "")).catch(() => false));
-  }
-  return headCache.get(url);
-}
-
 export function fmt(x, digits = 2) {
   if (!isFinite(x)) return "–";
   return x.toFixed(digits);
@@ -142,16 +133,19 @@ export function showTip(html, x, y) {
 }
 export function hideTip() { if (tip) tip.classList.remove("on"); }
 
-/* Run init(root) once the element comes within `margin` of the viewport. */
+/* Run init(root) once the element comes within `margin` of the viewport. Returns a function that runs it now. */
 export function whenNear(root, init, margin = "400px") {
-  if (!("IntersectionObserver" in window)) { init(root); return; }
-  const io = new IntersectionObserver((entries) => {
-    if (entries.some((e) => e.isIntersecting)) {
-      io.disconnect();
-      init(root);
-    }
-  }, { rootMargin: margin });
+  let io = null, done = false;
+  const run = () => {
+    if (done) return;
+    done = true;
+    if (io) io.disconnect();
+    init(root);
+  };
+  if (!("IntersectionObserver" in window)) { run(); return run; }
+  io = new IntersectionObserver((entries) => { if (entries.some((e) => e.isIntersecting)) run(); }, { rootMargin: margin });
   io.observe(root);
+  return run;
 }
 
 /* Show a friendly message in place of a widget that failed to start. */

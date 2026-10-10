@@ -24,10 +24,13 @@ function initCopy(btn) {
   });
 }
 
+/* Lazy sections and the functions that start them early (see stableScroll). */
+const starters = new Map();
+
 function lazy(id, loader, what, needsGL) {
   const root = document.getElementById(id);
   if (!root) return;
-  whenNear(root, async () => {
+  starters.set(root, whenNear(root, async () => {
     try {
       if (needsGL && !webglAvailable()) throw new Error("WebGL unavailable");
       const manifest = await fetchJSON(DATA + "manifest.json");
@@ -36,17 +39,63 @@ function lazy(id, loader, what, needsGL) {
     } catch (err) {
       failSoft(root.querySelector("[data-role=stage]") || root, err, what);
     }
+  }));
+}
+
+/* The lazy widgets grow by about 2600 px when they load. Two guards keep that from moving the reader.
+ * (1) After an in-page link (the Video button, a heading anchor) or a fresh visit to a #hash, every lazy section
+ *     above the target starts at once, and the target stays at the top while they grow, until the reader
+ *     scrolls, presses a key or goes back. Nothing above is then left to grow when the reader scrolls up.
+ * (2) Browsers without CSS scroll anchoring (Safari) get it by hand: a section that starts above the viewport and
+ *     grows scrolls the page by the same amount. */
+function stableScroll(root, sections) {
+  let target = null, until = 0;
+  const release = () => { target = null; };
+  const go = (hash) => {
+    let t = null;
+    try { t = hash && document.getElementById(decodeURIComponent(hash.slice(1))); } catch (err) { return; }
+    if (!t || !root.contains(t)) return;
+    target = t;
+    until = performance.now() + 4000;
+    starters.forEach((start, el) => { if (el.compareDocumentPosition(t) & Node.DOCUMENT_POSITION_FOLLOWING) start(); });
+  };
+  const manual = !(window.CSS && CSS.supports("overflow-anchor: auto"));
+  const heights = new Map();
+  const ro = new ResizeObserver((entries) => {
+    let shift = 0;
+    for (const { target: el } of entries) {
+      if (el === root) continue;
+      const r = el.getBoundingClientRect();
+      const h0 = heights.has(el) ? heights.get(el) : r.height;
+      heights.set(el, r.height);
+      if (r.top < 0) shift += r.height - h0;                      // it starts above the viewport: keep what follows it in place
+    }
+    if (target && performance.now() <= until) { target.scrollIntoView({ block: "start", behavior: "instant" }); return; }
+    target = null;
+    if (manual && shift) scrollBy(0, shift);
   });
+  ro.observe(root);
+  sections.forEach((el) => ro.observe(el));
+  ["wheel", "touchstart", "keydown", "pointerdown"].forEach((ev) => addEventListener(ev, release, { passive: true, capture: true }));
+  addEventListener("popstate", () => { if (target && location.hash !== "#" + target.id) release(); });   // Back or Forward; a link click fires popstate too
+  document.addEventListener("click", (e) => {
+    if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (a) go(a.getAttribute("href"));
+  });
+  const nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+  if (location.hash && (!nav || nav.type === "navigate")) go(location.hash);
 }
 
 function boot() {
-  renderStatic(document.getElementById("dg"));
+  const dg = document.getElementById("dg");
+  renderStatic(dg);
   const copy = document.querySelector(".dg-bib [data-role=copy]");
   if (copy) initCopy(copy);
 
   const teaser = document.getElementById("dg-teaser");
   if (teaser) {
-    whenNear(teaser, async () => {
+    starters.set(teaser, whenNear(teaser, async () => {
       const stage = teaser.querySelector("[data-role=stage]");
       const fallback = () => {
         teaser.querySelector("[data-role=fallback]").hidden = false;
@@ -62,7 +111,7 @@ function boot() {
         console.warn("teaser", err);
         fallback();
       }
-    }, "200px");
+    }, "200px"));
   }
 
   lazy("dg-family", () => import("./family.js"), "The constraint table", false);
@@ -70,7 +119,8 @@ function boot() {
   lazy("dg-knobs", () => import("./knobs.js"), "The intrinsic-dimension widget", true);
   lazy("dg-idchart", () => import("./results.js"), "The results chart", false);
   lazy("dg-interp", () => import("./results.js").then((m) => ({ init: m.initInterp })), "The interpolation table", false);
-  lazy("dg-gallery", () => import("./media.js").then((m) => ({ init: m.initGallery })), "The video gallery", false);
+  lazy("dg-reel", () => import("./media.js").then((m) => ({ init: m.initReel })), "The real-robot videos", false);
+  if ("ResizeObserver" in window) stableScroll(dg, [...starters.keys()]);
 
   if (/[?&]debug\b/.test(location.search)) {
     import("./robot.js").then((robot) => {

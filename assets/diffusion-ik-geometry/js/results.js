@@ -95,7 +95,7 @@ export async function init(root, manifest) {
         all.map((e) => '<td class="num' + (Math.round(row[e.key]) === row.id ? " hit" : "") + '">' + fmtId(row[e.key]) + "</td>").join("") + "</tr>";
     });
   });
-  html += '</tbody></table></div><p class="small muted" style="margin:0.5rem 0.2rem 0">Bold entries round to the analytical dimension. Neighbourhood estimators run on generated configurations; the score-based ones read the learned score at points of the manifold.</p>';
+  html += '</tbody></table></div><p class="small muted" style="margin:0.5rem 0.2rem 0">Bold entries round to the analytical intrinsic dimension. Neighbourhood estimators run on generated configurations, and the score-based ones read the learned score function at points of the manifold.</p>';
   tableHost.innerHTML = html;
   toggle.addEventListener("click", () => {
     tableHost.hidden = !tableHost.hidden;

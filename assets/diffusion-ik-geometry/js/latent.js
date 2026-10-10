@@ -10,8 +10,7 @@ import { loadInterpMeta, loadInterpLevel, segmentQ, gridQ, gridScalar, gridIndex
 import { el, sv, clamp, segmented, fmtErr, ROBOT_COLOR, reducedMotion, smooth, TBAR } from "./util.js";
 import { getSelection } from "./state.js";
 import { conditionControls, levelSlider } from "./controls.js";
-import { tex, setHTML, SvgLabels, constraintHTML } from "./math.js";
-import { ScrubVideo, realRobotRow } from "./media.js";
+import { tex, setHTML, SvgLabels } from "./math.js";
 
 const PAIRS = {
   ab: { from: [0, 0], to: [1, 0], label: "a → b", tex: "x_a \\to x_b", a: "a", b: "b" },
@@ -75,7 +74,6 @@ export async function init(root, manifest) {
   const legend = root.querySelector("[data-role=legend]");
   const stageHost = root.querySelector("[data-role=stage]");
   const readout = root.querySelector("[data-role=readout]");
-  const realHost = root.querySelector("[data-role=real]");
 
   const st = { robot: null, constraint: null, meta: null, level: null, t: null, pair: "ab", u: 0.35, v: 0, onSeg: true, alpha: 0.35, playing: false, token: 0 };
 
@@ -204,7 +202,7 @@ export async function init(root, manifest) {
       return;
     }
     const s = errorScale(meta.error_unit);
-    el("span", { class: "title", text: "Constraint error (" + s.unit + ")" }, legend).style.order = -1;
+    el("span", { class: "title", text: (meta.error_unit === "deg" ? "Orientation" : "Position") + " error (" + s.unit + ")" }, legend).style.order = -1;
     bar.style.background = "linear-gradient(90deg," + ERROR_STOPS.map(([t, c]) => c + " " + t * 100 + "%").join(",") + ")";
     s.ticks.forEach((v) => {
       const p = logPos(v, s);
@@ -228,30 +226,6 @@ export async function init(root, manifest) {
       robots[name] = { model, robot: r, trail: tr, eps };
     }
     return robots[name];
-  }
-
-  /* ---------------------------------------------------------------- real robot */
-  const media = new ScrubVideo(realHost);
-  const showReal = realRobotRow(realHost, manifest);
-  const realText = el("div", { class: "dg-real-text" }, realHost);
-  const realTitle = el("h4", {}, realText);
-  el("p", { html: "The same straight latent path from " + tex("x_a") + " to " + tex("x_b") + ", decoded and executed on the real robot. The video follows the path position " + tex("\\alpha") + " whenever the marker on the pad lies on the segment, and during Play." }, realText);
-  const realState = el("span", { class: "state" }, realText);
-
-  function updateReal() {
-    const onAB = st.pair === "ab";
-    const P = PAIRS.ab;
-    let a, synced;
-    if (onAB && st.onSeg) { a = st.alpha; synced = true; }
-    else {
-      a = clamp(st.u, 0, 1);
-      if (!onAB) a = clamp(projectAlpha(P, st.u, st.v), 0, 1);
-      synced = false;
-    }
-    media.seek(a);
-    media.setSynced(synced);
-    realState.classList.toggle("on", synced);
-    setHTML(realState, "<i></i>" + (synced ? "Following the path at " : "Off the recorded path, nearest ") + tex("\\alpha = " + a.toFixed(2)));
   }
 
   /* ---------------------------------------------------------------- state updates */
@@ -287,7 +261,6 @@ export async function init(root, manifest) {
     gizmo.update(ee, stage.camera);
     const err = constraintError(robot.model, qq, st.meta.target);
     renderReadout(err);
-    updateReal();
     const pos = "u " + u.toFixed(2) + ", v " + v.toFixed(2);
     puck.setAttribute("aria-valuetext", pos + (st.onSeg ? ", on the segment at alpha " + st.alpha.toFixed(2) : ""));
     padLabel.textContent = "";
@@ -369,16 +342,6 @@ export async function init(root, manifest) {
     pts.push(new THREE.Vector3(...meta.target.pos));
     stage.fit(pts, { azimuth: robotName === "ur5" ? -0.75 : -0.95, elevation: 0.38, margin: 1.24, pad: 0.08 });
 
-    const key = manifest.conditions[robotName + "/" + constraint];
-    const real = manifest.real_media || {};
-    if (showReal(robotName)) media.load(real.line && real.line[robotName + "/" + constraint], (Array.isArray(real.have) ? real.have : !!real.available), {
-      robot: robotName,
-      title: "Real-robot recording coming soon",
-      sub: manifest.robots[robotName].label + " · " + ckey.label + " · straight latent path"
-    });
-    media.setTiming(real.timing && real.timing[robotName + "/" + constraint + ":line"]);
-    realTitle.innerHTML = "Real robot · " + manifest.robots[robotName].label + " · " + constraintHTML(ckey.key, ckey.label);
-    void key;
     place(st.pair === "ab" ? 0.35 : st.u, st.pair === "ab" ? 0 : st.v);
   }
 

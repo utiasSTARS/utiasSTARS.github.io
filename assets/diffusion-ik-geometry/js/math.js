@@ -42,11 +42,8 @@ export function renderStatic(root) {
   });
 }
 
-export const SE3 = "\\mathrm{SE}(3)";
-
-/* Constraint display name, with SE(3) typeset as a Lie group. */
+/* Constraint display name in the surrounding text font (SE(3) included, like the other labels). */
 export function constraintHTML(key, label) {
-  if (key === "se3") return tex(SE3);
   return String(label).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 }
 
