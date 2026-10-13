@@ -1,0 +1,22 @@
+/* gr-vamp-eps0: the greedy informed set ablation. The chart marks, readout, table and foot are the results
+   widgets' (vampresults.css, results-chart.js); this sheet lays out the four small charts and the one table. Scoped under
+   .gr-eps0, which outranks the kit's rules in page.css. Part of the removable Round 7 block (CONTRACT.md). */
+
+.gr-eps0 .gr-eps0-keys { margin: 0 0 10px; }
+.gr-eps0 .gr-eps0-note { color: var(--gr-muted); }
+
+/* Four in a row on a full column, two by two below 45rem, one column on a very narrow phone. */
+.gr-eps0-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 12px; }
+.gr-eps0-panel { margin: 0; min-width: 0; }
+/* The table view: one table for the four robots in place of the charts. A robot's two rows form a <tbody>; a rule
+   separates the robots, and the robot's name (not tinted) stands in the first row of its pair. */
+.gr-eps0 .gr-eps0-tbl tbody + tbody > tr:first-child > * { border-top: 1px solid var(--gr-rule); }
+.gr-eps0 .gr-eps0-tbl tbody > tr:first-child > :first-child { border-bottom-color: transparent; }
+.gr-eps0 .gr-eps0-tbl tr.ours > th[scope="rowgroup"] { background: transparent; color: var(--gr-ink); white-space: nowrap; }
+.gr-eps0 .gr-eps0-tbl :is(thead tr:last-child th:nth-child(2), tbody th[scope="row"]) { text-align: left; }
+@container gr (max-width: 45rem) {
+  .gr-eps0-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+}
+@container gr (max-width: 23rem) {
+  .gr-eps0-grid { grid-template-columns: minmax(0, 1fr); }
+}

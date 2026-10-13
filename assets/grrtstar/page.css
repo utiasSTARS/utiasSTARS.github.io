@@ -1,0 +1,431 @@
+/* Greedy Heuristics for Sampling-Based Motion Planning in High-Dimensional State Spaces (G-RRT*).
+   Part 1 styles the page shell. Part 2 is the shared UI kit that every widget uses (card frame,
+   controls, tooltip, chart text, inline math); its class API is documented in _tools/grrtstar/UIKIT.md
+   and does not change. Everything is scoped under .gr and sized with container queries on the content
+   column (container name "gr"). One colour per concept, as in CONTRACT.md. */
+
+:root {
+  --gr-ink: #27262b;
+  --gr-body: #5c5962;
+  --gr-muted: #6f6b75;
+  --gr-faint: #9a96a1;
+  --gr-rule: #e6e3e8;
+  --gr-hair: #efedf1;
+  --gr-surface: #fcfcfb;
+  --gr-soft: #f5f6fa;
+  --gr-accent: #7253ed;
+
+  /* Round 4: the colours of the paper (CONTRACT.md, "Round 4: palette from the paper"). Green is G-RRT*. */
+  --gr-grrt: #4f9216;                          /* G-RRT*, the greedy informed set (previous VAMP version: same, dashed) */
+  --gr-grrt-soft: #eef5e8;
+  --gr-green-text: #3f7d12;                    /* small green text (5.1 to 1 on white); marks, lines and fills keep --gr-grrt */
+  --gr-blue-text: var(--gr-green-text);        /* old name of the accent text colour, kept so that nothing breaks */
+  --gr-greedy-fill: rgba(79, 146, 22, 0.12);   /* greedy informed set, drawn over white */
+  --gr-tree-start: #0b5dae;                    /* tree rooted at the start (blue) */
+  --gr-tree-goal: #ce3e15;                     /* tree rooted at the goal (vermilion) */
+  --gr-path: #e8a31a;                          /* the solution path (amber): lines only, never text */
+  --gr-path-earlier: #c9c3b8;                  /* an earlier solution shown for comparison */
+  --gr-start: #910021;                         /* start state (crimson) */
+  --gr-goal: #4f9216;                          /* goal state (green) */
+  --gr-informed: #8a8590;                      /* the informed set: dashed grey, 1.5 px, dash 5 4 */
+  --gr-informed-soft: #f2f1f3;
+  --gr-informed-fill: rgba(138, 133, 144, 0.07);
+  --gr-obstacle: #4a4752;                      /* dark charcoal, square corners (as dark as the paper's, a little lighter in large areas) */
+  --gr-aorrtc: #e8a31a;
+  --gr-rrtc: #1a1a1a;
+  --gr-fcit: #d1478b;
+  --gr-rrtstar: #910021;
+  --gr-rrtstar-connect: #c589e8;
+  --gr-bitstar: #0b5dae;
+  --gr-aitstar: #3bafec;
+  --gr-eitstar: #ee8866;
+  --gr-blitstar: #a6611a;
+
+  --gr-radius: 8px;
+  --gr-pad: 12px;                              /* card padding; 8px when the content column is under 480px */
+
+  /* Chart text and lines (SVG: the .gr-chart classes; canvas: CHART in util.js holds the same values). */
+  --gr-chart-bg: #fff;
+  --gr-axis: #e6e3e8;
+  --gr-grid: #efedf1;
+  --gr-tick: #6f6b75;
+  --gr-tick-size: 11px;
+  --gr-label: #27262b;
+  --gr-label-size: 12px;
+}
+
+/* ================================================================ part 1: page shell */
+.gr { color: var(--gr-body); container: gr / inline-size; }
+/* Headings in the theme font, as on the induced-metrics page (its h2: weight 500, 1.5rem on a desktop). */
+.gr h2 { margin-top: 2.4rem; margin-bottom: 0.8rem; font-weight: 500; color: var(--gr-ink); font-size: 1.5rem !important; }
+.gr h3 { margin-top: 1.7rem; margin-bottom: 0.55rem; font-weight: 600; color: var(--gr-ink); font-size: 1.08rem !important; }
+.gr p { line-height: 1.62; }
+.gr .muted { color: var(--gr-muted); }
+.gr .small { font-size: 0.86rem; }
+.gr .num { font-variant-numeric: tabular-nums; }
+.gr .nw { white-space: nowrap; }
+.gr i, .gr em { font-style: italic; }
+.gr .fa { font-style: normal; }
+.gr sub, .gr sup { line-height: 0; }
+.gr .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.gr [hidden] { display: none !important; }
+.gr :is(button, a, select, input, summary, [tabindex]):focus-visible { outline: 2px solid var(--gr-accent); outline-offset: 2px; }
+
+/* On phones the theme pins the sidebar footer to the bottom of the first screen, where it covers the
+   page; show it only inside the opened menu (as on the other project pages). */
+@media (max-width: 49.9375rem) {
+  .side-bar .site-footer { display: none; }
+  .side-bar .site-nav.nav-open ~ .site-footer { display: block; position: static; }
+}
+
+/* ---------------------------------------------------------------- hero */
+.gr-hero { text-align: center; padding: 0.6rem 0 0.2rem; }
+.gr-venue { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.45rem; margin-bottom: 1.1rem; }
+.gr-badge { display: inline-flex; align-items: center; font-size: max(0.74rem, 11px); padding: 0.3rem 0.75rem; border-radius: 999px; line-height: 1.2; background: var(--gr-ink); color: #fff; font-weight: 600; letter-spacing: 0.1em; }
+/* The title as on the induced-metrics page (theme font, weight 400, 2.1rem, line height 1.2, ink), in two
+   lines that break after "Motion". In the theme font at 1.85 to 2.1rem the first line is 19.6em wide and
+   23.5em with "Planning", so a width of 21.5em breaks it there. In a column narrower than 20em at 2.1rem
+   (672px) the size follows the column down to 1.85rem, which keeps two lines down to a 583px column
+   (a 895px desktop window); below that the title wraps to three lines. */
+.gr-hero h1 { font-weight: 400; font-size: 2.1rem !important; font-size: clamp(1.85rem, 100cqi / 20, 2.1rem) !important; line-height: 1.2; color: var(--gr-ink); margin: 0 auto 1rem; max-width: 21.5em; text-wrap: balance; }
+.gr-authors { font-size: 1.06rem; color: var(--gr-ink); margin: 0 0 0.35rem; line-height: 1.7; }
+.gr-authors a { color: var(--gr-ink); text-decoration: none; border-bottom: 1px solid var(--gr-rule); white-space: nowrap; }
+.gr-authors a:hover { border-bottom-color: var(--gr-ink); }
+.gr-authors sup { font-size: 0.72em; margin-left: 0.08em; color: var(--gr-muted); }
+.gr-authors .sep { margin-right: 0.35em; }
+/* One block with one line per affiliation and no gap between them, as on the induced-metrics page. Each
+   line fits a 736px column; each is its own block so that a narrower column wraps it in balanced halves
+   (Chrome balances only the first part of a block split by <br>). */
+.gr-affil { font-size: 0.86rem; color: var(--gr-muted); line-height: 1.5; margin: 0 auto 1.2rem; }
+.gr-affil > span { display: block; text-wrap: balance; }
+/* The theme's own buttons, as on the induced-metrics page: btn-blue, btn-purple, then plain btn. */
+.gr-links { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin: 0 0 1.6rem; }
+.gr-links .btn { display: inline-flex; align-items: center; gap: 0.45em; }
+.gr-links .btn i { font-size: 1em; }
+@container gr (max-width: 30rem) {
+  /* Three lines on a phone ("Greedy Heuristics for" / "Sampling-Based Motion Planning" / "in High-Dimensional
+     State Spaces", the longest 14.7 to 15em): the size follows the column, at most 1.85rem. */
+  .gr-hero h1 { font-size: 1.62rem !important; font-size: clamp(1.3rem, 100cqi / 15.2, 1.85rem) !important; }
+  .gr-authors { font-size: 0.98rem; }
+  .gr-links { display: grid; grid-template-columns: repeat(3, auto); justify-content: center; gap: 0.4rem; }
+  .gr-links .btn { box-sizing: border-box; min-height: 30px; justify-content: center; padding: 0.3em 0.7em; font-size: 0.9rem; }
+}
+
+/* ---------------------------------------------------------------- teaser */
+.gr-teaser { margin: 0.2rem 0 0.4rem; }
+.gr-teaser-stage { position: relative; aspect-ratio: 2.15 / 1; border-radius: var(--gr-radius); overflow: hidden; background: #fff; border: 1px solid var(--gr-rule); }
+@container gr (max-width: 34rem) { .gr-teaser-stage { aspect-ratio: 1.3 / 1; } }
+.gr-teaser-stage canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.gr-js .gr-teaser-stage:not(.live)::after { content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; border: 2px solid var(--gr-rule); border-top-color: var(--gr-grrt); animation: gr-spin 0.9s linear infinite; }
+.gr-teaser.gr-static .gr-teaser-stage::after { display: none; }
+.gr-teaser-still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.gr-teaser-hud { position: absolute; left: 0.7rem; top: 0.6rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; pointer-events: none; }
+.gr-teaser-hud span { font-size: max(0.74rem, 11px); line-height: 1.2; color: var(--gr-ink); background: rgba(255, 255, 255, 0.92); border: 1px solid var(--gr-hair); border-radius: 999px; padding: 0.2rem 0.55rem; }
+.gr-teaser-hud span:empty { display: none; }
+.gr-teaser-cost { font-variant-numeric: tabular-nums; color: var(--gr-green-text) !important; font-weight: 600; }
+.gr-teaser-stage .gr-play { position: absolute; right: 0.6rem; bottom: 0.6rem; }
+.gr-teaser figcaption { margin: 0.6rem 0 0; font-size: 0.9rem; line-height: 1.55; color: var(--gr-body); }
+@container gr (max-width: 30rem) {
+  .gr-teaser-hud { left: 0.45rem; top: 0.4rem; }
+  .gr-teaser-phase { display: none; }
+}
+
+/* ---------------------------------------------------------------- lede, points, abstract */
+.gr-lede { font-size: 1.1rem; color: var(--gr-ink); margin-top: 1.8rem; line-height: 1.6; }
+.gr-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; margin: 1.5rem 0 0.4rem; }
+.gr-point { display: flex; flex-direction: column; border: 1px solid var(--gr-rule); border-radius: var(--gr-radius); padding: 0.95rem 1.05rem 1rem; background: #fff; }
+.gr-point .k { display: flex; align-items: center; gap: 0.45rem; font-size: max(0.7rem, 10px); letter-spacing: 0.09em; text-transform: uppercase; color: var(--gr-muted); font-weight: 600; white-space: nowrap; }
+.gr-point .fig { display: flex; align-items: center; height: 2.1rem; margin: 0.5rem 0 0.4rem; font-size: 1.7rem; line-height: 1; font-weight: 600; color: var(--gr-green-text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gr-point p { margin: 0; font-size: 0.88rem; line-height: 1.5; color: var(--gr-body); }
+.gr-dot { display: inline-block; width: 0.55rem; height: 0.55rem; border-radius: 50%; flex: none; }
+@container gr (max-width: 40rem) { .gr-points { grid-template-columns: 1fr; } .gr-point .fig { height: auto; margin: 0.4rem 0 0.3rem; } }
+.gr-abstract { background: var(--gr-soft); border-radius: var(--gr-radius); padding: 1.15rem 1.35rem; }
+.gr-abstract p { margin: 0; text-align: justify; hyphens: auto; }
+@container gr (max-width: 30rem) { .gr-abstract { padding: 1rem 1rem; } .gr-abstract p { text-align: left; } }
+
+/* ---------------------------------------------------------------- the two sets */
+.gr-sets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; margin: 1.1rem 0 0.4rem; }
+.gr-set { border: 1px solid var(--gr-rule); border-top: 3px solid var(--c); border-radius: var(--gr-radius); padding: 0.85rem 1rem 0.9rem; background: #fff; min-width: 0; }
+.gr-set .k { display: flex; align-items: center; gap: 0.5rem; font-size: max(0.7rem, 10px); letter-spacing: 0.09em; text-transform: uppercase; color: var(--gr-ink); font-weight: 600; }
+.gr-set .k .ell { color: var(--c); }
+/* A fixed height and no wrapping, so the card is the same size before and after the KaTeX stylesheet arrives. */
+.gr-set .eq { margin: 0.55rem 0 0.4rem; height: 2.6rem; display: flex; align-items: center; justify-content: safe center; font-size: 1rem; color: var(--gr-ink); white-space: nowrap; overflow-x: auto; overflow-y: hidden; }
+.gr-set .eq .katex-display { margin: 0; }
+.gr-set p { margin: 0; font-size: 0.86rem; line-height: 1.5; color: var(--gr-body); }
+.gr-note { color: var(--gr-muted); margin: 0.5rem 0.1rem 0; }
+@container gr (max-width: 40rem) { .gr-sets { grid-template-columns: 1fr; } }
+
+/* ---------------------------------------------------------------- widget slots
+   main.js sets data-state: (none) waiting, loading, running, ready, failed. Each slot keeps the final
+   height of its widget from the start, so nothing moves when the widget starts: an inline script in
+   the page (written by _tools/grrtstar/page/reserve_slots.py from measured heights) sets --h-<slot id>
+   on #gr for the current column width, before the slots are laid out, and main.js refreshes it when the
+   column width changes. The fallbacks below are the heights in a 736px column. */
+.gr-slot { display: block; margin: 1.1rem 0 0.6rem; }
+.gr-js .gr-slot { position: relative; min-height: var(--gr-h, 50rem); }
+.gr-js .gr-slot[data-state="failed"] { min-height: 9rem; }
+/* The placeholder stays until init() has resolved. A widget that is still building (running) is laid
+   out but not shown, so whatever it rearranges while its data arrives is never seen as movement. */
+.gr-js .gr-slot[data-state="running"] > * { visibility: hidden; }
+.gr-js .gr-slot:not([data-state])::before,
+.gr-js .gr-slot:is([data-state="loading"], [data-state="running"])::before { content: ""; position: absolute; inset: 0; border-radius: var(--gr-radius); background: #fff; border: 1px solid var(--gr-rule); }
+.gr-js .gr-slot:not([data-state])::after,
+.gr-js .gr-slot:is([data-state="loading"], [data-state="running"])::after { content: attr(data-label); position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); text-align: center; font-size: 0.84rem; color: var(--gr-faint); padding: 0 1rem; }
+.gr-js .gr-slot:is([data-state="loading"], [data-state="running"])::after { animation: gr-pulse 1.4s ease-in-out infinite; }
+.gr-noscript { margin: 0; padding: 0.9rem 1rem; border-radius: var(--gr-radius); background: var(--gr-soft); color: var(--gr-muted); font-size: 0.86rem; }
+
+#gr-informed { --gr-h: var(--h-gr-informed, 761px); }
+#gr-dimension { --gr-h: var(--h-gr-dimension, 711px); }
+#gr-search { --gr-h: var(--h-gr-search, 664px); }
+#gr-live { --gr-h: var(--h-gr-live, 960px); }
+/* The live demo has two heights on a phone column: the card grows below its Start button when the reader
+   presses it (live.js sets data-live="started" at the press). Elsewhere the two values are equal. */
+#gr-live[data-live="started"] { --gr-h: var(--h-gr-live-started, var(--h-gr-live, 960px)); }
+#gr-mbm { --gr-h: var(--h-gr-mbm, 856px); }
+#gr-vamp-results { --gr-h: var(--h-gr-vamp-results, 843px); }
+#gr-vamp-eps0 { --gr-h: var(--h-gr-vamp-eps0, 412px); }      /* Round 7 block (CONTRACT.md) */
+#gr-ompl-results { --gr-h: var(--h-gr-ompl-results, 847px); }
+
+.gr-fail { display: flex; align-items: center; justify-content: center; min-height: 8rem; text-align: center; padding: 1rem; font-size: 0.86rem; color: var(--gr-muted); background: var(--gr-soft); border: 1px solid var(--gr-rule); border-radius: var(--gr-radius); }
+.gr-fail.gr-fail-over { position: absolute; inset: 0; min-height: 0; z-index: 2; }
+
+@keyframes gr-spin { to { transform: rotate(360deg); } }
+@keyframes gr-pulse { 50% { opacity: 0.45; } }
+
+/* ---------------------------------------------------------------- citation, references */
+.gr-bib { position: relative; }
+.gr-bib pre { background: var(--gr-soft); border: 1px solid var(--gr-rule); border-radius: var(--gr-radius); padding: 1rem 1.1rem; font-size: 0.8rem; line-height: 1.55; overflow-x: auto; color: var(--gr-ink); margin: 0; }
+.gr-copy { position: absolute; top: 0.55rem; right: 0.55rem; font: inherit; font-size: max(0.78rem, 11px); min-height: 28px; border: 1px solid var(--gr-rule); background: #fff; color: var(--gr-ink); border-radius: 6px; padding: 0.3rem 0.65rem; cursor: pointer; }
+.gr-copy:hover { border-color: var(--gr-muted); }
+.gr-bib pre .l { display: block; }
+/* On a narrow screen the lines wrap, each with a hanging indent as deep as the field names (13 characters). */
+@container gr (max-width: 30rem) {
+  .gr-bib pre { padding-top: 2.7rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .gr-bib pre .l { padding-left: 13ch; text-indent: -13ch; }
+}
+.gr-code-note { margin-top: 0.8rem; color: var(--gr-muted); }
+.gr a.cite { text-decoration: none; white-space: nowrap; }
+.gr a.cite:hover { text-decoration: underline; }
+.gr ol.gr-refs { counter-reset: gr-ref; list-style: none; padding-left: 2.2rem; font-size: 0.86rem; line-height: 1.55; color: var(--gr-body); }
+.gr ol.gr-refs > li { position: relative; margin-bottom: 0.4rem; }
+.gr ol.gr-refs > li::before { content: "[" counter(gr-ref) "]"; counter-increment: gr-ref; position: absolute; left: -2.2rem; width: 1.9rem; text-align: right; color: var(--gr-muted); font-variant-numeric: tabular-nums; }
+.gr ol.gr-refs > li:target { background: #f3f1f5; border-radius: 4px; }
+.gr ol.gr-refs a { overflow-wrap: anywhere; }
+
+/* ================================================================ part 2: shared UI kit
+   The API (classes, states, ARIA, helpers) is in _tools/grrtstar/UIKIT.md. */
+
+/* ---- card frame and caption. One frame for every widget in every state; the caption sits below it. */
+.gr-card { box-sizing: border-box; background: #fff; border: 1px solid var(--gr-rule); border-radius: var(--gr-radius); padding: var(--gr-pad); min-width: 0; }
+@container gr (max-width: 30rem) { .gr-card { --gr-pad: 8px; } }
+.gr p.gr-caption, .gr-caption { margin: 0.6rem 0 0; font-size: 0.9rem; line-height: 1.55; color: var(--gr-body); }
+
+/* ---- toolbar: groups of controls, each with an optional uppercase eyebrow label (words only). */
+.gr-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 0 0 10px; }
+.gr-group { display: flex; align-items: center; gap: 6px 8px; min-width: 0; }      /* the eyebrow sits left of its control, never above */
+.gr-group > :not(.lbl):not(.gr-lbl) { min-width: 0; }
+.gr-lbl, .gr-group > .lbl { flex: none; font-size: max(0.68rem, 10px); line-height: 1.2; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gr-muted); font-weight: 600; }
+
+/* ---- segmented control: up to six short options, exactly one pressed. 30px tall. */
+.gr-seg { box-sizing: border-box; display: inline-flex; flex-wrap: wrap; align-items: stretch; gap: 2px; max-width: 100%; min-height: 30px; padding: 2px; border-radius: 8px; background: var(--gr-soft); border: 1px solid var(--gr-rule); vertical-align: middle; }
+.gr-seg button { position: relative; box-sizing: border-box; height: 24px; min-width: 30px; justify-content: center; margin: 0; padding: 0 0.62rem; font: inherit; font-size: 0.86rem; line-height: 1; color: var(--gr-body); background: transparent; border: 0; border-radius: 6px; display: inline-flex; align-items: center; gap: 0.35rem; white-space: nowrap; cursor: pointer; appearance: none; -webkit-appearance: none; font-variant-numeric: tabular-nums; transition: background-color 120ms ease, color 120ms ease, box-shadow 120ms ease; }
+.gr-seg button:hover { color: var(--gr-ink); }
+.gr-seg button[aria-pressed="true"] { background: #fff; color: var(--gr-ink); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14); }
+.gr-seg button:disabled { opacity: 0.4; cursor: default; }
+.gr-seg button small, .gr-chips button small { font-size: max(0.86em, 11px); color: var(--gr-muted); font-weight: 400; }
+/* An option that exists but cannot be chosen now (say why with hint()). */
+.gr-seg button.bad, .gr-chips button.bad { text-decoration: line-through; color: #a33a26; }
+.gr-seg .sw, .gr-chips .sw { width: 0.6rem; height: 0.6rem; border-radius: 50%; flex: none; }
+@container gr (max-width: 30rem) { .gr-seg button { padding: 0 0.5rem; font-size: 0.82rem; } }
+
+/* ---- chips: longer lists (scenes, problems). They wrap onto further rows; never scroll, never truncate. */
+.gr-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; min-width: 0; }
+.gr-chips button { position: relative; box-sizing: border-box; min-height: 28px; min-width: 30px; max-width: 100%; margin: 0; padding: 3px 0.7rem; font: inherit; font-size: 0.84rem; line-height: 1.25; text-align: left; color: var(--gr-body); background: var(--gr-soft); border: 1px solid var(--gr-rule); border-radius: 14px; display: inline-flex; align-items: center; gap: 0.35rem; white-space: normal; overflow-wrap: anywhere; cursor: pointer; appearance: none; -webkit-appearance: none; font-variant-numeric: tabular-nums; transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease, box-shadow 120ms ease; }
+.gr-chips button:hover { color: var(--gr-ink); border-color: #d2ced7; }
+.gr-chips button[aria-pressed="true"] { background: #fff; color: var(--gr-ink); border-color: #a9a5b0; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14); }
+.gr-chips button:disabled { opacity: 0.4; cursor: default; }
+@container gr (max-width: 30rem) { .gr-chips { gap: 5px; } .gr-chips button { padding: 3px 0.6rem; font-size: 0.8rem; } }
+
+/* ---- transport: the play button left of a scrubber, with an optional readout on the right. */
+.gr-transport { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.gr-transport .gr-range { flex: 1 1 auto; }
+.gr-readout { flex: none; font-size: 0.82rem; line-height: 1.2; color: var(--gr-body); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gr-readout b { color: var(--gr-ink); font-weight: 600; }
+
+.gr-play { position: relative; box-sizing: border-box; flex: none; width: 34px; height: 34px; margin: 0; padding: 0; border-radius: 50%; border: 1px solid var(--gr-rule); background: #fff; color: var(--gr-ink); display: inline-grid; place-items: center; cursor: pointer; appearance: none; -webkit-appearance: none; transition: border-color 120ms ease, background-color 120ms ease; }
+.gr-play:hover { border-color: var(--gr-muted); }
+.gr-play:disabled { opacity: 0.45; cursor: default; }
+.gr-play svg { grid-area: 1 / 1; width: 14px; height: 14px; fill: currentColor; display: none; }
+.gr-play .i-play { margin-left: 2px; }
+.gr-play .i-replay { width: 16px; height: 16px; }
+.gr-play:not([data-state]) .i-play,
+.gr-play[data-state="play"] .i-play,
+.gr-play[data-state="pause"] .i-pause,
+.gr-play[data-state="replay"] .i-replay { display: block; }
+
+/* 4px track, filled part ink (--gr-fill, kept in sync by rangeFill() in util.js), 14px thumb, 28px hit
+   height. Vertical swipes scroll the page. --gr-range-color recolours the fill and the thumb. */
+.gr-range { -webkit-appearance: none; appearance: none; box-sizing: border-box; display: block; width: 100%; min-width: 0; height: 28px; margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer; touch-action: pan-y; --gr-fill: 0%; }
+.gr-range::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(to right, var(--gr-range-color, var(--gr-ink)) var(--gr-fill), var(--gr-rule) var(--gr-fill)); }
+.gr-range::-moz-range-track { height: 4px; border-radius: 2px; background: var(--gr-rule); }
+.gr-range::-moz-range-progress { height: 4px; border-radius: 2px; background: var(--gr-range-color, var(--gr-ink)); }
+.gr-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; box-sizing: border-box; width: 14px; height: 14px; margin-top: -5px; border: 0; border-radius: 50%; background: var(--gr-range-color, var(--gr-ink)); box-shadow: 0 0 0 2px #fff; }
+.gr-range::-moz-range-thumb { box-sizing: border-box; width: 14px; height: 14px; border: 0; border-radius: 50%; background: var(--gr-range-color, var(--gr-ink)); box-shadow: 0 0 0 2px #fff; }
+.gr-range:disabled { opacity: 0.45; cursor: default; }
+.gr .gr-range:focus-visible { outline: 2px solid var(--gr-accent); outline-offset: 0; border-radius: 6px; }
+
+/* ---- buttons: .gr-btn for actions (Start, Shuffle, Plan again), .gr-linkbtn for text actions. */
+.gr-btn { position: relative; box-sizing: border-box; height: 34px; margin: 0; padding: 0 0.95rem; font: inherit; font-size: 0.86rem; font-weight: 600; line-height: 1; color: #fff; background: var(--gr-ink); border: 1px solid var(--gr-ink); border-radius: 17px; display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem; white-space: nowrap; cursor: pointer; appearance: none; -webkit-appearance: none; transition: background-color 120ms ease, border-color 120ms ease; }
+.gr-btn:hover { background: #3a3940; border-color: #3a3940; }
+.gr-btn:disabled { opacity: 0.45; cursor: default; }
+.gr-btn svg { width: 14px; height: 14px; fill: currentColor; flex: none; }
+.gr-btn.ghost { color: var(--gr-ink); background: #fff; border-color: var(--gr-rule); font-weight: 500; }
+.gr-btn.ghost:hover { background: #fff; border-color: var(--gr-muted); }
+.gr-btn.small { height: 30px; padding: 0 0.75rem; font-size: 0.82rem; border-radius: 15px; }
+.gr-btn.icon { width: 34px; padding: 0; }
+.gr-btn.icon.small { width: 30px; }
+.gr-linkbtn { box-sizing: border-box; display: inline-flex; align-items: center; min-height: 28px; min-width: 30px; margin: 0; padding: 0; font: inherit; font-size: 0.84rem; line-height: 1.3; color: var(--gr-accent); background: none; border: 0; cursor: pointer; appearance: none; -webkit-appearance: none; }
+.gr-linkbtn:hover { text-decoration: underline; }
+.gr-linkbtn:disabled { color: var(--gr-faint); cursor: default; text-decoration: none; }
+.gr-check { box-sizing: border-box; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 28px; min-width: 30px; font-size: 0.86rem; line-height: 1.2; color: var(--gr-body); cursor: pointer; white-space: nowrap; }
+.gr-check input { width: 16px; height: 16px; margin: 0; accent-color: var(--gr-ink); cursor: pointer; }
+/* For a widget's own small target: a hit area of at least 30 by 28px around it, without changing its size. */
+.gr-hit { position: relative; }
+.gr-hit::after { content: ""; position: absolute; left: 50%; top: 50%; width: 100%; height: 100%; min-width: 30px; min-height: 28px; transform: translate(-50%, -50%); }
+
+/* ---- details: a closed note right under the caption (what was run, how it was measured). */
+.gr-details { margin: 0.1rem 0 0; font-size: 0.86rem; line-height: 1.55; color: var(--gr-body); }
+.gr-details > summary { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 28px; font-size: 0.84rem; line-height: 1.3; color: var(--gr-accent); cursor: pointer; list-style: none; }
+.gr-details > summary::-webkit-details-marker { display: none; }
+.gr-details > summary::before { content: ""; flex: none; width: 0.36rem; height: 0.36rem; margin: 0 0.05rem 0 0.1rem; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); transition: transform 120ms ease; }
+.gr-details[open] > summary::before { transform: translateY(-0.1rem) rotate(45deg); }
+.gr-details > summary:hover { text-decoration: underline; }
+.gr .gr-details p, .gr .gr-details ul { margin: 0.15rem 0 0.35rem; font-size: inherit; line-height: inherit; }
+
+/* ---- stage chips: .gr-hint, one chip at the bottom-right of a stage that says how to interact (add
+   .gone to fade it), and .gr-status, a status chip (top-left of a stage by the widget's own placing). */
+.gr-hint { position: absolute; z-index: 2; right: 8px; bottom: 8px; box-sizing: border-box; max-width: calc(100% - 16px); padding: 0.16rem 0.5rem; font-size: max(0.74rem, 11px); line-height: 1.3; color: var(--gr-muted); background: rgba(255, 255, 255, 0.9); border: 1px solid var(--gr-hair); border-radius: 999px; pointer-events: none; transition: opacity 300ms ease; }
+.gr-hint.gone { opacity: 0; }
+.gr-status { box-sizing: border-box; display: inline-flex; align-items: center; gap: 0.4rem; max-width: 100%; padding: 0.2rem 0.55rem; font-size: max(0.74rem, 11px); line-height: 1.25; color: var(--gr-ink); background: rgba(255, 255, 255, 0.92); border: 1px solid var(--gr-rule); border-radius: 999px; font-variant-numeric: tabular-nums; pointer-events: none; }
+.gr-status.warn { color: #8a2c1d; border-color: #f0c9c0; background: rgba(253, 240, 236, 0.97); }
+.gr-status .gr-spinner { width: 12px; height: 12px; flex: none; }
+
+/* ---- tooltip: a white card with a rule border and a soft shadow, ink text. */
+.gr-tip { position: fixed; z-index: 50; box-sizing: border-box; max-width: 17rem; padding: 0.45rem 0.6rem; font-size: 0.8rem; line-height: 1.4; color: var(--gr-ink); background: #fff; border: 1px solid var(--gr-rule); border-radius: 8px; box-shadow: 0 6px 20px rgba(39, 38, 43, 0.12), 0 1px 3px rgba(39, 38, 43, 0.08); font-variant-numeric: tabular-nums; pointer-events: none; opacity: 0; transition: opacity 90ms ease; }
+.gr-tip.on { opacity: 1; }
+.gr-tip.in { position: absolute; }
+.gr-tip.wide { max-width: calc(100vw - 16px); }       /* many rows, such as nine planners at one time */
+.gr-tip .ln { display: inline-block; width: 1rem; height: 0; margin-right: 0.35rem; border-top: 2.5px solid currentColor; border-radius: 2px; vertical-align: middle; }
+.gr-tip .dot { display: inline-block; width: 0.6rem; height: 0.6rem; margin-right: 0.35rem; border-radius: 50%; vertical-align: -1px; }
+.gr-tip .t { display: block; margin-bottom: 0.15rem; font-weight: 600; }
+.gr-tip .muted { color: var(--gr-muted); }
+.gr-tip .sw { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 2px; margin-right: 0.35rem; vertical-align: -1px; }
+.gr-tip .row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.9rem; white-space: nowrap; }
+.gr-tip .row b { font-weight: 600; }
+
+/* ---- legend and stat tile. */
+.gr-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 1rem; margin: 0.6rem 0 0; font-size: 0.8rem; line-height: 1.3; color: var(--gr-ink); }
+.gr-legend .it { display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; }
+/* Items grouped in a .grp wrap together, so a legend that needs two rows splits between groups (the teaser's). */
+.gr-legend .grp { display: inline-flex; flex: none; max-width: 100%; flex-wrap: wrap; align-items: center; gap: inherit; }
+.gr-legend .dot { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 50%; flex: none; }
+.gr-legend .ln { display: inline-block; width: 1.1rem; height: 0; border-top: 2.5px solid currentColor; border-radius: 2px; flex: none; }
+.gr-legend .ln.dashed, .gr-tip .ln.dashed { width: 1.25rem; height: 2px; border: 0; border-radius: 0; background: repeating-linear-gradient(to right, currentColor 0 5px, transparent 5px 8px); }
+.gr-legend .ln.dotted, .gr-tip .ln.dotted { width: 1.25rem; height: 2.5px; border: 0; border-radius: 0; background: radial-gradient(circle at 1.25px 1.25px, currentColor 1.25px, transparent 1.5px) 0 0 / 5px 2.5px repeat-x; }
+.gr-legend .ring { display: inline-block; width: 0.62rem; height: 0.62rem; border-radius: 50%; border: 1.5px solid currentColor; box-sizing: border-box; flex: none; }
+/* A legend entry that shows and hides its series: <button class="gr-key" aria-pressed="true"> in a .gr-legend. */
+.gr-key { position: relative; box-sizing: border-box; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 28px; min-width: 30px; margin: 0; padding: 2px 5px; font: inherit; line-height: 1.3; color: var(--gr-ink); text-align: left; white-space: nowrap; background: none; border: 1px solid transparent; border-radius: 6px; cursor: pointer; appearance: none; -webkit-appearance: none; transition: opacity 120ms ease, background-color 120ms ease; }
+.gr-key:hover { background: var(--gr-soft); }
+.gr-key[aria-pressed="false"] { opacity: 0.42; }
+.gr-key[aria-pressed="false"] > span { text-decoration: line-through; text-decoration-thickness: 1px; }
+.gr-key:disabled { cursor: default; background: none; }
+.gr .ell { display: inline-block; width: 1.25rem; height: 0.7rem; border-radius: 50%; border: 1.5px solid currentColor; box-sizing: border-box; flex: none; }
+.gr .ell.dashed { border-style: dashed; }
+.gr .ell.greedy { color: var(--gr-grrt); background: var(--gr-greedy-fill); }
+.gr .ell.informed { color: var(--gr-informed); background: var(--gr-informed-fill); border-style: dashed; }
+.gr-stat { box-sizing: border-box; min-width: 0; padding: 0.45rem 0.6rem 0.5rem; background: #fff; border: 1px solid var(--gr-hair); border-radius: 8px; }
+.gr-stat .k { display: block; margin-bottom: 0.2rem; font-size: max(0.64rem, 10px); line-height: 1.3; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gr-muted); font-weight: 600; }
+.gr-stat .v { font-size: 1rem; line-height: 1.3; color: var(--gr-ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.gr-stat .d { display: block; margin-top: 0.1rem; font-size: max(0.76rem, 11px); line-height: 1.35; color: var(--gr-muted); }
+
+/* ---- charts: white inside the card, axis and grid in the rule colours, 11px muted tick labels. */
+.gr-chart { display: block; width: 100%; height: auto; overflow: visible; background: var(--gr-chart-bg); touch-action: pan-y; }
+.gr-chart text { font-family: inherit; font-size: var(--gr-tick-size); fill: var(--gr-tick); font-variant-numeric: tabular-nums; }
+/* Axis titles, 12px bold, sentence case: the x title below the axis and centred, the y title horizontal
+   at the top-left of the plot, never rotated. The class works on SVG <text> and on HTML elements. */
+.gr-axis-title { font-size: var(--gr-label-size); line-height: 1.3; color: var(--gr-label); font-weight: 600; }
+.gr-chart text.gr-axis-title, text.gr-axis-title { font-size: var(--gr-label-size); fill: var(--gr-label); font-weight: 600; }
+.gr-chart .grid line, .gr-chart line.grid { stroke: var(--gr-grid); stroke-width: 1; }
+.gr-chart .axis line, .gr-chart .axis path, .gr-chart line.axis { stroke: var(--gr-axis); stroke-width: 1; fill: none; }
+
+/* ---- table (Show as a table): fits the content width; undoes the theme's 7.5rem cell minimum. The
+   density, on phones too, is set here only. */
+.gr .gr-table { display: table; width: 100%; min-width: 0; margin: 0; border-collapse: collapse; table-layout: auto; font-variant-numeric: tabular-nums; }
+.gr .gr-table th, .gr .gr-table td { min-width: 0; padding: 0.38rem 0.5rem; font-size: max(0.82rem, 11px) !important; line-height: 1.35; text-align: right; vertical-align: baseline; color: var(--gr-ink); background: transparent; border: 0; border-bottom: 1px solid var(--gr-hair); }
+.gr .gr-table thead th { font-size: max(0.72rem, 11px) !important; font-weight: 600; color: var(--gr-muted); white-space: normal; border-bottom: 1px solid var(--gr-rule); }
+.gr .gr-table th:first-child, .gr .gr-table td:first-child { text-align: left; }
+.gr .gr-table tbody tr:last-child th, .gr .gr-table tbody tr:last-child td { border-bottom: 0; padding-bottom: 0.38rem; }
+.gr .gr-table .best { font-weight: 700; }
+/* Our planner's row in every results table (tr.ours): a light tint of the G-RRT* green behind the whole row. The
+   tint is translucent, so it also reads on a dark card; a dark page theme (:root[data-theme="dark"]) takes its own value. */
+:root { --gr-ours-row: rgba(79, 146, 22, 0.085); }
+:root[data-theme="dark"] { --gr-ours-row: rgba(132, 196, 76, 0.16); }
+.gr .gr-table tr.ours > :is(th, td) { background: var(--gr-ours-row); }
+@container gr (max-width: 30rem) {
+  .gr .gr-table th, .gr .gr-table td { padding: 0.32rem 0.25rem; font-size: 11px !important; }
+  .gr .gr-table thead th { font-size: 11px !important; }
+}
+/* Rows that act as radio options (radioRows() in util.js): hover, focus ring, and the chosen row on a
+   soft ground with a bar in --c (the row's colour) at its left edge. */
+.gr .gr-table.selectable tr > :first-child { padding-left: 0.6rem; }
+.gr .gr-table.selectable tbody tr { cursor: pointer; }
+.gr .gr-table.selectable tbody tr:hover > :is(th, td) { background: #fafafc; }
+.gr .gr-table.selectable tbody tr:is([aria-checked="true"], .on) > :is(th, td) { background: var(--gr-soft); }
+.gr .gr-table.selectable tbody tr:is([aria-checked="true"], .on) > :first-child { box-shadow: inset 3px 0 0 var(--c, var(--gr-ink)); }
+.gr .gr-table.selectable tbody tr:focus-visible { outline: 2px solid var(--gr-accent); outline-offset: -2px; }
+
+/* ---- spinner: display none (and no animation) once hidden. */
+.gr-spinner { display: inline-block; box-sizing: border-box; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--gr-rule); border-top-color: var(--gr-grrt); animation: gr-spin 0.9s linear infinite; }
+.gr-spinner[hidden], .gr-spinner.off { display: none !important; animation: none; }
+
+/* ---- inline math in plain HTML that matches the page's KaTeX: <span class="gr-m">c<sub>i</sub></span>.
+   Letters are math italic; <b> is an upright bold vector; .rm is upright text (max, min, digits,
+   brackets); .hat puts a circumflex over one letter. MATH in util.js holds the common symbols. */
+/* The line height and font of KaTeX's own .katex rule are repeated here, so a paragraph with math keeps
+   its height when the KaTeX stylesheet arrives. */
+.gr .katex { font-size: 1.06em; line-height: 1.2; font-family: KaTeX_Main, "Times New Roman", serif; text-transform: none; font-variant: normal; letter-spacing: normal; white-space: nowrap; }
+.gr .katex .katex-mathml { position: absolute; clip: rect(1px, 1px, 1px, 1px); padding: 0; border: 0; height: 1px; width: 1px; overflow: hidden; }
+/* An inline formula is a box of its final width (written by _tools/grrtstar/page/measure_math.py), so
+   the line around it does not re-wrap when the KaTeX stylesheet and its fonts arrive. */
+.gr span[data-tex] { display: inline-block; width: var(--w, auto); white-space: nowrap; }
+.gr .katex .base, .gr .katex .strut { display: inline-block; }      /* as in KaTeX's stylesheet: the struts set each formula's height and depth */
+.gr-tex-fallback { font-style: italic; }
+/* The three KaTeX fonts that .gr-m uses, under names of their own, so that a widget needs no KaTeX
+   stylesheet: the browser fetches each file only when text in it is shown (the same files as KaTeX's). */
+@font-face { font-family: gr-math; font-style: italic; font-weight: 400; font-display: swap; src: url(https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/fonts/KaTeX_Math-Italic.woff2) format("woff2"); }
+@font-face { font-family: gr-main; font-style: normal; font-weight: 400; font-display: swap; src: url(https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/fonts/KaTeX_Main-Regular.woff2) format("woff2"); }
+@font-face { font-family: gr-main; font-style: normal; font-weight: 700; font-display: swap; src: url(https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/fonts/KaTeX_Main-Bold.woff2) format("woff2"); }
+/* A number with a power of ten from fmtNumHTML(): the font of its neighbours, a real superscript. */
+.gr-num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.gr-num sup { position: static; font-size: 0.72em; line-height: 0; vertical-align: 0.48em; margin-left: 0.04em; }
+.gr-m { font-family: gr-math, KaTeX_Math, "Times New Roman", Times, serif; font-size: 1.06em; font-style: italic; font-weight: 400; line-height: 1; text-transform: none; font-variant: normal; letter-spacing: normal; white-space: nowrap; }
+.gr-m b { font-family: gr-main, KaTeX_Main, "Times New Roman", Times, serif; font-style: normal; font-weight: 700; }
+.gr-m .rm { font-family: gr-main, KaTeX_Main, "Times New Roman", Times, serif; font-style: normal; font-weight: 400; }
+.gr-m sub, .gr-m sup { position: static; font-size: 0.7em; line-height: 0; }
+.gr-m sub { vertical-align: -0.21em; margin-left: 0.02em; }
+.gr-m sup { vertical-align: 0.52em; margin-left: 0.04em; }
+.gr-m .bb, .gr-m .bb + sup, .gr-m .bb + sup .rm { font-family: "STIX Two Math", "Cambria Math", "Times New Roman", Times, serif; font-style: normal; }   /* no web font for a blackboard R and its exponent */
+.gr-m .hat { position: relative; display: inline-block; margin-right: 0.1em; }
+.gr-m .hat::after { content: "\02C6"; position: absolute; left: 0.18em; right: -0.18em; top: -0.3em; text-align: center; font-family: gr-main, KaTeX_Main, "Times New Roman", Times, serif; font-style: normal; font-weight: 400; line-height: 1; }
+
+/* ---- touch and motion */
+@media (pointer: coarse) {
+  /* Taller hit areas without changing any height. */
+  .gr-seg button::after, .gr-chips button::after { content: ""; position: absolute; left: 0; right: 0; top: -8px; bottom: -8px; }
+  .gr-play::after, .gr-btn::after { content: ""; position: absolute; inset: -5px; }
+  .gr-check input { width: 18px; height: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gr-js .gr-teaser-stage:not(.live)::after, .gr-js .gr-slot::after, .gr-spinner { animation: none; }
+  .gr-seg button, .gr-chips button, .gr-play, .gr-btn, .gr-tip, .gr-key, .gr-hint, .gr-details > summary::before { transition: none; }
+}

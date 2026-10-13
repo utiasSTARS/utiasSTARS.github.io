@@ -1,0 +1,34 @@
+/* gr-informed: informed set versus greedy informed set. Layout only; the card, the controls, the status
+   and hint chips, the legend, the stat tiles and the caption come from the page's UI kit (page.css, part 2). */
+
+/* stage: the state space, white inside the card, with its boundary as a hairline */
+.gr-inf-stage { position: relative; width: 100%; aspect-ratio: 1.6; overflow: hidden; border: 1px solid var(--gr-rule); border-radius: 2px; background: #fff; user-select: none; -webkit-user-select: none; }
+.gr-inf-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y pinch-zoom; }
+.gr .gr-inf-canvas:focus-visible { outline-offset: -2px; }
+.gr-inf-stage.dragging .gr-inf-canvas { cursor: grabbing !important; }
+.gr-inf-labels { position: absolute; inset: 0; pointer-events: none; }
+.gr-inf-lab { position: absolute; left: 0; top: 0; visibility: hidden; padding: 1px 2px; font-size: 15px; line-height: 1.15; color: var(--gr-ink); white-space: nowrap; text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 5px #fff; will-change: transform; }
+.gr-inf-lab-m { color: var(--gr-green-text); }
+/* the status chip (kit .gr-status) at the top left, with a dot in the colour of the set it speaks of */
+.gr-inf-chip { position: absolute; left: 8px; top: 8px; max-width: calc(100% - 16px); pointer-events: none; }
+.gr-inf-dot { width: 0.55rem; height: 0.55rem; border-radius: 50%; flex: none; background: var(--gr-grrt); }
+.gr-inf-chip.out .gr-inf-dot { background: var(--gr-informed); }
+.gr-inf-chip.warn .gr-inf-dot { background: #c0392b; }
+.gr-inf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* readout: the two costs, side by side */
+.gr-inf-read { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
+.gr-inf-read .k { white-space: nowrap; }
+.gr-inf-read .k .ell { margin-right: 0.4rem; vertical-align: -0.12rem; }
+.gr-inf-read .v { display: flex; align-items: baseline; gap: 0.3em; white-space: nowrap; }
+
+/* a narrow column shows a closer, taller view of the problem (informed.js follows the stage's shape), and the tiles
+   drop their descriptions */
+@container gr (max-width: 34rem) {
+  .gr-inf-stage { aspect-ratio: 1.2; }
+  .gr-inf-read .gr-stat .d { display: none; }
+}
+@container gr (max-width: 30rem) {
+  .gr-inf-read { gap: 6px; }
+  .gr-inf-lab { font-size: 13px; }
+}

@@ -1,0 +1,68 @@
+/* gr-search: the search of G-RRT* in 2D, replayed from a recorded VAMP run, with its cost chart.
+   The card, chips, segmented control, transport, scrubber, legend and caption come from the shared UI kit
+   in page.css (_tools/grrtstar/UIKIT.md); this file only lays out the widget's own parts. Every row has a fixed
+   height, so the widget keeps one height across problems and playback states.
+   Rules are scoped under .gr-search: page.css sits in the page body and so follows this sheet in the cascade. */
+
+/* The card is a grid: problems and samples, then the panel with the chart beside it, then the transport. */
+.gr-search .gr-s-card { color: var(--gr-body, #5c5962); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; align-items: center;
+  grid-template-areas: "problems samples" "main main" "transport speed"; }
+.gr-search .gr-s-problems { grid-area: problems; min-height: 30px; align-items: center; }
+.gr-search .gr-s-samples { grid-area: samples; justify-self: end; }
+.gr-search .gr-s-speed { grid-area: speed; justify-self: end; }
+.gr-search .gr-s-transport { grid-area: transport; }
+.gr-search .gr-s-readout { display: inline-flex; align-items: baseline; gap: 0.7em; }
+.gr-s-seedno { color: var(--gr-muted, #6f6b75); }
+.gr-s-iter { min-width: 7.4em; text-align: right; }
+
+/* The panel takes a little more than half the width; the chart column has no height of its own and fills the
+   panel's, with its legend at the bottom. */
+.gr-s-main { grid-area: main; align-self: stretch; margin-top: 2px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px; }
+.gr-s-panel { margin: 0; min-width: 0; }
+.gr-s-head { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; height: 1.5rem; margin: 0 1px 2px; font-size: 0.86rem; line-height: 1.5rem; white-space: nowrap; overflow: hidden; }
+.gr-s-name { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--gr-ink, #27262b); font-weight: 600; }
+/* G-RRT*'s line in the chart. A line rather than a dot: the stage's start and goal dots are crimson and green. */
+.gr-s-dot { width: 1.1rem; height: 0; border-top: 2.5px solid var(--gr-grrt, #4f9216); border-radius: 2px; flex: none; }
+/* The readout fills the rest of the head and aligns its text right, so its box never moves when the text changes. */
+.gr-s-stat { flex: 1 1 auto; min-width: 0; display: inline-flex; justify-content: flex-end; gap: 0.9em; font-size: max(0.82rem, 11px); color: var(--gr-muted, #6f6b75); font-variant-numeric: tabular-nums; }
+.gr-s-stat b { color: var(--gr-ink, #27262b); font-weight: 600; }
+.gr-s-stage { position: relative; aspect-ratio: 1 / 1; border: 1px solid var(--gr-rule, #e6e3e8); border-radius: 2px; overflow: hidden; background: #fff; }
+.gr-s-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.gr-s-status { position: absolute; left: 8px; top: 8px; }
+.gr-search .gr-s-key { margin: 6px 1px 0; }
+
+.gr-s-side { position: relative; min-width: 0; }
+.gr-s-side-in { position: absolute; inset: 0; display: flex; flex-direction: column; }
+.gr-s-chart { position: relative; flex: 1 1 0; min-height: 0; }
+.gr-s-chart canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.gr-search .gr-s-legend { flex: none; margin: 4px 2px 0; }
+/* The 40-seed curve in the legend: its band with the median through the middle. */
+.gr-s-band { display: inline-block; width: 1.25rem; height: 0.7rem; border-radius: 2px; flex: none;
+  background: linear-gradient(rgba(79, 146, 22, 0.6), rgba(79, 146, 22, 0.6)) center / 100% 1.5px no-repeat, rgba(79, 146, 22, 0.15); }
+
+.gr-s-fail { grid-column: 1 / -1; margin: 0; padding: 2rem 1rem; text-align: center; font-size: 0.86rem; color: var(--gr-muted, #6f6b75); }
+
+/* Under 40rem one column: the samples toggle and the speed share a row, the transport sits right under the panel
+   (the panel and the chart become items of the card's grid) and the chart follows. */
+@container gr (max-width: 40rem) {
+  .gr-search .gr-s-card { grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas: "problems problems" "samples speed" "panel panel" "transport transport" "chart chart"; }
+  .gr-search .gr-s-samples { justify-self: start; }
+  .gr-s-main { display: contents; }
+  .gr-s-panel { grid-area: panel; width: 100%; max-width: 26rem; justify-self: center; margin-top: 2px; }
+  .gr-s-side { grid-area: chart; align-self: stretch; margin-top: 4px; }
+  .gr-s-side-in { position: static; }
+  .gr-s-chart { flex: none; height: 11rem; }
+}
+/* The problem chips keep the kit's phone size up to a 32rem column, so all three fit on one row from a 30rem
+   column on (at the regular size the third chip wraps alone until about 31rem). */
+@container gr (max-width: 32rem) {
+  .gr-search .gr-s-problems { gap: 5px; }
+  .gr-search .gr-s-problems button { padding: 3px 0.6rem; font-size: 0.8rem; }
+}
+/* Phones: the readout takes two lines. */
+@container gr (max-width: 30rem) {
+  .gr-s-head { font-size: max(0.82rem, 11px); }
+  .gr-search .gr-s-readout { flex-direction: column; align-items: flex-end; gap: 0; line-height: 1.25; }
+  .gr-s-chart { height: 10rem; }
+}

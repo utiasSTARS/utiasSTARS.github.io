@@ -1,0 +1,223 @@
+{
+ "robot": "ur5",
+ "label": "UR5 with Robotiq 2F-85",
+ "dof": 6,
+ "root": "offset_link",
+ "links": [
+  "offset_link",
+  "shoulder_link",
+  "upper_arm_link",
+  "forearm_link",
+  "wrist_1_link",
+  "wrist_2_link",
+  "wrist_3_link"
+ ],
+ "joints": [
+  {
+   "name": "shoulder_pan_joint",
+   "type": "revolute",
+   "parent": "offset_link",
+   "child": "shoulder_link",
+   "origin": {
+    "xyz": [
+     0.0,
+     0.0,
+     1.003559
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.706825181105,
+     0.707388269167
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    -3.1415927,
+    3.1415927
+   ]
+  },
+  {
+   "name": "shoulder_lift_joint",
+   "type": "revolute",
+   "parent": "shoulder_link",
+   "child": "upper_arm_link",
+   "origin": {
+    "xyz": [
+     0.0,
+     0.13585,
+     0.0
+    ],
+    "quat": [
+     0.0,
+     0.707106780552,
+     0.0,
+     0.707106781821
+    ]
+   },
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "limit": [
+    -3.1415927,
+    3.1415927
+   ]
+  },
+  {
+   "name": "elbow_joint",
+   "type": "revolute",
+   "parent": "upper_arm_link",
+   "child": "forearm_link",
+   "origin": {
+    "xyz": [
+     0.0,
+     -0.1197,
+     0.425
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "limit": [
+    -3.1415927,
+    3.1415927
+   ]
+  },
+  {
+   "name": "wrist_1_joint",
+   "type": "revolute",
+   "parent": "forearm_link",
+   "child": "wrist_1_link",
+   "origin": {
+    "xyz": [
+     0.0,
+     0.0,
+     0.39225
+    ],
+    "quat": [
+     0.0,
+     0.707106780552,
+     0.0,
+     0.707106781821
+    ]
+   },
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "limit": [
+    -3.1415927,
+    3.1415927
+   ]
+  },
+  {
+   "name": "wrist_2_joint",
+   "type": "revolute",
+   "parent": "wrist_1_link",
+   "child": "wrist_2_link",
+   "origin": {
+    "xyz": [
+     0.0,
+     0.093,
+     0.0
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    -3.1415927,
+    3.1415927
+   ]
+  },
+  {
+   "name": "wrist_3_joint",
+   "type": "revolute",
+   "parent": "wrist_2_link",
+   "child": "wrist_3_link",
+   "origin": {
+    "xyz": [
+     0.0,
+     0.0,
+     0.09465
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "limit": [
+    -3.1415927,
+    3.1415927
+   ]
+  }
+ ],
+ "ee": {
+  "link": "robotiq_85_base_link",
+  "parent": "wrist_3_link",
+  "xyz": [
+   0.0,
+   0.1173,
+   0.0005
+  ],
+  "quat": [
+   -0.706825125078,
+   -0.000281431274,
+   0.000281655474,
+   0.707388213095
+  ]
+ },
+ "ees": [
+  {
+   "link": "robotiq_85_base_link",
+   "parent": "wrist_3_link",
+   "xyz": [
+    0.0,
+    0.1173,
+    0.0005
+   ],
+   "quat": [
+    -0.706825125078,
+    -0.000281431274,
+    0.000281655474,
+    0.707388213095
+   ]
+  }
+ ],
+ "meshes": {
+  "full": "ur5.glb",
+  "normals": "crease"
+ },
+ "frames": "World = VAMP's world frame = URDF root link offset_link, z up. Joint vectors are VAMP configurations, in vamp.ur5.joint_names() order; prismatic joints in metres. ee = vamp.ur5.end_effector() = robotiq_85_base_link.",
+ "source": "vamp resources/ur5/ur5.urdf"
+}

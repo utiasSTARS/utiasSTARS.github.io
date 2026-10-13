@@ -1,0 +1,62 @@
+/* MotionBenchMaker viewer (#gr-mbm, js/mbm.js).
+   Everything with a look of its own is the page's UI kit (page.css, part 2): the card, .gr-seg and
+   .gr-chips, .gr-status and .gr-hint on the stage, .gr-legend, .gr-play and .gr-range, the selectable
+   .gr-table and .gr-caption. This file lays them out and styles the 3D stage and the length bars. Every
+   row has a fixed height, so the widget keeps one height across robots, scenes and paths. */
+
+/* The paper's colours (CONTRACT.md, round 4): the shown path amber, the other paths light warm grey. */
+.gr-mbm { --mbm-path: var(--gr-path, #e8a31a); --mbm-path-casing: #a8700f; --mbm-other: var(--gr-path-earlier, #c9c3b8); }
+
+/* ---------------------------------------------------------------- robot and scene pickers */
+.gr-mbm-bar { display: grid; gap: 8px; justify-items: start; margin: 0 0 10px; }
+/* Every robot's chips sit in the same cell: the longest list sets the height at any width. */
+.gr-mbm-scenes { display: grid; justify-self: stretch; }
+.gr-mbm-scenes > .gr-chips { grid-area: 1 / 1; align-content: start; }
+.gr-mbm-scenes > .gr-chips.off { visibility: hidden; pointer-events: none; }
+
+/* ---------------------------------------------------------------- stage */
+.gr-mbm-stage { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; border-radius: 4px; }
+.gr-mbm-stage canvas { position: absolute; inset: 0; display: block; width: 100% !important; height: 100% !important; outline: none; touch-action: pan-y; }
+.gr-mbm-chips { position: absolute; left: 8px; top: 8px; display: flex; flex-wrap: wrap; gap: 4px; max-width: calc(100% - 16px); pointer-events: none; }
+.gr-mbm-chips .gr-status:empty { display: none; }
+.gr-mbm-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 0.55rem; font-size: 0.84rem; color: var(--gr-muted, #6f6b75); background: rgba(255, 255, 255, 0.6); pointer-events: none; }
+.gr-mbm-stage [hidden] { display: none !important; }
+.gr-mbm-msg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 1rem 1.4rem; font-size: 0.86rem; line-height: 1.5; color: var(--gr-muted, #6f6b75); background: var(--gr-soft, #f5f6fa); }
+
+/* ---------------------------------------------------------------- legend and transport
+   (.gr-mbm before each class: page.css may come later in the document than this sheet) */
+.gr-mbm .gr-mbm-legend.off { visibility: hidden; }
+.gr-mbm .gr-mbm-legend .ln.path { color: var(--mbm-path); box-shadow: 0 0 0 1px var(--mbm-path-casing); }
+.gr-mbm .gr-mbm-legend .ln.other { color: var(--mbm-other); }
+.gr-mbm .gr-mbm-transport { margin: 6px 0 8px; }
+.gr-mbm .gr-mbm-dist { min-width: 7.6rem; text-align: right; }
+
+/* ---------------------------------------------------------------- the paths: selector and readout
+   The kit sets the table's density and the chosen row; --c colours its bar. Rows are controls, so they
+   are at least 28px tall at every width. */
+.gr-mbm .gr-mbm-table { --c: var(--mbm-path); }
+.gr-mbm .gr-mbm-table tbody :is(th, td) { height: 28px; box-sizing: border-box; vertical-align: middle; }
+.gr-mbm .gr-mbm-table .name { width: 1%; white-space: nowrap; font-weight: 400; color: var(--gr-body, #5c5962); }
+.gr-mbm .gr-mbm-table tr[aria-checked="true"] .name { color: var(--gr-ink, #27262b); font-weight: 600; }
+.gr-mbm .gr-mbm-table .bar { width: 100%; }
+.gr-mbm .gr-mbm-table td.bar i { display: block; height: 6px; min-width: 2px; border-radius: 3px; background: var(--mbm-other); transition: width 220ms ease; }
+.gr-mbm .gr-mbm-table tr[aria-checked="true"] td.bar i { background: var(--mbm-path); box-shadow: 0 0 0 1px var(--mbm-path-casing); }
+.gr-mbm .gr-mbm-table .len, .gr-mbm .gr-mbm-table .time { width: 1%; white-space: nowrap; }
+.gr-mbm .gr-mbm-table td.len { min-width: 4.6rem; }
+.gr-mbm .gr-mbm-table td.len .u { color: var(--gr-muted, #6f6b75); }
+.gr-mbm .gr-mbm-table tr[aria-checked="true"] td.len { font-weight: 600; }
+.gr-mbm .gr-mbm-table td.time { min-width: 6rem; color: var(--gr-body, #5c5962); }
+
+@container gr (max-width: 30rem) {
+  .gr-mbm-stage { aspect-ratio: 1 / 1.02; }
+  .gr-mbm .gr-mbm-dist { min-width: 6.6rem; }
+  .gr-mbm .gr-mbm-table td.len { min-width: 4.2rem; }
+  .gr-mbm .gr-mbm-table td.time { min-width: 5.4rem; }
+}
+@container gr (max-width: 21.5rem) {
+  .gr-mbm-bar > .gr-seg { display: grid; grid-template-columns: 1fr 1fr; justify-self: stretch; }
+  .gr-mbm-bar > .gr-seg button { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gr-mbm .gr-mbm-table td.bar i { transition: none; }
+}

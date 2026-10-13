@@ -1,0 +1,289 @@
+---
+layout: page
+title: "Greedy Heuristics for Sampling-Based Motion Planning (AURO 2026)"
+description: G-RRT* finds an initial solution with two trees that connect greedily. It then samples mostly from the greedy informed set, which is bounded by the maximum heuristic cost along the current solution, and converges faster in high-dimensional state spaces.
+permalink: /grrtstar/
+nav_order: 9978
+nav_exclude: false
+---
+
+<link rel="stylesheet" href="/assets/grrtstar/page.css">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous"></noscript>
+<script>document.documentElement.classList.add("gr-js");</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+<link rel="modulepreload" href="/assets/grrtstar/js/util.js">
+<link rel="modulepreload" href="/assets/grrtstar/js/teaser.js">
+<link rel="modulepreload" href="/assets/grrtstar/js/trace.js">
+<!-- The teaser's first recorded world, for the aspect ratio its stage takes: narrow (1.3) while the content column is at
+     most 34rem, which is a viewport under 577 px or from 800 to 856 px (the theme's sidebar appears at 800 px). -->
+<link rel="preload" href="/assets/grrtstar/data/teaser/wide-1.json" as="fetch" type="application/json" crossorigin="anonymous" media="(min-width: 577px) and (max-width: 799.98px), (min-width: 857px)">
+<link rel="preload" href="/assets/grrtstar/data/teaser/narrow-1.json" as="fetch" type="application/json" crossorigin="anonymous" media="(max-width: 576.98px), (min-width: 800px) and (max-width: 856.98px)">
+<script type="module" src="/assets/grrtstar/js/main.js"></script>
+
+<div class="gr" id="gr">
+<!-- slot-heights:start (written by _tools/grrtstar/page/reserve_slots.py from measured heights; do not edit by hand) -->
+<script>
+(function () {
+  /* Final height of each widget slot against the width of the content column, in px, as knots
+     [width, height, width, height, ...]: T[0] under the 14px root font (viewports below 500px),
+     T[1] under 16px. Between two knots the height is linear, or the larger one across a step. */
+  var T = [{"gr-informed":[292,500,296,504,301,508,302,509,308,514,314,519,318,522,320,524,322,525,323,526,324,527,325,502,326,503,332,508,336,511,338,513,344,518,350,523,353,525,354,506,359,511,362,513,365,516,368,518,370,520,376,525,382,530,388,535,394,540,400,545,406,550,412,555,418,560,420,561,421,564,424,566,426,568,432,573,439,579,442,581,444,583,448,586,449,587,450,588,456,593,463,599,465,600,466,582,470,586,471,586],"gr-dimension":[292,577,294,579,300,584,301,584,302,585,304,587,308,590,312,593,316,596,320,599,322,600,323,601,326,604,330,607,334,610,338,613,341,615,342,596,344,598,348,601,354,606,358,609,362,612,367,616,370,618,375,622,378,624,380,626,384,629,388,632,392,635,396,638,397,623,398,624,402,627,408,632,412,635,416,638,420,641,421,620,423,622,426,624,429,626,431,627,434,629,435,629,436,604,439,606,440,588,446,592,448,593,449,594,452,596,460,601,462,602,463,583,464,584,470,588,471,588],"gr-search":[292,838,301,847,302,848,305,851,306,835,322,851,323,852,332,861,333,843,372,882,373,864,382,873,396,873,397,854,414,854,415,823,420,823,421,876,422,876,423,845,448,845,449,845,471,845],"gr-live":[292,418,293,419,294,400,301,407,302,408,322,428,323,429,375,481,376,463,420,507,421,1037,423,1039,429,1042,430,1028,435,1031,439,1033,442,1034,444,1036,448,1038,449,1038,450,1039,456,1042,458,1041,460,1043,462,1044,464,1045,471,1049],"gr-mbm":[292,798,301,807,302,808,311,817,312,800,315,803,316,771,322,777,323,778,330,785,331,766,336,772,359,795,360,770,384,794,386,797,420,831,421,679,424,681,429,684,431,685,432,666,436,669,438,670,444,674,448,676,449,677,452,679,460,684,462,685,465,687,468,689,470,690,471,690],"gr-vamp-results":[292,842,301,842,302,842,306,842,307,830,322,830,323,830,356,830,357,811,420,811,421,818,435,818,436,792,448,792,449,792,458,792,459,772,471,772],"gr-vamp-eps0":[292,1332,301,1332,302,1332,322,1332,323,660,338,660,341,664,342,664,343,666,346,668,350,672,351,674,352,674,353,676,356,678,357,680,358,680,359,682,362,684,364,686,365,668,366,668,367,670,368,652,372,656,373,660,374,660,375,662,378,664,396,682,397,684,400,686,412,698,415,704,418,706,420,708,421,692,422,692,423,694,426,696,429,700,430,700,431,702,434,704,435,706,438,708,439,710,442,712,448,712,449,712,471,712],"gr-ompl-results":[292,923,301,923,302,923,311,923,312,890,322,890,323,890,342,890,343,860,344,841,420,841,421,820,448,820,449,820,471,820],"gr-live-started":[292,1209,293,1210,294,1191,301,1198,302,1199,319,1216,320,1181,322,1183,323,1184,325,1186,326,1151,351,1176,352,1141,375,1164,376,1146,420,1190,421,1037,423,1039,429,1042,430,1028,435,1031,439,1033,442,1034,444,1036,448,1038,449,1038,450,1039,456,1042,458,1041,460,1043,462,1044,464,1045,471,1049]},{"gr-informed":[468,622,472,626,478,631,480,632,481,634,486,639,492,644,498,649,500,650,504,654,512,660,513,661,516,664,520,667,521,668,522,647,524,649,532,656,540,662,544,666,545,576,547,578,549,579,552,581,557,584,560,586,568,591,569,569,570,570,580,576,588,581,596,586,604,591,607,593,608,593,609,594,612,596,620,601,626,605,636,611,640,613,641,614,644,616,647,618,652,621,660,626,668,631,676,636,679,638,684,641,690,645,700,651,708,656,716,661,720,663,721,664,724,666,727,668,730,670,740,676,748,681,751,683,756,686,762,690,764,691,767,693],"gr-dimension":[468,706,470,708,474,711,478,714,480,715,481,661,483,663,486,665,488,666,489,645,490,646,496,650,499,652,504,655,512,660,513,661,516,663,517,663,518,641,520,643,523,645,529,649,531,650,534,652,540,656,544,658,545,659,546,660,548,661,551,663,557,667,560,669,568,674,570,675,608,675,609,675,640,675,641,615,720,615,721,615,763,615,764,593,767,593],"gr-search":[468,917,480,917,481,941,512,941,513,941,544,941,545,941,557,941,558,919,608,919,609,919,640,919,641,582,645,584,647,585,652,588,668,596,672,599,676,601,678,602,689,608,691,609,696,612,712,620,716,623,720,625,721,625,724,627,727,629,729,630,731,631,732,609,744,616,748,618,750,619,761,625,763,626,766,628,767,628],"gr-live":[468,567,480,579,481,886,482,887,488,890,491,892,497,895,498,896,508,901,512,901,513,902,514,903,516,904,518,905,520,906,523,908,529,911,530,912,532,913,534,914,544,919,545,920,546,921,548,922,550,923,551,901,552,902,556,904,559,906,564,908,568,911,570,912,588,921,592,924,604,931,607,933,608,933,609,934,616,938,625,943,627,944,632,947,640,951,641,952,645,954,648,956,664,965,677,972,679,973,680,936,688,940,689,905,691,906,700,910,704,913,716,920,720,922,721,923,725,925,726,926,728,927,730,928,740,934,749,939,751,940,756,943,760,945,762,946,765,948,767,949],"gr-mbm":[468,897,480,909,481,745,482,746,483,746,484,725,489,728,492,730,497,733,500,735,508,740,512,742,513,743,516,745,519,747,521,748,524,750,529,753,532,755,535,757,540,760,544,762,545,763,548,765,551,767,556,770,559,772,564,775,569,778,572,780,580,785,588,790,596,795,604,800,607,802,608,802,609,803,612,805,620,810,625,813,628,815,636,820,640,822,641,823,644,825,647,827,652,830,660,835,668,840,676,845,679,847,684,850,689,853,692,855,700,860,708,865,716,870,720,872,721,873,724,875,725,841,727,843,729,844,730,822,731,823,736,826,744,831,750,835,760,841,761,842,763,843,766,845,767,845],"gr-vamp-results":[468,845,480,845,481,826,512,826,513,826,514,826,515,804,544,804,545,804,546,868,608,868,609,868,640,868,641,786,679,786,680,778,720,778,721,778,767,778],"gr-vamp-eps0":[468,736,480,736,481,724,512,724,513,724,544,724,545,724,605,724,606,701,608,701,609,701,640,701,641,701,720,701,721,378,724,379,728,380,736,382,740,384,748,386,760,389,764,390,767,390],"gr-ompl-results":[468,866,480,866,481,845,497,845,498,832,512,832,513,832,530,832,531,810,534,810,535,794,544,794,545,794,546,857,608,857,609,857,626,857,627,849,640,849,641,881,644,881,645,847,720,847,721,847,728,847,729,817,749,817,750,795,767,795],"gr-live-started":[468,1240,470,1240,480,1250,481,886,482,887,488,890,491,892,497,895,498,896,508,901,512,901,513,902,514,903,516,904,518,905,520,906,523,908,529,911,530,912,532,913,534,914,544,919,545,920,546,921,548,922,550,923,551,901,552,902,556,904,559,906,564,908,568,911,570,912,588,921,592,924,604,931,607,933,608,933,609,934,616,938,625,943,627,944,632,947,640,951,641,952,645,954,648,956,664,965,677,972,679,973,680,936,688,940,689,905,691,906,700,910,704,913,716,920,720,922,721,923,725,925,726,926,728,927,730,928,740,934,749,939,751,940,756,943,760,945,762,946,765,948,767,949]}];
+  var g = document.getElementById("gr");
+  function at(k, c) {
+    if (c <= k[0]) return k[1];
+    for (var i = 0; i < k.length - 2; i += 2) {
+      if (c <= k[i + 2]) {
+        var c0 = k[i], h0 = k[i + 1], c1 = k[i + 2], h1 = k[i + 3];
+        if (c1 - c0 <= 4 && Math.abs(h1 - h0) > 6) return c === c1 ? h1 : Math.max(h0, h1);
+        return h0 + (h1 - h0) * (c - c0) / (c1 - c0);
+      }
+    }
+    return k[k.length - 1];
+  }
+  window.grReserve = function () {
+    var c = g.clientWidth;
+    if (!c) return;
+    var t = T[parseFloat(getComputedStyle(document.documentElement).fontSize) < 15 ? 0 : 1];
+    for (var id in t) g.style.setProperty("--h-" + id, Math.ceil(at(t[id], c)) + "px");
+  };
+  window.grReserve();
+})();
+</script>
+<!-- slot-heights:end -->
+
+<div class="gr-hero">
+  <div class="gr-venue"><span class="gr-badge">Autonomous Robots 2026</span></div>
+  <h1 id="greedy-heuristics">Greedy Heuristics for Sampling&#8209;Based Motion Planning in High&#8209;Dimensional State Spaces</h1>
+  <p class="gr-authors">
+    <a href="https://www.phonethk.com">Phone Thiha Kyaw</a><sup>1</sup><span class="sep">,</span>
+    <a href="https://orcid.org/0000-0002-4804-7540">Anh Vu Le</a><sup>2</sup><span class="sep">,</span>
+    <a href="https://orcid.org/0000-0001-6504-1530">Rajesh Elara Mohan</a><sup>3</sup><span class="sep">,</span>
+    <a href="https://starslab.ca/people/prof-jonathan-kelly/">Jonathan Kelly</a><sup>1</sup>
+  </p>
+  <p class="gr-affil">
+    <span><sup>1</sup>Space &amp; Terrestrial Autonomous Robotic Systems Laboratory, University of Toronto Institute for Aerospace Studies</span>
+    <span><sup>2</sup>Advanced Intelligent Technology Research Group, Ton Duc Thang University</span>
+    <span><sup>3</sup>ROAR Lab, Engineering Product Development, Singapore University of Technology and Design</span>
+  </p>
+  <div class="gr-links">
+    <a class="btn btn-blue" href="https://doi.org/10.1007/s10514-026-10269-0" title="Autonomous Robots 50, 44 (2026)"><i class="fa fa-book" aria-hidden="true"></i> Paper</a>
+    <a class="btn btn-purple" href="https://arxiv.org/abs/2405.03411"><i class="fa fa-file-text-o" aria-hidden="true"></i> arXiv</a>
+    <a class="btn" href="https://arxiv.org/pdf/2405.03411"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</a>
+    <a class="btn" href="https://github.com/utiasSTARS/ompl/tree/planner/greedyrrtstar" title="G-RRT* in our fork of OMPL"><i class="fa fa-github" aria-hidden="true"></i> Code</a>
+    <a class="btn" href="https://github.com/KavrakiLab/vamp" title="G-RRT* in VAMP"><i class="fa fa-bolt" aria-hidden="true"></i> VAMP</a>
+    <a class="btn" href="#citation"><i class="fa fa-quote-right" aria-hidden="true"></i> BibTeX</a>
+  </div>
+</div>
+
+<figure class="gr-teaser" id="gr-teaser">
+  <div class="gr-teaser-stage" data-role="stage">
+    <canvas data-role="canvas" role="img" aria-label="Animation of recorded VAMP runs of G-RRT* in a plane with rectangular obstacles. One tree grows from the start on the left and one from the goal on the right until they meet, and a path then joins the start and the goal. The greedy informed set, a smaller ellipse inside the informed set, mostly shrinks as new samples improve the path."></canvas>
+    <div class="gr-teaser-hud" data-role="hud" aria-hidden="true"></div>
+    <noscript><img class="gr-teaser-still" src="/assets/grrtstar/figures/teaser.webp" width="1468" height="680" alt="A recorded VAMP run of G-RRT* in a plane with rectangular obstacles. A path joins a tree grown from the start and a tree grown from the goal. The greedy informed set, a small ellipse around the path, lies inside the larger informed set."></noscript>
+  </div>
+  <div class="gr-legend" aria-hidden="true">
+    <span class="grp">
+      <span class="it"><i class="ln" style="color:var(--gr-tree-start)"></i>start tree</span>
+      <span class="it"><i class="ln" style="color:var(--gr-tree-goal)"></i>goal tree</span>
+      <span class="it"><i class="ln" style="color:var(--gr-path)"></i>path</span>
+    </span>
+    <span class="grp">
+      <span class="it"><i class="dot" style="background:var(--gr-start)"></i>start</span>
+      <span class="it"><i class="dot" style="background:var(--gr-goal)"></i>goal</span>
+    </span>
+    <span class="grp">
+      <span class="it"><i class="ell informed"></i>informed set</span>
+      <span class="it"><i class="ell greedy"></i>greedy informed set</span>
+    </span>
+  </div>
+  <figcaption>
+    <span class="nw">G-RRT*</span> grows two trees, one from the start and one from the goal until they meet.
+    It then samples mostly from the greedy informed set, a smaller region inside the informed set.
+    The boundary of the greedy informed set passes through the state on the path with the maximum heuristic cost.
+  </figcaption>
+</figure>
+
+<p class="gr-lede">
+Informed sampling techniques focus sampling on the set of states whose heuristic cost is below the cost of the current solution. Initial solutions are often tortuous, which keeps this region large. The greedy informed set, on the other hand, depends only on the state along the path with the maximum heuristic cost, so any detours in other parts of the path do not make the set larger. Our planner <span class="nw">G-RRT*</span> finds an initial solution with two trees that grow toward each other, and then samples mostly from this greedy informed set while remaining asymptotically optimal.
+</p>
+
+<div class="gr-points">
+  <div class="gr-point">
+    <span class="k"><i class="gr-dot" style="background:var(--gr-grrt)"></i>Greedy informed set</span>
+    <b class="fig">1 state</b>
+    <p>on the current solution defines the sampling region, which always lies inside the informed set</p>
+  </div>
+  <div class="gr-point">
+    <span class="k"><i class="gr-dot" style="background:linear-gradient(90deg,var(--gr-tree-start) 50%,var(--gr-tree-goal) 50%)"></i><span class="nw">G-RRT*</span></span>
+    <b class="fig">2 trees</b>
+    <p>grow from the start and the goal and find an initial solution at least as fast as <span class="nw">RRT-Connect</span></p>
+  </div>
+  <div class="gr-point">
+    <span class="k"><i class="gr-dot" style="background:var(--gr-grrt)"></i>Final solution cost</span>
+    <b class="fig">13 of 15</b>
+    <p>OMPL problems, in 4 to 16 dimensions, where <span class="nw">G-RRT*</span> has the lowest median final solution cost after simplification</p>
+  </div>
+</div>
+<p class="gr-note small">Every animation and planner run on this page uses VAMP, except the OMPL experiments from the paper. Simplification means shortcutting followed by <span class="nw">B-spline</span> smoothing.</p>
+
+<h2 id="abstract">Abstract</h2>
+<div class="gr-abstract">
+  <p>
+    Informed sampling techniques accelerate the convergence of sampling-based motion planners by biasing sampling toward regions of the state space that are most likely to yield better solutions.
+    However, when the current solution path contains redundant or tortuous segments, the resulting informed subset may remain unnecessarily large, slowing convergence.
+    Our prior work addressed this issue by introducing the greedy informed set, which reduces the sampling region based on the maximum heuristic cost along the current solution path.
+    In this article, we formally characterize the behavior of the greedy informed set within Rapidly-exploring Random Tree (RRT*)-like planners and analyze how greedy sampling affects exploration and asymptotic optimality.
+    We then present Greedy RRT* (G-RRT*), a bi-directional anytime variant of RRT* that leverages the greedy informed set to focus sampling in the most promising regions of the search space.
+    Experiments on abstract planning benchmarks, manipulation tasks from the MotionBenchMaker dataset, and a dual-arm Barrett WAM problem demonstrate that G-RRT* rapidly finds initial solutions and converges asymptotically to optimal paths, outperforming state-of-the-art sampling-based planners.
+  </p>
+</div>
+
+<h2 id="greedy-informed-sampling">Greedy informed sampling</h2>
+<p>
+  The heuristic cost <span data-tex="\hat f(\mathbf{x})" style="--w:2.111em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>f</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hat f(\mathbf{x})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2079em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9579em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathbf">x</span><span class="mclose">)</span></span></span></span></span> of a state is a lower bound on the cost of any path from the start through that state to the goal. No path through the state can have a lower cost. Under the Euclidean metric, it is the sum of the straight-line distances from the start to the state and from the state to the goal, and the states whose heuristic cost is below a given value form a prolate hyperspheroid.
+  Informed sampling samples from the set of states whose heuristic cost is at most the cost of the current solution <a class="cite" href="#ref-gammell2018informed">[1]</a>.
+  The greedy informed set lowers this bound to the maximum heuristic cost along the current solution path <a class="cite" href="#ref-kyaw2022energy">[2]</a>.
+</p>
+<div class="gr-sets">
+  <div class="gr-set" style="--c:var(--gr-informed)">
+    <span class="k"><i class="ell dashed"></i>Informed set</span>
+    <div class="eq" data-tex="\mathcal{X}_{\hat f} = \{\, \mathbf{x} \in \mathcal{X}_{\mathrm{free}} \mid \hat f(\mathbf{x}) \le c_i \,\}" data-display><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="script">X</mi><mover accent="true"><mi>f</mi><mo>^</mo></mover></msub><mo>=</mo><mo stretchy="false">{</mo><mtext> </mtext><mi mathvariant="bold">x</mi><mo>∈</mo><msub><mi mathvariant="script">X</mi><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">e</mi></mrow></msub><mo>∣</mo><mover accent="true"><mi>f</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo stretchy="false">)</mo><mo>≤</mo><msub><mi>c</mi><mi>i</mi></msub><mtext> </mtext><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathcal{X}_{\hat f} = \{\, \mathbf{x} \in \mathcal{X}_{\mathrm{free}} \mid \hat f(\mathbf{x}) \le c_i \,\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1452em;vertical-align:-0.4618em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14643em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3743em;margin-left:-0.1464em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord accent mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9579em;"><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span></span><span style="top:-2.9634em;"><span class="pstrut" style="height:2.7em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord mtight">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4618em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathbf">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14643em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1464em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">free</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2079em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9579em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathbf">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mclose">}</span></span></span></span></span></div>
+    <p>bounded by the cost <span data-tex="c_i" style="--w:0.779em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">c_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> of the current solution</p>
+  </div>
+  <div class="gr-set" style="--c:var(--gr-grrt)">
+    <span class="k"><i class="ell"></i>Greedy informed set</span>
+    <div class="eq" data-tex="\mathcal{X}_{\mathrm{greedy}} = \{\, \mathbf{x} \in \mathcal{X}_{\mathrm{free}} \mid \hat f(\mathbf{x}) \le \hat f(\mathbf{x}_{\max}) \,\}" data-display><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="script">X</mi><mrow><mi mathvariant="normal">g</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">d</mi><mi mathvariant="normal">y</mi></mrow></msub><mo>=</mo><mo stretchy="false">{</mo><mtext> </mtext><mi mathvariant="bold">x</mi><mo>∈</mo><msub><mi mathvariant="script">X</mi><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">e</mi></mrow></msub><mo>∣</mo><mover accent="true"><mi>f</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo stretchy="false">)</mo><mo>≤</mo><mover accent="true"><mi>f</mi><mo>^</mo></mover><mo stretchy="false">(</mo><msub><mi mathvariant="bold">x</mi><mi>max</mi><mo>⁡</mo></msub><mo stretchy="false">)</mo><mtext> </mtext><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathcal{X}_{\mathrm{greedy}} = \{\, \mathbf{x} \in \mathcal{X}_{\mathrm{free}} \mid \hat f(\mathbf{x}) \le \hat f(\mathbf{x}_{\max}) \,\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14643em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1464em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight" style="margin-right:0.01389em;">greedy</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathbf">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14643em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1464em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">free</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2079em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9579em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathbf">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2079em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9579em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">m</span><span class="mtight">a</span><span class="mtight">x</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mclose">}</span></span></span></span></span></div>
+    <p>bounded by the state <span data-tex="\mathbf{x}_{\max}" style="--w:2.087em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold">x</mi><mi>max</mi><mo>⁡</mo></msub></mrow><annotation encoding="application/x-tex">\mathbf{x}_{\max}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5944em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathbf">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mop mtight"><span class="mtight">m</span><span class="mtight">a</span><span class="mtight">x</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> on the path with the maximum heuristic cost</p>
+  </div>
+</div>
+<p class="gr-note small">
+  With <span data-tex="\hat f(\mathbf{x}) = \lVert \mathbf{x} - \mathbf{x}_I \rVert_2 + \lVert \mathbf{x} - \mathbf{x}_G \rVert_2" style="--w:14.025em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>f</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">∥</mo><mi mathvariant="bold">x</mi><mo>−</mo><msub><mi mathvariant="bold">x</mi><mi>I</mi></msub><msub><mo stretchy="false">∥</mo><mn>2</mn></msub><mo>+</mo><mo stretchy="false">∥</mo><mi mathvariant="bold">x</mi><mo>−</mo><msub><mi mathvariant="bold">x</mi><mi>G</mi></msub><msub><mo stretchy="false">∥</mo><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\hat f(\mathbf{x}) = \lVert \mathbf{x} - \mathbf{x}_I \rVert_2 + \lVert \mathbf{x} - \mathbf{x}_G \rVert_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2079em;vertical-align:-0.25em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9579em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span><span style="top:-3.2634em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord">^</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathbf">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">∥</span><span class="mord mathbf">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">∥</span><span class="mord mathbf">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">∥</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>, both sets are the collision-free parts of hyperellipsoids with foci at the start <span data-tex="\mathbf{x}_I" style="--w:1.091em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold">x</mi><mi>I</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{x}_I</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5944em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathbf">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> and the goal <span data-tex="\mathbf{x}_G" style="--w:1.290em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="bold">x</mi><mi>G</mi></msub></mrow><annotation encoding="application/x-tex">\mathbf{x}_G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5944em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathbf">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>.
+</p>
+
+<section class="gr-slot" id="gr-informed" data-label="Loading the informed-set figure" aria-label="Informed set and greedy informed set, interactive figure">
+  <noscript><p class="gr-noscript">This interactive figure needs JavaScript. Figure 1 of the paper compares the two sets.</p></noscript>
+</section>
+
+<p>
+  When the current solution is in the same homotopy class as the optimal path, the greedy informed set contains the optimal path (Theorem 1 of the paper).
+  Two paths with the same endpoints are in the same homotopy class when one can be continuously deformed into the other without crossing an obstacle.
+  When the two paths are in different homotopy classes, the greedy informed set might not include the optimal path, as in the Slalom scene above (Remark 1 of the paper).
+  For this reason, <span class="nw">G-RRT*</span> also samples from the informed set to preserve asymptotic optimality.
+</p>
+
+<h3 id="high-dimensions">Greedy sampling in high dimensions</h3>
+<p>
+  For fixed path costs, the volume of the greedy informed set relative to the informed set decreases exponentially with the dimension of the state space.
+  When the greedy informed set contains every state that can improve the current solution, <span class="nw">G-RRT*</span> needs fewer samples than informed sampling to find a better solution.
+  The expected number of samples decreases by a factor of about 0.9 divided by this volume ratio (Theorem 3 of the paper).
+  Greedy sampling therefore helps most in high dimensions.
+</p>
+
+<section class="gr-slot" id="gr-dimension" data-label="Loading the dimension figure" aria-label="Volume ratio of the two sets as the dimension grows, interactive figure">
+  <noscript><p class="gr-noscript">This interactive figure needs JavaScript.</p></noscript>
+</section>
+
+<h2 id="grrt-star">G-RRT*</h2>
+<p>
+  <span class="nw">G-RRT*</span> grows one tree from the start and one from the goal.
+  As in <span class="nw">RRT-Connect</span> <a class="cite" href="#ref-kuffner2000rrt">[3]</a>, it connects the two trees greedily, so it finds an initial solution quickly.
+  After the trees meet, <span class="nw">G-RRT*</span> rewires both trees as RRT* <a class="cite" href="#ref-karaman2011sampling">[4]</a> does.
+  It samples each new state from the greedy informed set with probability <span data-tex="\epsilon" style="--w:0.441em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ϵ</span></span></span></span></span>, the greedy biasing ratio, and from the informed set otherwise.
+  Any <span data-tex="\epsilon < 1" style="--w:2.383em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\epsilon &lt; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">ϵ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span> keeps asymptotic optimality, and we use <span data-tex="\epsilon = 0.9" style="--w:3.207em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>=</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">\epsilon = 0.9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ϵ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.9</span></span></span></span></span>.
+</p>
+
+<section class="gr-slot" id="gr-search" data-label="Loading the G-RRT* search figure" aria-label="Search of G-RRT* in two dimensions, replayed from VAMP, interactive figure">
+  <noscript><p class="gr-noscript">This interactive figure needs JavaScript. Figure 5 of the paper shows the search of <span class="nw">G-RRT*</span> step by step.</p></noscript>
+</section>
+
+<h2 id="plan-in-your-browser">Plan in your browser</h2>
+<p>
+  <span class="nw">G-RRT*</span> is also part of <a href="https://github.com/KavrakiLab/vamp">VAMP</a> <a class="cite" href="#ref-thomason2024motions">[5]</a>, which uses SIMD instructions to speed up collision checking and forward kinematics.
+  Here, VAMP runs in your browser through its WebAssembly bindings.
+</p>
+
+<section class="gr-slot" id="gr-live" data-label="Loading the in-browser planner" aria-label="Motion planning in the browser with VAMP">
+  <noscript><p class="gr-noscript">The in-browser planner needs JavaScript and WebAssembly.</p></noscript>
+</section>
+
+<h2 id="motionbenchmaker">MotionBenchMaker on four robots</h2>
+<p>
+  MotionBenchMaker <a class="cite" href="#ref-chamzas2021motionbenchmaker">[6]</a> generates realistic manipulation problems for common robots, in scenes such as bookshelves, tables, boxes and cages.
+  We solve them with <span class="nw">G-RRT*</span> in VAMP for the Panda, UR5, Fetch and the dual-arm Baxter, which have 6 to 14 degrees of freedom (DoF).
+  For a typical problem in each scene, the viewer replays the initial solution and the best solution found within the time budget, each before and after simplification.
+</p>
+
+<section class="gr-slot" id="gr-mbm" data-label="Loading the MotionBenchMaker viewer" aria-label="G-RRT* solutions to MotionBenchMaker problems on four robots, in 3D">
+  <noscript><p class="gr-noscript">This 3D viewer needs JavaScript and WebGL. Figure 8 of the paper shows the Panda and Fetch problems.</p></noscript>
+</section>
+
+<h2 id="results">Results</h2>
+<h3 id="vamp-results">VAMP on MotionBenchMaker</h3>
+<p>
+  We compare <span class="nw">G-RRT*</span> with <span class="nw">RRT-Connect</span> <a class="cite" href="#ref-kuffner2000rrt">[3]</a>, AORRTC <a class="cite" href="#ref-wilson2025aorrtc">[7]</a> and FCIT* <a class="cite" href="#ref-wilson2025fcit">[8]</a> on the MotionBenchMaker problems of all four robots.
+  AORRTC simplifies each solution before it reports it, so we compare final solution costs after simplification.
+  After simplification, the median final solution costs of <span class="nw">G-RRT*</span> and AORRTC are within 0.3% of each other on the Panda and UR5 and within 1% on the Baxter, and <span class="nw">G-RRT*</span> has a 4% lower median final solution cost on the Fetch.
+</p>
+
+<section class="gr-slot" id="gr-vamp-results" data-label="Loading the VAMP results" aria-label="VAMP benchmark results on MotionBenchMaker">
+  <noscript><p class="gr-noscript">These charts need JavaScript.</p></noscript>
+</section>
+
+<!-- eps0-ablation:start (Round 7, removable block: CONTRACT.md lists every step) -->
+<p id="vamp-eps0">
+  We also run <span class="nw">G-RRT*</span> with <span data-tex="\epsilon = 0" style="--w:2.383em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\epsilon = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ϵ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>, so that it samples only from the informed set.
+  Both versions find the same initial solution, but the <span data-tex="\epsilon = 0" style="--w:2.383em"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\epsilon = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ϵ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span> version converges more slowly on all four robots.
+  The difference is largest on the Fetch and Baxter, where the greedy informed set is smallest relative to the informed set.
+</p>
+
+<section class="gr-slot" id="gr-vamp-eps0" data-label="Loading the ε = 0 comparison" aria-label="G-RRT* against its ε = 0 version in VAMP on MotionBenchMaker, charts">
+  <noscript><p class="gr-noscript">These charts need JavaScript.</p></noscript>
+</section>
+<!-- eps0-ablation:end -->
+
+<h3 id="ompl-results">OMPL experiments from the paper</h3>
+<p>
+  The paper's experiments in OMPL <a class="cite" href="#ref-sucan2012open">[9]</a> compare <span class="nw">G-RRT*</span> with eight other planners, on abstract problems in up to 16 dimensions, on MotionBenchMaker problems for the Panda and Fetch, and on a dual-arm Barrett WAM problem with 14 DoF.
+  <span class="nw">G-RRT*</span> finds initial solutions at least as fast as <span class="nw">RRT-Connect</span> and converges faster than the other asymptotically optimal planners.
+  Without path simplification, its final solution costs are comparable to those of AORRTC, whose reported costs already include simplification.
+  After simplification, <span class="nw">G-RRT*</span> has the lowest median final solution cost on 13 of the 15 problems.
+</p>
+
+<section class="gr-slot" id="gr-ompl-results" data-label="Loading the OMPL results" aria-label="OMPL benchmark results from the paper">
+  <noscript><p class="gr-noscript">These charts need JavaScript. Figures 7, 10 and 11 and Tables 1 and 2 of the paper give the same results.</p></noscript>
+</section>
+
+<h2 id="citation">Citation</h2>
+<div class="gr-bib">
+<button class="gr-copy" type="button" data-role="copy">Copy</button>
+<pre id="gr-bibtex">@article{kyaw2026greedy,
+  title   = {Greedy Heuristics for Sampling-Based Motion Planning
+             in High-Dimensional State Spaces},
+  author  = {Kyaw, Phone Thiha and Le, Anh Vu and
+             Mohan, Rajesh Elara and Kelly, Jonathan},
+  journal = {Autonomous Robots},
+  volume  = {50},
+  number  = {4},
+  pages   = {44},
+  year    = {2026},
+  doi     = {10.1007/s10514-026-10269-0}
+}</pre>
+</div>
+<p class="gr-code-note small" id="code">
+  <i class="fa fa-github" aria-hidden="true"></i> G-RRT* is available in our fork of OMPL at <a href="https://github.com/utiasSTARS/ompl/tree/planner/greedyrrtstar">utiasSTARS/ompl</a> and in VAMP at <a href="https://github.com/KavrakiLab/vamp">KavrakiLab/vamp</a>.
+</p>
+
+<h2 id="references">References</h2>
+<ol class="gr-refs">
+  <li id="ref-gammell2018informed">J. D. Gammell, T. D. Barfoot, and S. S. Srinivasa. Informed sampling for asymptotically optimal path planning. <i>IEEE Transactions on Robotics</i>, 34(4), 2018. <a href="https://doi.org/10.1109/TRO.2018.2830331">doi:10.1109/TRO.2018.2830331</a></li>
+  <li id="ref-kyaw2022energy">P. T. Kyaw, A. V. Le, P. Veerajagadheswar, M. R. Elara, T. T. Thu, N. H. K. Nhan, P. Van Duc, and M. B. Vu. Energy-efficient path planning of reconfigurable robots in complex environments. <i>IEEE Transactions on Robotics</i>, 38(4), 2022. <a href="https://doi.org/10.1109/TRO.2022.3147408">doi:10.1109/TRO.2022.3147408</a></li>
+  <li id="ref-kuffner2000rrt">J. J. Kuffner and S. M. LaValle. RRT-Connect: An efficient approach to single-query path planning. In <i>IEEE International Conference on Robotics and Automation (ICRA)</i>, 2000. <a href="https://doi.org/10.1109/ROBOT.2000.844730">doi:10.1109/ROBOT.2000.844730</a></li>
+  <li id="ref-karaman2011sampling">S. Karaman and E. Frazzoli. Sampling-based algorithms for optimal motion planning. <i>The International Journal of Robotics Research</i>, 30(7), 2011. <a href="https://doi.org/10.1177/0278364911406761">doi:10.1177/0278364911406761</a></li>
+  <li id="ref-thomason2024motions">W. Thomason, Z. Kingston, and L. E. Kavraki. Motions in microseconds via vectorized sampling-based planning. In <i>IEEE International Conference on Robotics and Automation (ICRA)</i>, 2024. <a href="https://doi.org/10.1109/ICRA57147.2024.10611190">doi:10.1109/ICRA57147.2024.10611190</a></li>
+  <li id="ref-chamzas2021motionbenchmaker">C. Chamzas, C. Quintero-Pe&ntilde;a, Z. Kingston, A. Orthey, D. Rakita, M. Gleicher, M. Toussaint, and L. E. Kavraki. MotionBenchMaker: A tool to generate and benchmark motion planning datasets. <i>IEEE Robotics and Automation Letters</i>, 7(2), 2022. <a href="https://doi.org/10.1109/LRA.2021.3133603">doi:10.1109/LRA.2021.3133603</a></li>
+  <li id="ref-wilson2025aorrtc">T. S. Wilson, W. Thomason, Z. Kingston, and J. D. Gammell. AORRTC: Almost-surely asymptotically optimal planning with RRT-Connect. <i>IEEE Robotics and Automation Letters</i>, 10(12), 2025. <a href="https://doi.org/10.1109/LRA.2025.3615522">doi:10.1109/LRA.2025.3615522</a></li>
+  <li id="ref-wilson2025fcit">T. S. Wilson, W. Thomason, Z. Kingston, L. E. Kavraki, and J. D. Gammell. Nearest-neighbourless asymptotically optimal motion planning with Fully Connected Informed Trees (FCIT*). In <i>IEEE International Conference on Robotics and Automation (ICRA)</i>, 2025. <a href="https://doi.org/10.1109/ICRA55743.2025.11127785">doi:10.1109/ICRA55743.2025.11127785</a></li>
+  <li id="ref-sucan2012open">I. A. &#536;ucan, M. Moll, and L. E. Kavraki. The Open Motion Planning Library. <i>IEEE Robotics &amp; Automation Magazine</i>, 19(4), 2012. <a href="https://doi.org/10.1109/MRA.2012.2205651">doi:10.1109/MRA.2012.2205651</a></li>
+</ol>
+
+</div>
