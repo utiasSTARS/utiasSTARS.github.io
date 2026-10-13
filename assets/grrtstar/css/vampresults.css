@@ -1,0 +1,109 @@
+/* Results widgets (gr-vamp-results and the rules gr-vamp-eps0 and gr-ompl-results share): layout and the marks of the
+   time chart. The card, controls, tooltip, table, legend and chart text are the page's UI kit (page.css).
+   This sheet is added to the head, so it comes before page.css in the page body: every rule that places
+   a kit class differently carries the .gr-res scope to outrank the kit's own rule. No text is under 11px. */
+
+.gr-res { color: var(--gr-body); }
+.gr-res :is(button, svg[tabindex]):focus-visible { outline: 2px solid var(--gr-accent); outline-offset: 2px; }
+
+/* ---------------------------------------------------------------- headline row
+   Its height is set by the widget to that of its tallest state, so text may wrap freely. */
+.gr-res-sum { margin: 0 0 10px; display: flex; flex-direction: column; }
+.gr-res-sum > .gr-lbl { display: block; margin: 0 0 6px; flex: none; }
+
+/* Legend keys that show and hide planners are the kit's .gr-key. In the VAMP widget each key is a tile
+   with its numbers (.gr-res-tile, local). */
+.gr-res .gr-res-keys { margin: 0; gap: 2px 1px; }
+.gr-res .gr-res-keys .gr-key .ln { width: 0.9rem; }
+.gr-res-keys.off .gr-key[aria-pressed="false"], .gr-res-keys.off .gr-res-tile[aria-pressed="false"] { opacity: 1; }
+.gr-res-keys.off [aria-pressed="false"] span { text-decoration: none; }
+.gr-res .gr-res-keys.tiles { flex: 1 1 auto; display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); align-content: stretch; align-items: stretch; gap: 6px; }
+.gr-res-tile {
+  position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start;
+  box-sizing: border-box; margin: 0; padding: 0.45rem 0.6rem 0.5rem; min-width: 0; font: inherit; color: var(--gr-ink); text-align: left;
+  background: #fff; border: 1px solid var(--gr-hair); border-radius: 8px; cursor: pointer; appearance: none; -webkit-appearance: none;
+  transition: opacity 120ms ease, border-color 120ms ease;
+}
+.gr-res-tile:hover:not(:disabled) { border-color: var(--gr-rule); background: var(--gr-soft); }
+.gr-res-tile:disabled { cursor: default; }
+.gr-res-tile[aria-pressed="false"] { opacity: 0.42; }
+.gr-res-tile[aria-pressed="false"] .it span { text-decoration: line-through; text-decoration-thickness: 1px; }
+.gr-res-tile .it { font-size: max(0.8rem, 11px); line-height: 1.3; }
+.gr-res-tile .body { display: block; margin-top: 3px; min-width: 0; max-width: 100%; }
+.gr-res-tile .v { display: block; font-size: 1rem; line-height: 1.3; color: var(--gr-ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.gr-res-tile .d { display: block; margin-top: 0.1rem; font-size: max(0.76rem, 11px); line-height: 1.35; color: var(--gr-muted); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+
+/* ---------------------------------------------------------------- stage: the chart or the table, one height */
+.gr-res-stage { position: relative; }
+.gr-res-plot { position: relative; }
+.gr-res-plot[hidden], .gr-res-tablebox[hidden] { display: none; }
+.gr-res-plot > svg { cursor: crosshair; -webkit-tap-highlight-color: transparent; }
+.gr-res-plot > svg:focus { outline: none; }
+.gr-res-plot > svg:focus-visible { outline: 2px solid var(--gr-accent); outline-offset: 3px; border-radius: 4px; }
+.gr-res .gr-chart .grid line.minor { stroke: #f7f6f9; }
+.gr-res-frame { fill: none; stroke: var(--gr-axis); stroke-width: 1; }
+.gr-res .gr-chart text.gr-res-note { paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+.gr-res-line { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.gr-res-band { stroke: none; }
+.gr-res-end { stroke: #fff; stroke-width: 1.5; }
+.gr-res-whisker { fill: none; stroke-width: 1.6; stroke-linecap: round; }
+.gr-res-cross line { stroke: var(--gr-ink); stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.55; }
+.gr-res-cross circle { stroke: #fff; stroke-width: 1.5; }
+.gr-res-line, .gr-res-band, .gr-res-end, .gr-res-whisker { transition: opacity 120ms ease; }
+.gr-res-faded { opacity: 0.16; }
+.gr-res-band.gr-res-faded { opacity: 0.2; }
+.gr-res-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Readout: the kit's tooltip card, with the values in columns under a header row (readoutHTML in
+   results-chart.js). Values are in normal weight; the best value of each column is bold. */
+.gr-res-plot .gr-tip { z-index: 5; }
+.gr-res-tg { display: grid; column-gap: 0.9rem; row-gap: 1px; align-items: baseline; white-space: nowrap; }
+.gr-res-tg.c3 { grid-template-columns: auto auto auto; }
+.gr-res-tg.c4 { grid-template-columns: auto auto auto auto; }
+.gr-res-tg.c3 > :not(:nth-child(3n + 1)), .gr-res-tg.c4 > :not(:nth-child(4n + 1)) { text-align: right; }
+.gr-res-tg > .h { align-self: end; margin-bottom: 2px; line-height: 1.2; }
+.gr-res-tg b { font-weight: 700; }
+
+/* The table takes the place of the chart at its own natural height (the stage drops the chart's height), and
+   the slot drops the height that the page reserves for the chart view (the first view), so no blank block stays
+   under the caption. The reader asked for the table, so the shift below it is not a layout shift. */
+.gr-js .gr-slot.gr-res-tableview { min-height: 0; }
+.gr-res-tablebox { box-sizing: border-box; display: flex; flex-direction: column; }
+.gr-res .gr-res-tablebox .gr-table { flex: none; }
+.gr-res .gr-res-tablebox .gr-table :is(th, td) { vertical-align: middle; }
+.gr-res .gr-res-tablebox .gr-table td { white-space: nowrap; }
+.gr-res .gr-res-tablebox .gr-table tbody th { font-weight: 400; }
+.gr-res .gr-res-tablebox .gr-table thead th { vertical-align: bottom; }
+.gr-res .gr-res-tablebox .gr-table thead tr.grp th { text-align: center; border-bottom: 0; padding-bottom: 0; }
+/* a group header (two columns under one head) has a rule under it, as the paper's tables */
+.gr-res .gr-res-tablebox .gr-table thead tr.grp th:not(:empty) { padding-bottom: 0.2rem; box-shadow: inset 0 -1px 0 var(--gr-rule); }
+.gr-res .gr-res-tablebox .gr-legend { display: inline-flex; margin: 0; font-size: inherit; }
+.gr-res .gr-res-tablebox .gr-legend .it { white-space: nowrap; }   /* planner names stay whole ("G-RRT*") */
+.gr-res .gr-res-tnote { flex: none; margin: 8px 0 0; font-size: max(0.78rem, 11px); line-height: 1.45; color: var(--gr-muted); }
+
+/* ---------------------------------------------------------------- foot
+   The line of text beside the link is as tall as its longest state (set by the widget). */
+.gr-res-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 2px 16px; margin-top: 8px; }
+.gr-res-meta { flex: 1 1 14rem; min-width: 0; font-size: max(0.8rem, 11px); line-height: 1.4; color: var(--gr-muted); font-variant-numeric: tabular-nums; }
+.gr-res-meta .gr-m { line-height: 0; }
+.gr-res-foot .gr-linkbtn { flex: none; }
+
+/* Four tiles in a row need about 150px each: two columns when the column is under 40rem. */
+@container gr (max-width: 40rem) {
+  .gr-res .gr-res-keys.tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* A very narrow phone: values may break at their unit and long names at their hyphen ("RRT-Connect", the dot on
+   the first line), so that the table stays inside the card. */
+@container gr (max-width: 23rem) {
+  .gr-res .gr-res-tablebox .gr-table td { white-space: normal; }
+  .gr-res .gr-res-tablebox .gr-legend .it { white-space: normal; align-items: flex-start; }
+  .gr-res .gr-res-tablebox .gr-legend .it .dot { margin-top: calc((1.35em - 0.6rem) / 2); }
+}
+@container gr (max-width: 30rem) {
+  .gr-res .gr-seg small { display: none; }   /* the degrees of freedom are in the line under the chart */
+  .gr-res-tile { padding: 0.4rem 0.5rem 0.45rem; }
+  .gr-res-meta { flex-basis: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gr-res-tile, .gr-res-line, .gr-res-band, .gr-res-end, .gr-res-whisker { transition: none; }
+}

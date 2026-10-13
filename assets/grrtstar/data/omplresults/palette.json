@@ -1,0 +1,34 @@
+{
+  "note": "Planner colours shared by every widget of the G-RRT* page (CONTRACT.md, Round 4). The nine OMPL planners take the colours of the paper's convergence plots, sampled from its PDFs, except G-RRT*, whose green #64a11b is darkened to #4f9216 so that it stays apart from AORRTC's amber under protanopia. FCIT* is not in the paper (VAMP only) and takes a magenta apart from every paper colour. Informed RRT* (search widget) takes the paper's RRT* colour. Some paper pairs are close (RRT*-Connect and AIT*, AORRTC and EIT*); legends, toggles, tooltips and tables carry the identity as well. Amber and the light colours never colour text: text stays in ink with a coloured mark beside it, and small green text uses --gr-green-text.",
+  "planners": {
+    "grrtstar": { "label": "G-RRT*", "color": "#4f9216" },
+    "grrtstar_vamp_before": { "label": "G-RRT* (previous VAMP version)", "color": "#4f9216", "dash": "5 4" },
+    "aorrtc": { "label": "AORRTC", "color": "#e8a31a" },
+    "rrtconnect": { "label": "RRT-Connect", "color": "#1a1a1a" },
+    "fcit": { "label": "FCIT*", "color": "#d1478b" },
+    "rrtstar": { "label": "RRT*", "color": "#910021" },
+    "rrtstarconnect": { "label": "RRT*-Connect", "color": "#c589e8" },
+    "bitstar": { "label": "BIT*", "color": "#0b5dae" },
+    "aitstar": { "label": "AIT*", "color": "#3bafec" },
+    "eitstar": { "label": "EIT*", "color": "#ee8866" },
+    "blitstar": { "label": "BLIT*", "color": "#a6611a" },
+    "informed_rrtstar": { "label": "Informed RRT*", "color": "#910021" }
+  },
+  "ompl_order": ["rrtconnect", "rrtstar", "rrtstarconnect", "bitstar", "aitstar", "eitstar", "blitstar", "aorrtc", "grrtstar"],
+  "vamp_ids": { "grrt_new": "grrtstar", "grrt_up": "grrtstar_vamp_before", "aorrtc": "aorrtc", "fcit": "fcit", "rrtc": "rrtconnect" },
+  "concepts": {
+    "tree_start": "#0b5dae",
+    "tree_goal": "#ce3e15",
+    "path": "#e8a31a",
+    "path_earlier": "#c9c3b8",
+    "start": "#910021",
+    "goal": "#4f9216",
+    "informed_set": "#8a8590",
+    "informed_set_fill": "rgba(138,133,144,0.07)",
+    "informed_set_dash": "5 4",
+    "greedy_informed_set": "#4f9216",
+    "greedy_informed_set_fill": "rgba(79,146,22,0.12)",
+    "obstacle": "#4a4752",
+    "green_text": "#3f7d12"
+  }
+}

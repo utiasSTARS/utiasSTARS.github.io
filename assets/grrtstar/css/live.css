@@ -1,0 +1,124 @@
+/* gr-live: real-time planning in the browser with VAMP compiled to WebAssembly (js/live.js).
+   Layout only: the card, controls, table, chart, legend, hint and tooltip styles are the page's UI kit
+   (page.css). On a wide column the card is drawn once, before Start, with everything in place, so its
+   height never changes. On a phone column (under 30rem) it shows only the stage before Start and grows
+   below it, once, when the demo starts.
+   page.css is linked from the page body, after this file: rules that adjust a kit class carry .gr-live
+   (or .gr .gr-live) in front, so that they do not depend on the order of the two stylesheets. */
+
+/* --gr-live-phone tells live.js which of the two layouts applies, so that it never decides differently */
+.gr-live { position: relative; --gr-live-ratio: 16 / 9; --gr-live-gap: 10px; --gr-live-phone: 0; }
+.gr-live .nw { white-space: nowrap; }
+@container gr (max-width: 30rem) { .gr-live { --gr-live-ratio: 1 / 1; --gr-live-gap: 8px; --gr-live-phone: 1; } }
+.gr-live .gr-live-card { display: flex; flex-direction: column; gap: var(--gr-live-gap); }
+
+/* ------------------------------------------------------------ stage: the poster, then the 3D view */
+.gr-live-stage { position: relative; aspect-ratio: var(--gr-live-ratio); border-radius: 6px; overflow: hidden; background: #fff; }
+.gr .gr-live .gr-live-stage:focus, .gr .gr-live .gr-live-stage:focus-visible { outline: none; }   /* holds the focus while it loads */
+.gr-live-stage canvas { display: block; width: 100%; height: 100%; outline: none; }
+.gr-live-stage.dragging canvas { cursor: grabbing; }
+.gr-live-stage.hover canvas { cursor: grab; }
+.gr-live-poster { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: 42% 45%; }
+.gr-live-poster.missing { visibility: hidden; }
+/* Wide: enlarged from the left, so that the table runs out of the frame (its near edge is close to
+   vertical in this view and read as the end of the picture) */
+@container gr (min-width: 30rem) { .gr-live-poster { transform: scale(1.17); transform-origin: 8% 42%; } }
+
+/* Before Start: one sentence and the button over the lower part of the poster */
+.gr-live-start { position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 3.5rem 1rem 1rem; text-align: center; background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.9) 3rem, #fff 100%); }
+.gr-live-start[hidden] { display: none; }
+.gr-live-start p { margin: 0; max-width: 31rem; font-size: 0.95rem; line-height: 1.45; color: var(--gr-ink); text-wrap: balance; }
+.gr-live-start .note { font-size: max(0.76rem, 11px); line-height: 1.3; color: var(--gr-muted); }
+.gr-live-msg { max-width: 30rem; padding: 0.5rem 0.75rem; font-size: 0.86rem; line-height: 1.4; color: var(--gr-ink); background: #fff; border: 1px solid var(--gr-rule); border-radius: 8px; }
+
+/* Status over the stage */
+.gr-live-hud { position: absolute; z-index: 3; left: 8px; top: 8px; right: 8.4rem; display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; pointer-events: none; }
+.gr-live-hud[hidden] { display: none; }
+.gr-live .gr-live-hud .gr-status { min-height: 26px; }
+.gr-live .gr-live-hud .gr-status[hidden] { display: none; }
+.gr-live .gr-live-again { position: absolute; z-index: 3; right: 8px; top: 8px; }
+.gr-live .gr-live-again[hidden] { display: none; }
+.gr-live-again svg.ln, .gr-live-controls svg.ln { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.gr-live-controls svg.ln .dot { fill: currentColor; stroke: none; }
+.gr-live .gr-live-stage .gr-hint { z-index: 3; }
+.gr-live .gr-live-stage .gr-hint[hidden] { display: none; }
+.gr-live-loading { position: absolute; z-index: 4; inset: 0; display: grid; place-items: center; background: rgba(255, 255, 255, 0.55); }
+
+/* ------------------------------------------------------------ under the stage (inert until it runs) */
+.gr-live-body { display: flex; flex-direction: column; gap: var(--gr-live-gap); min-width: 0; transition: opacity 200ms ease; }
+.gr-live-card[data-state="idle"] .gr-live-body, .gr-live-card[data-state="loading"] .gr-live-body { opacity: 0.4; pointer-events: none; user-select: none; }
+/* Phone column: nothing under the stage before Start */
+@container gr (max-width: 30rem) { .gr-live-card[data-state="idle"] .gr-live-body { display: none; } }
+.gr-live .gr-live-legend { margin: 0; }
+.gr-live .gr-live-legend .ln + .ln { margin-left: -0.25rem; }
+.gr-live .gr-live-legend .gr-live-goalmk { flex: none; width: 1.2rem; height: 0.76rem; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+/* One line on a 320 px phone, with room to spare for wider fonts */
+@container gr (max-width: 30rem) { .gr-live .gr-live-legend { column-gap: 0.85rem; } }
+.gr-live .gr-live-transport .gr-readout { min-width: 7.6rem; text-align: right; }
+.gr-live .gr-live-view, .gr-live .gr-live-controls { margin: 0; }
+.gr-live .gr-live-view { gap: 8px 14px; }
+.gr-live .gr-live-controls { gap: 8px 18px; padding-top: var(--gr-live-gap); border-top: 1px solid var(--gr-hair); }
+.gr-live .gr-live-controls .gr-seg button { justify-content: center; }
+.gr-live-controls .gr-seg button[hidden] { display: none; }
+.gr-live-controls .gr-seg button:disabled { pointer-events: none; }     /* the group shows its tooltip */
+/* Phone column: one group per row, so that Goal has a row of its own (a very narrow one may wrap) */
+@container gr (max-width: 30rem) { .gr-live .gr-live-controls .gr-group { flex: 1 1 100%; flex-wrap: wrap; } }
+
+/* ------------------------------------------------------------ results: table and convergence chart,
+   side by side down to a 30rem column, stacked only on a phone column. The table's least widths are in
+   pixels, like its text. Under 480 px the two cannot share a row: that is every phone column, and also the
+   columns of 421 to 471 px that viewports of 449 to 499 px get, where the root font is 14 px and 30rem
+   is 420 px. */
+.gr-live-results { display: grid; grid-template-columns: minmax(360px, 1.25fr) minmax(0, 1fr); gap: var(--gr-live-gap) 18px; align-items: start; padding-top: var(--gr-live-gap); border-top: 1px solid var(--gr-hair); }
+@container gr (max-width: 38rem) { .gr-live-results { grid-template-columns: minmax(296px, 1.25fr) minmax(0, 1fr); column-gap: 14px; } }
+@container gr (max-width: 30rem) { .gr-live-results { grid-template-columns: minmax(0, 1fr); } }
+@container gr (max-width: 479.98px) { .gr-live-results { grid-template-columns: minmax(0, 1fr); } }
+/* Fixed column widths, and every body cell is a box of fixed height holding the value and a small note
+   under it, so that no result changes the layout (.gr .gr-live in front: these must win over .gr .gr-table).
+   The widths hold the longest strings a cell can show: "RRT-Connect", "not found", "fails check". */
+.gr .gr-live .gr-live-table { table-layout: fixed; }
+.gr-live-table col.name { width: 33.6%; }
+.gr-live-table col.time { width: 24%; }
+.gr-live-table col.len { width: 21.2%; }
+/* Between 30rem and 38rem the table shares the row with the chart at the kit's phone density
+   (11 px, 0.25rem at the sides), which the kit itself applies only under 30rem */
+@container gr (max-width: 38rem) {
+  .gr .gr-live .gr-live-table th, .gr .gr-live .gr-live-table td { padding-left: 0.25rem; padding-right: 0.25rem; font-size: 11px !important; }
+  .gr-live-table col.name { width: 35.5%; }
+  .gr-live-table col.time { width: 20.5%; }
+  .gr-live-table col.len { width: 22%; }
+}
+@container gr (max-width: 30rem) {
+  .gr-live-table col.name { width: 35%; }
+  .gr-live-table col.time { width: 22%; }
+  .gr-live-table col.len { width: 21.5%; }
+}
+/* A 320 px phone: the names and the times keep their room (the rare note "fails check" loses its end there) */
+@container gr (max-width: 300px) {
+  .gr-live-table col.name { width: 38%; }
+  .gr-live-table col.time { width: 21.5%; }
+  .gr-live-table col.len { width: 20.25%; }
+}
+.gr .gr-live .gr-live-table thead th { vertical-align: bottom; overflow-wrap: normal; word-break: normal; hyphens: none; }
+.gr .gr-live .gr-live-table thead th.span { text-align: center; }
+.gr .gr-live .gr-live-table thead tr + tr th { text-align: right; }
+.gr .gr-live .gr-live-table tbody tr th, .gr .gr-live .gr-live-table tbody tr td,
+.gr .gr-live .gr-live-table tbody tr:last-child th, .gr .gr-live .gr-live-table tbody tr:last-child td { height: 34px; padding-top: 4px; padding-bottom: 2px; vertical-align: top; white-space: nowrap; }
+.gr .gr-live .gr-live-table tbody th { font-weight: 600; }
+.gr .gr-live .gr-live-table tbody tr.stale td { color: var(--gr-faint); }
+/* The value on the first line of every cell of a row, the note under it */
+.gr-live-table .c { display: flex; flex-direction: column; justify-content: flex-start; height: 34px; overflow: hidden; }
+.gr-live-table th .c { flex-direction: row; align-items: flex-start; gap: 0.45rem; line-height: 20px; }
+.gr-live-table th .c .sw { flex: none; width: 0.6rem; height: 0.6rem; margin-top: calc(10px - 0.3rem); border-radius: 50%; }
+.gr-live-table .v, .gr-live-table .sub { display: block; flex: none; overflow: hidden; }
+.gr-live-table .v { height: 20px; line-height: 20px; }
+.gr-live-table .sub { height: 14px; font-size: max(0.88em, 11px); line-height: 14px; color: var(--gr-muted); }
+.gr-live-table .sub.bad { color: #a33a26; }
+.gr-live-table td[data-tip] { cursor: help; }
+.gr-live-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.gr-live-chart { position: relative; min-width: 0; transition: opacity 150ms ease; }   /* live.js holds its height until the chart is in */
+.gr-live-chart.stale { opacity: 0.4; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gr-live-body, .gr-live-chart { transition: none; }
+}

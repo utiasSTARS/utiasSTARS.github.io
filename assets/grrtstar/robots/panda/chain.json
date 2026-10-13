@@ -1,0 +1,253 @@
+{
+ "robot": "panda",
+ "label": "Franka Emika Panda",
+ "dof": 7,
+ "root": "panda_link0",
+ "links": [
+  "panda_link0",
+  "panda_link1",
+  "panda_link2",
+  "panda_link3",
+  "panda_link4",
+  "panda_link5",
+  "panda_link6",
+  "panda_link7"
+ ],
+ "joints": [
+  {
+   "name": "panda_joint1",
+   "type": "revolute",
+   "parent": "panda_link0",
+   "child": "panda_link1",
+   "origin": {
+    "xyz": [
+     0.0,
+     0.0,
+     0.333
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    -2.9671,
+    2.9671
+   ]
+  },
+  {
+   "name": "panda_joint2",
+   "type": "revolute",
+   "parent": "panda_link1",
+   "child": "panda_link2",
+   "origin": {
+    "xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "quat": [
+     -0.707106781185,
+     0.0,
+     0.0,
+     0.707106781188
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    -1.8326,
+    1.8326
+   ]
+  },
+  {
+   "name": "panda_joint3",
+   "type": "revolute",
+   "parent": "panda_link2",
+   "child": "panda_link3",
+   "origin": {
+    "xyz": [
+     0.0,
+     -0.316,
+     0.0
+    ],
+    "quat": [
+     0.707106781185,
+     0.0,
+     0.0,
+     0.707106781188
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    -2.9671,
+    2.9671
+   ]
+  },
+  {
+   "name": "panda_joint4",
+   "type": "revolute",
+   "parent": "panda_link3",
+   "child": "panda_link4",
+   "origin": {
+    "xyz": [
+     0.0825,
+     0.0,
+     0.0
+    ],
+    "quat": [
+     0.707106781185,
+     0.0,
+     0.0,
+     0.707106781188
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    -3.1416,
+    0.0873
+   ]
+  },
+  {
+   "name": "panda_joint5",
+   "type": "revolute",
+   "parent": "panda_link4",
+   "child": "panda_link5",
+   "origin": {
+    "xyz": [
+     -0.0825,
+     0.384,
+     0.0
+    ],
+    "quat": [
+     -0.707106781185,
+     0.0,
+     0.0,
+     0.707106781188
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    -2.9671,
+    2.9671
+   ]
+  },
+  {
+   "name": "panda_joint6",
+   "type": "revolute",
+   "parent": "panda_link5",
+   "child": "panda_link6",
+   "origin": {
+    "xyz": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "quat": [
+     0.707106781185,
+     0.0,
+     0.0,
+     0.707106781188
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    -0.0873,
+    3.8223
+   ]
+  },
+  {
+   "name": "panda_joint7",
+   "type": "revolute",
+   "parent": "panda_link6",
+   "child": "panda_link7",
+   "origin": {
+    "xyz": [
+     0.088,
+     0.0,
+     0.0
+    ],
+    "quat": [
+     0.707106781185,
+     0.0,
+     0.0,
+     0.707106781188
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    -2.9671,
+    2.9671
+   ]
+  }
+ ],
+ "ee": {
+  "link": "panda_grasptarget",
+  "parent": "panda_link7",
+  "xyz": [
+   0.0,
+   0.0,
+   0.212
+  ],
+  "quat": [
+   0.0,
+   0.0,
+   -0.382683432365,
+   0.923879532511
+  ]
+ },
+ "ees": [
+  {
+   "link": "panda_grasptarget",
+   "parent": "panda_link7",
+   "xyz": [
+    0.0,
+    0.0,
+    0.212
+   ],
+   "quat": [
+    0.0,
+    0.0,
+    -0.382683432365,
+    0.923879532511
+   ]
+  }
+ ],
+ "meshes": {
+  "full": "panda.glb",
+  "ghost": "panda_ghost.glb",
+  "normals": "crease"
+ },
+ "frames": "World = VAMP's world frame = URDF root link panda_link0, z up. Joint vectors are VAMP configurations, in vamp.panda.joint_names() order; prismatic joints in metres. ee = vamp.panda.end_effector() = panda_grasptarget.",
+ "source": "vamp resources/panda/panda.urdf"
+}

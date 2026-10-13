@@ -1,0 +1,41 @@
+/* gr-dimension: the volume ratio of the two sets against the dimension (Round 11). Layout only; the card, the
+   controls, the legend, the tooltip, the axis titles and the caption come from the page's UI kit
+   (page.css, part 2). */
+
+/* the robot buttons and the dimension slider, side by side on a wide column */
+.gr-dim-ctl { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 8px 24px; margin: 0 0 10px; padding-bottom: 10px; border-bottom: 1px solid var(--gr-hair); }
+.gr-dim-slider { display: flex; flex-direction: column; min-width: 0; margin: 0; cursor: pointer; }
+.gr-dim-slider .top { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; min-height: 1.35rem; font-size: 0.86rem; line-height: 1.3; color: var(--gr-body); white-space: nowrap; }
+.gr-dim-slider .val { min-width: 2.2em; text-align: right; color: var(--gr-ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+.gr-dim-ticks { position: relative; display: block; height: 0.9rem; margin: -3px 7px 0; }
+.gr-dim-ticks span { position: absolute; top: 0; transform: translateX(-50%); font-size: 11px; line-height: 1; color: var(--gr-muted); font-variant-numeric: tabular-nums; }
+.gr-dim-ticks span.on { color: var(--gr-ink); font-weight: 600; }
+.gr-dim-ticks span.paper::after { content: ""; position: absolute; left: 50%; top: -5px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--gr-ink); }
+@media (pointer: coarse) { .gr-dim-ticks { margin-left: 9px; margin-right: 9px; } }
+
+/* the chart: its title above it, at a width that keeps a sensible shape on a wide column */
+.gr-dim-panel { display: flex; flex-direction: column; min-width: 0; max-width: 34rem; margin: 0 auto; }
+.gr .gr-dim-yt { display: block; margin: 0 0 6px 2px; white-space: normal; }
+.gr-dim-canvas-wrap { position: relative; width: 100%; aspect-ratio: 1.55; background: #fff; }
+.gr-dim-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; }
+.gr-dim-xt { position: absolute; left: calc(44px + (100% - 54px) / 2); bottom: 0; transform: translateX(-50%); white-space: nowrap; pointer-events: none; }
+.gr-dim-legend { margin: 4px 2px 0; }
+.gr-dim-mk { display: inline-block; position: relative; width: 9px; height: 0.95rem; flex: none; }
+.gr-dim-mk::before { content: ""; position: absolute; left: 4px; top: 0; bottom: 0; width: 1px; background: var(--gr-grrt); }
+.gr-dim-mk::after { content: ""; position: absolute; left: 1px; top: 25%; width: 5px; height: 50%; border-radius: 3px; border: 1.5px solid var(--gr-grrt); background: #fff; box-sizing: border-box; }
+
+/* the readout: one sentence under the chart */
+.gr .gr-dim-read { max-width: 34rem; min-height: 1.5em; margin: 10px auto 0; font-size: 0.9rem; line-height: 1.5; color: var(--gr-ink); font-variant-numeric: tabular-nums; }
+.gr-dim-read .gr-m, .gr-dim-read .gr-num { line-height: 0; }   /* an exponent must not raise its line */
+.gr-dim-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* a narrower column: the slider goes under the robot buttons, and the readout may take two lines */
+@container gr (max-width: 40rem) {
+  .gr-dim-ctl { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .gr .gr-dim-read { min-height: 3em; }
+}
+/* phones: the buttons drop the joint counts, and the chart is a little taller */
+@container gr (max-width: 30rem) {
+  .gr-dim-pre .gr-seg small { display: none; }
+  .gr-dim-canvas-wrap { aspect-ratio: 1.3; }
+}

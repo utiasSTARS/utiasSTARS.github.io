@@ -1,0 +1,16 @@
+/* gr-ompl-results: layout on top of the shared results rules in vampresults.css. */
+
+/* Problem picker. A wide column shows the six families with their variants (three rows). Under 40rem
+   that would take five or six rows, so the column shows the family chips and, below them, the variants
+   of the chosen family. */
+.gr-res .gr-ompl-fams { display: none; }
+.gr-res .gr-ompl-problems { gap: 6px 18px; margin-bottom: 12px; align-content: flex-start; }
+.gr-res .gr-ompl-problems .gr-group { gap: 4px 7px; }
+@container gr (max-width: 40rem) {
+  .gr-res .gr-ompl-fams { display: flex; margin: 0 0 8px; }
+  .gr-res .gr-ompl-problems .gr-group:not(.on) { display: none; }
+  .gr-res .gr-ompl-problems .gr-group .lbl { display: none; }
+}
+
+.gr-ompl .gr-res-sum { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; align-items: stretch; }
+.gr-res.gr-ompl .gr-res-keys { margin: 8px -3px 0; }

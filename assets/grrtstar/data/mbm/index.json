@@ -1,0 +1,176 @@
+{
+ "planner": "grrt_new",
+ "variants": [
+  "first",
+  "first_simp",
+  "best",
+  "best_simp"
+ ],
+ "robots": [
+  {
+   "robot": "panda",
+   "label": "Panda",
+   "dof": 7,
+   "budget_ms": 1000,
+   "length_unit": "rad",
+   "file": "panda.json",
+   "bytes": 22024,
+   "scenes": [
+    {
+     "scene": "bookshelf_small",
+     "label": "bookshelf small",
+     "index": 67
+    },
+    {
+     "scene": "bookshelf_tall",
+     "label": "bookshelf tall",
+     "index": 34
+    },
+    {
+     "scene": "bookshelf_thin",
+     "label": "bookshelf thin",
+     "index": 64
+    },
+    {
+     "scene": "box",
+     "label": "box",
+     "index": 5
+    },
+    {
+     "scene": "cage",
+     "label": "cage",
+     "index": 28
+    },
+    {
+     "scene": "table_pick",
+     "label": "table pick",
+     "index": 97
+    },
+    {
+     "scene": "table_under_pick",
+     "label": "table under pick",
+     "index": 60
+    }
+   ]
+  },
+  {
+   "robot": "ur5",
+   "label": "UR5",
+   "dof": 6,
+   "budget_ms": 1000,
+   "length_unit": "rad",
+   "file": "ur5.json",
+   "bytes": 18308,
+   "scenes": [
+    {
+     "scene": "bookshelf_small",
+     "label": "bookshelf small",
+     "index": 10
+    },
+    {
+     "scene": "bookshelf_tall",
+     "label": "bookshelf tall",
+     "index": 50
+    },
+    {
+     "scene": "bookshelf_thin",
+     "label": "bookshelf thin",
+     "index": 57
+    },
+    {
+     "scene": "box",
+     "label": "box",
+     "index": 44
+    },
+    {
+     "scene": "cage",
+     "label": "cage",
+     "index": 58
+    },
+    {
+     "scene": "table_pick",
+     "label": "table pick",
+     "index": 68
+    },
+    {
+     "scene": "table_under_pick",
+     "label": "table under pick",
+     "index": 3
+    }
+   ]
+  },
+  {
+   "robot": "fetch",
+   "label": "Fetch",
+   "dof": 8,
+   "budget_ms": 2000,
+   "length_unit": "",
+   "file": "fetch.json",
+   "bytes": 37894,
+   "scenes": [
+    {
+     "scene": "bookshelf_small",
+     "label": "bookshelf small",
+     "index": 4
+    },
+    {
+     "scene": "bookshelf_tall",
+     "label": "bookshelf tall",
+     "index": 16
+    },
+    {
+     "scene": "bookshelf_thin",
+     "label": "bookshelf thin",
+     "index": 36
+    },
+    {
+     "scene": "box",
+     "label": "box",
+     "index": 3
+    },
+    {
+     "scene": "cage",
+     "label": "cage",
+     "index": 24
+    },
+    {
+     "scene": "table_pick",
+     "label": "table pick",
+     "index": 64
+    },
+    {
+     "scene": "table_under_pick",
+     "label": "table under pick",
+     "index": 30
+    }
+   ]
+  },
+  {
+   "robot": "baxter",
+   "label": "Baxter",
+   "dof": 14,
+   "budget_ms": 5000,
+   "length_unit": "rad",
+   "file": "baxter.json",
+   "bytes": 29287,
+   "scenes": [
+    {
+     "scene": "bookshelf_tall_both_arms_easy",
+     "label": "both arms, easy",
+     "index": 335
+    },
+    {
+     "scene": "bookshelf_tall_both_arms_medium",
+     "label": "both arms, medium",
+     "index": 25
+    },
+    {
+     "scene": "bookshelf_tall_both_arms_hard",
+     "label": "both arms, hard",
+     "index": 213
+    }
+   ]
+  }
+ ],
+ "notes": "Paths in VAMP's joint order (radians; Fetch's torso in metres), linear in joint space between waypoints. cost = joint-space path length. t_ms = time from the start of solve() at which G-RRT* reported the solution (benchmark machine); simp_ms = time of the simplification (shortcutting, then B-spline smoothing) on the same machine, from the sweep's checkpoint or, with simp_ms_source = rerun, from a rerun of the first solution. Each scene shows the problem whose best solution is nearest the median length over the solved problems of the scene."
+}

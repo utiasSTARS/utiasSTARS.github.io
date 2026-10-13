@@ -1,0 +1,281 @@
+{
+ "robot": "fetch",
+ "label": "Fetch",
+ "dof": 8,
+ "root": "base_link",
+ "links": [
+  "base_link",
+  "torso_lift_link",
+  "shoulder_pan_link",
+  "shoulder_lift_link",
+  "upperarm_roll_link",
+  "elbow_flex_link",
+  "forearm_roll_link",
+  "wrist_flex_link",
+  "wrist_roll_link"
+ ],
+ "joints": [
+  {
+   "name": "torso_lift_joint",
+   "type": "prismatic",
+   "parent": "base_link",
+   "child": "torso_lift_link",
+   "origin": {
+    "xyz": [
+     -0.086875,
+     0.0,
+     0.37743
+    ],
+    "quat": [
+     -0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    0.0,
+    0.38615
+   ]
+  },
+  {
+   "name": "shoulder_pan_joint",
+   "type": "revolute",
+   "parent": "torso_lift_link",
+   "child": "shoulder_pan_link",
+   "origin": {
+    "xyz": [
+     0.119525,
+     0.0,
+     0.34858
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "limit": [
+    -1.6056,
+    1.6056
+   ]
+  },
+  {
+   "name": "shoulder_lift_joint",
+   "type": "revolute",
+   "parent": "shoulder_pan_link",
+   "child": "shoulder_lift_link",
+   "origin": {
+    "xyz": [
+     0.117,
+     0.0,
+     0.06
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "limit": [
+    -1.221,
+    1.518
+   ]
+  },
+  {
+   "name": "upperarm_roll_joint",
+   "type": "revolute",
+   "parent": "shoulder_lift_link",
+   "child": "upperarm_roll_link",
+   "origin": {
+    "xyz": [
+     0.219,
+     0.0,
+     0.0
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "limit": [
+    -3.14159,
+    3.14159
+   ]
+  },
+  {
+   "name": "elbow_flex_joint",
+   "type": "revolute",
+   "parent": "upperarm_roll_link",
+   "child": "elbow_flex_link",
+   "origin": {
+    "xyz": [
+     0.133,
+     0.0,
+     0.0
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "limit": [
+    -2.251,
+    2.251
+   ]
+  },
+  {
+   "name": "forearm_roll_joint",
+   "type": "revolute",
+   "parent": "elbow_flex_link",
+   "child": "forearm_roll_link",
+   "origin": {
+    "xyz": [
+     0.197,
+     0.0,
+     0.0
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "limit": [
+    -3.14159,
+    3.14159
+   ]
+  },
+  {
+   "name": "wrist_flex_joint",
+   "type": "revolute",
+   "parent": "forearm_roll_link",
+   "child": "wrist_flex_link",
+   "origin": {
+    "xyz": [
+     0.1245,
+     0.0,
+     0.0
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "limit": [
+    -2.16,
+    2.16
+   ]
+  },
+  {
+   "name": "wrist_roll_joint",
+   "type": "revolute",
+   "parent": "wrist_flex_link",
+   "child": "wrist_roll_link",
+   "origin": {
+    "xyz": [
+     0.1385,
+     0.0,
+     0.0
+    ],
+    "quat": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "limit": [
+    -3.14159,
+    3.14159
+   ]
+  }
+ ],
+ "ee": {
+  "link": "gripper_link",
+  "parent": "wrist_roll_link",
+  "xyz": [
+   0.16645,
+   0.0,
+   0.0
+  ],
+  "quat": [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ },
+ "ees": [
+  {
+   "link": "gripper_link",
+   "parent": "wrist_roll_link",
+   "xyz": [
+    0.16645,
+    0.0,
+    0.0
+   ],
+   "quat": [
+    0.0,
+    0.0,
+    0.0,
+    1.0
+   ]
+  }
+ ],
+ "meshes": {
+  "full": "fetch.glb",
+  "normals": "crease"
+ },
+ "frames": "World = VAMP's world frame = URDF root link base_link, z up. Joint vectors are VAMP configurations, in vamp.fetch.joint_names() order; prismatic joints in metres. ee = vamp.fetch.end_effector() = gripper_link.",
+ "source": "vamp resources/fetch/fetch.urdf"
+}
